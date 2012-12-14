@@ -15,13 +15,13 @@ if( isset( $auth_first_name ) )	{
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </a>
-        <a class="brand" href="#">CBO eLibrary</a>
+        <?php echo anchor('/', 'CBO eLibrary', 'class="brand"')?>
         <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
         <div class="nav-collapse collapse">
           <ul class="nav">
             <li class="active"><?php echo anchor('/', 'Home') ?></li>							
             <li><?php echo anchor('about', 'About') ?></li>
-            <li><?php echo anchor('feature', 'Feature') ?></li>
+            <li><?php echo anchor('cbodirectory', 'CBO Directory') ?></li>
             <li><?php echo anchor('library', 'Library') ?></li>
             <li><?php echo anchor('links', 'Links') ?></li>
             <li><?php echo anchor('contact', 'Contact') ?></li>

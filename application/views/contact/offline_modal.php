@@ -11,7 +11,7 @@
  * @link        http://community-auth.com
  */
 ?>
-<div id="mask_overlay"></div>
+<?php /* <div id="mask_overlay"></div>
 <div id="modal_dialog">
 	<div id="modal_content">
 		<div id="adv-modal-title-bar">
@@ -38,4 +38,4 @@
 			</form>
 		</div>
 	</div>
-</div>
+</div> */ ?> 

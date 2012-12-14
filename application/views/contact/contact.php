@@ -67,12 +67,12 @@
 					// FIRST NAME LABEL AND INPUT ***********************************
 					echo form_label('First Name','first_name',array('class'=>'form_label'));
 
-					echo input_requirement('*');
+					
 
 					$input_data = array(
 						'name'		=> 'first_name',
 						'id'		=> 'first_name',
-						'class'		=> 'form_input first_name',
+						'class'		=> 'form_input first_name span8',
 						'value'		=> set_value('first_name'),
 						'maxlength'	=> '20',
 					);
@@ -88,12 +88,12 @@
 					// LAST NAME LABEL AND INPUT ***********************************
 					echo form_label('Last Name','last_name',array('class'=>'form_label'));
 
-					echo input_requirement('*');
+					
 
 					$input_data = array(
 						'name'		=> 'last_name',
 						'id'		=> 'last_name',
-						'class'		=> 'form_input last_name',
+						'class'		=> 'form_input last_name span8',
 						'value'		=> set_value('last_name'),
 						'maxlength'	=> '20',
 					);
@@ -109,12 +109,12 @@
 					// EMAIL ADDRESS *************************************************
 					echo form_label('Email Address','email',array('class'=>'form_label'));
 
-					echo input_requirement('*');
+					
 
 					$input_data = array(
 						'name'		=> 'email',
 						'id'		=> 'email',
-						'class'		=> 'form_input max_chars',
+						'class'		=> 'form_input max_chars span8',
 						'maxlength' => 255,
 						'value'		=> set_value('email')
 					);
@@ -129,12 +129,12 @@
 					// MESSAGE LABEL AND INPUT **************************
 					echo form_label('Your Message','message',array('class'=>'textarea_label'));
 
-					echo input_requirement('*');
+					
 
 					$textarea_data = array(
 						'name'		=> 'message',
 						'id'		=> 'message',
-						'class'		=> 'form_textarea max_chars',
+						'class'		=> 'form_textarea max_chars span8',
 						'value'		=> set_value('message'),
 						'rows'		=> '8',
 						'cols'		=> '14'
@@ -152,6 +152,7 @@
 					$input_data = array(
 						'name'		=> 'submit',
 						'id'		=> 'submit_button',
+						'class' 	=> 'btn btn-primary',
 						'value'		=> 'Submit'
 					);
 

@@ -1,6 +1,6 @@
 <?php if( ! defined('BASEPATH') ) exit('No direct script access allowed');
 
-class Library extends MY_Controller {
+class Cbodirectory extends MY_Controller {
 	public function __construct() {
 		parent::__construct();
 	}
@@ -9,18 +9,16 @@ class Library extends MY_Controller {
 		$this->template = 'templates/library_template';
 		$data = array(
 				'title' => 'CBO - eLibrary',
-				'content' => $this->load->view('library/main', '', TRUE)
+				'content' => $this->load->view('directory/main', '', TRUE)
 			);
 		$this->load->view($this->template, $data);
 	}
-
-	function view($id) {
-		$this->template = 'templates/single';
+	public function country($name) {
+		$this->template = 'templates/library_template';
 		$data = array(
-				'title' 	=> 'CBO - eLibrary',
-				
-				'content' 	=> $this->load->view('library/detail', '', TRUE)
+				'title' => 'CBO - eLibrary',
+				'content' => $this->load->view('directory/country', '', TRUE)
 			);
-		$this->load->view($this->template, $data);	
+		$this->load->view($this->template, $data);		
 	}
 }
