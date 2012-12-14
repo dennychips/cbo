@@ -5,6 +5,7 @@
     body {
       padding-bottom: 40px;
       color: #5a5a5a;
+      font-size: 12px;
     }
 
 
@@ -241,4 +242,14 @@
 }
  .sidebar-nav {
         padding: 9px 0;
-      }
+}
+label {
+  font-size:12px;
+  font-weight: bold;
+}
+select{
+  font-size: 11px;
+}
+::-webkit-input-placeholder {font-size: 11px}
+:-moz-placeholder {font-size: 11px}
+:-ms-input-placeholder {font-size: 11px}

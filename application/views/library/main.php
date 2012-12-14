@@ -15,22 +15,27 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec lorem libero. N
 </div>
 <hr />
 <div class="row">
-	<div class="span12">
+	<div class="span2">
 		<form class="">
 			<label>Subject</label>
-			<input type="text" placeholder="subject"  />
-			<label>Author</label>
-			<input type="text" placeholder="Author"  />
-			<label>Document Type</label>
-			<select>
+			<input type="text" placeholder="subject" class="span2"  />
+		</form>
+	</div>
+	<div class="span2">
+		<label>Author</label>
+		<input type="text" placeholder="Author" class="span2" />	
+	</div>
+	<div class="span2">
+		<label>Document Type</label>
+			<select class="span2" >
 				<option>Report</option>
 				<option>Research</option>
 				<option>Guideline</option>
 				<option>Best Practice</option>
 				<option>Journal</option>
 			</select>
-		</form>
 	</div>
+
 </div>
 <div class="row">
 	<div class="span12">
@@ -47,7 +52,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec lorem libero. N
 		  </thead>
 		  <tbody>
 		  	<tr>
-		  		
 		  		<td><?php echo anchor('library/view/1', '#QLDFLOODS AND @QPSMEDIA: CRISIS COMMUNICATION ON TWITTER IN THE 2011 SOUTH EAST QUEENSLAND FLOODS')?></td>
 		  		<td>Jonathan Doe</td>
 		  		<td>2010</td>
