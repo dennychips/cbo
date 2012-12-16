@@ -269,7 +269,7 @@ class Registration_model extends MY_Model {
 
 	// --------------------------------------------------------------
 
-	function get_country() {
+	public function get_country() {
 		
 		$q = $this->db->distinct()->select('country')->get('country_province');
 
@@ -280,6 +280,33 @@ class Registration_model extends MY_Model {
 
 		return FALSE;
 		
+	}
+	public function get_province() {
+		
+		$q = $this->db->distinct()->select('province')->get('country_province');
+
+		if( $q->num_rows() > 0 )
+		{
+			return $q->result();
+		}
+
+		return FALSE;
+		
+	}
+	public function get_province_by_country() {
+		$country = $this->input->post('country');
+		$this->db->distinct();
+		$this->db->select('province');
+		$this->db->where('country', $country );
+
+		$query = $this->db->get('country_province');
+
+		if( $query->num_rows() > 0 )
+		{
+			return $query->result_array();
+		}
+
+		return FALSE;
 	}
 
 }

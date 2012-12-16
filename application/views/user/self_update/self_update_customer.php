@@ -1,4 +1,7 @@
-<?php print_r($user_data);?>
+<?php //print_r($user_data); 
+$focus = unserialize($user_data->focus_area);
+
+?>
 <div class="form-column-left">
 	<fieldset>
 		<legend>Account Details:</legend>
@@ -15,11 +18,6 @@
 				);
 				
 				echo form_input($input_data);
-
-			?>
-
-
-			<?php
 				// LAST NAME LABEL AND INPUT ***********************************
 				echo form_label('Last Name','last_name',array('class'=>'form_label'));
 				$input_data = array(
@@ -32,8 +30,6 @@
 
 				echo form_input($input_data);
 
-			?>
-			<?php
 				// EMAIL ADDRESS *************************************************
 				echo form_label('Email Address','user_email',array('class'=>'form_label'));
 				$input_data = array(
@@ -63,14 +59,26 @@
 
 			?>
 
-			<?php
-				// CITY LABEL AND INPUT ***********************************
-				echo form_label('City','city',array('class'=>'form_label'));
+			<?php 
+    			echo form_label('Organization Name *','organization',array('class'=>'form_label'));
 				$input_data = array(
-					'name'		=> 'city',
-					'id'		=> 'city',
-					'class'		=> 'form_input max_chars',
-					'value'		=> set_value('city', $user_data->city),
+					'name'		=> 'organization',
+					'id'		=> 'organization',
+					'class'		=> 'form_input password span4',
+					'value'		=> set_value('organization', $user_data->organization),
+				);
+
+				echo form_input($input_data);
+    		?>
+    		<?php
+				// STREET ADDRESS LABEL AND INPUT ***********************************
+				echo form_label('Street Address *','street_address',array('class'=>'form_label'));
+
+				$input_data = array(
+					'name'		=> 'street_address',
+					'id'		=> 'street_address',
+					'class'		=> 'form_input max_chars span4',
+					'value'		=> set_value('street_address', $user_data->street_address),
 					'maxlength'	=> '60',
 				);
 
@@ -79,33 +87,87 @@
 			?>
 
 			<?php
-				// STATE LABEL AND INPUT ***********************************
-				echo form_label('State','state',array('class'=>'form_label'));
+				// STREET ADDRESS LABEL AND INPUT ***********************************
+				echo form_label('Phone Number *','phone_number',array('class'=>'form_label'));
+
 				$input_data = array(
-					'name'		=> 'state',
-					'id'		=> 'state',
-					'class'		=> 'form_input max_chars',
-					'value'		=> set_value('state', $user_data->state),
-					'maxlength'	=> '50',
+					'name'		=> 'phone_number',
+					'id'		=> 'phone_number',
+					'class'		=> 'form_input max_chars span4',
+					'value'		=> set_value('phone_number', $user_data->phone_number),
+					'maxlength'	=> '60',
 				);
 
 				echo form_input($input_data);
 
 			?>
+			<?php 
+				echo form_label('Focus Area *','focus_area',array('class'=>'form_label'));
+				$options = array(
+                  'MSM'  => 'MSM',
+                  'Transgender'    => 'Transgender',
+                  'HIV/AIDS'   => 'HIV/AIDS',
+                  'General Population' => 'General Population',
+                  'IDU' => 'IDU',
+                  'Sex Worker' => 'Sex Worker',
+                  'Youth' => 'Youth',
+                  'Other' => 'Other'
+                );
+				echo form_dropdown('focus_area[]', $options, $focus, 'class="span4" multiple="multiple"');
+			?>
+			
+    		<?php
+				// STREET ADDRESS LABEL AND INPUT ***********************************
+				echo form_label('Official Website URL','website',array('class'=>'form_label'));
 
-			<?php
-				// ZIP LABEL AND INPUT ***********************************
-				echo form_label('Zip','zip',array('class'=>'form_label'));
 				$input_data = array(
-					'name'		=> 'zip',
-					'id'		=> 'zip',
-					'class'		=> 'form_input max_chars',
-					'value'		=> set_value('zip', $user_data->zip),
-					'maxlength'	=> '20',
+					'name'		=> 'website',
+					'id'		=> 'website',
+					'class'		=> 'form_input max_chars span4',
+					'value'		=> set_value('website', $user_data->website),
+					
 				);
 
 				echo form_input($input_data);
+			?>
+			<?php
+				// STREET ADDRESS LABEL AND INPUT ***********************************
+				echo form_label('Blog URL','blog',array('class'=>'form_label'));
 
+				$input_data = array(
+					'name'		=> 'blog',
+					'id'		=> 'blog',
+					'class'		=> 'form_input max_chars span4',
+					'value'		=> set_value('blog', $user_data->blog),
+				);
+
+				echo form_input($input_data);
+			?>
+			<?php
+				// STREET ADDRESS LABEL AND INPUT ***********************************
+				echo form_label('Facebook URL','facebook',array('class'=>'form_label'));
+
+				$input_data = array(
+					'name'		=> 'facebook',
+					'id'		=> 'facebook',
+					'class'		=> 'form_input max_chars span4',
+					'value'		=> set_value('facebook', $user_data->facebook),
+				);
+
+				echo form_input($input_data);
+			?>
+			<?php
+				// STREET ADDRESS LABEL AND INPUT ***********************************
+				echo form_label('Twitter URL','twitter',array('class'=>'form_label'));
+
+				$input_data = array(
+					'name'		=> 'twitter',
+					'id'		=> 'twitter',
+					'class'		=> 'form_input max_chars span4',
+					'value'		=> set_value('twitter', $user_data->twitter),
+				);
+
+				echo form_input($input_data);
 			?>
 			<h3 style="margin:1em 0;color:#bf1e2e;">Leave Blank To Keep Current Password:</h3>
 

@@ -23,10 +23,10 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec lorem libero. N
 		  </thead>
 		  <tbody>
 		  	<tr>
-		  		<td><a href="#">Perhimpunan Abiasa</a></td>
+		  		<td><?php echo anchor('cbodirectory/view/1', 'Perhimpunan Abiasa'); ?></td>
 		  		<td>West Java</td>
 		  		<td>HIV / AIDS, MSM, Transgender</td>
-		  		<td><a href="#" class="btn btn-mini btn-info">View Profile</a></td>
+		  		<td><?php echo anchor('cbodirectory/view/1', 'View Profile', 'class="btn btn-mini btn-info"') ?></a></td>
 		  		
 		  	</tr>   
 		  </tbody>

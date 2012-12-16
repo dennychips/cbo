@@ -1,7 +1,26 @@
 <?php if( ! defined('BASEPATH') ) exit('No direct script access allowed');
 ?>
+<script type="text/javascript">
+	// $(document).ready(function(){
+	// 	$('#country').change(function() {
+	// 		var data = $('#country option:selected').val();
+	// 		$.ajax({
+	// 			type: 'post',
+	// 			url: $('#ajax_url').val(),
+	// 			data : data,
+	// 			dataType : 'json',
+	// 			success: function(response){
+	// 				if(response.status == 'success') {
+	// 					$('#province').html(response.province)
+	// 				} else {
+	// 					alert(response.message);
+	// 				}
+	// 			}
+	// 		});
+	// 	});
+	// });
+</script>
 <h1>CBO eLibrary Registration Field</h1>
-
 <?php 
 
 if($reg_mode == 0 ) {
@@ -152,21 +171,23 @@ if($reg_mode == 0 ) {
     		?>
     		<?php 
     			echo form_label('Country *','country',array('class'=>'form_label'));
-    			$countries[] = '-- Select Country --';
+    			$countries[''] = '-- Select Country --';
     			
     			foreach ($country as $row) {
     				$countries[$row->country] = $row->country;	
     			}
 
-				echo form_dropdown('country', $countries, 'large', 'class="span4"');
+				echo form_dropdown('country', $countries, set_value('country'), 'id ="country" class="span4"');
     		?>
     		<?php 
     			echo form_label('Province *','province',array('class'=>'form_label'));
-    			$province[] = '-- Select Province --';
-    			
+    			$provinces[''] = '-- Select Province --';
+    			foreach ($province as $row) {
+    				$provinces[$row->province] = $row->province;	
+    			}
     			
 
-				echo form_dropdown('province', $province, 'large', 'class="span4"');
+				echo form_dropdown('province', $provinces, set_value('country'), 'id="province" class="span4"');
     		?>
     		<?php
 				// STREET ADDRESS LABEL AND INPUT ***********************************
@@ -211,7 +232,7 @@ if($reg_mode == 0 ) {
                   'Youth' => 'Youth',
                   'Other' => 'Other'
                 );
-				echo form_dropdown('focus_area[]', $options, 'large', 'class="span4" multiple="multiple"');
+				echo form_dropdown('focus_area[]', $options, set_value('focus_area'), 'class="span4" multiple="multiple"');
 			?>
 			
     		<?php
@@ -270,6 +291,8 @@ if($reg_mode == 0 ) {
 			
 		    
 		    <div class="clearfix"></div>
+		    
+		    <input type="hidden" id="ajax_url" value="<?php echo if_secure_site_url('register/province_pop'); ?>" />
 
 		    <input type="submit" value="Sign up" class="btn btn-primary pull-left">
 		    <div class="clearfix"></div>

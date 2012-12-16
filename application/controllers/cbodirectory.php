@@ -21,4 +21,13 @@ class Cbodirectory extends MY_Controller {
 			);
 		$this->load->view($this->template, $data);		
 	}
+	public function view($id) {
+		$this->template = 'templates/single';
+		$data = array(
+				'title' 	=> 'CBO - eLibrary',
+				
+				'content' 	=> $this->load->view('directory/detail', '', TRUE)
+			);
+		$this->load->view($this->template, $data);
+	}
 }

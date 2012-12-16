@@ -35,6 +35,7 @@ class Register extends MY_Controller {
 		// Load resources
 		$this->load->library('csrf');
 		$this->load->model('registration_model');
+		$this->load->model( 'auto_populate_model', 'autopop' );
 
 		$reg_mode = $this->registration_model->get_reg_mode();
 
@@ -108,7 +109,9 @@ class Register extends MY_Controller {
 
 		// Send registration mode to view
 		$view_data['reg_mode'] = $reg_mode;
+		//$view_data ['country'] =  $this->autopop->get_types();
 		$view_data ['country'] =  $this->registration_model->get_country();
+		$view_data ['province'] =  $this->registration_model->get_province();
 		// Ouput alert-bar message if cookies not enabled
 		$this->check_cookies_enabled();
 
@@ -322,7 +325,9 @@ class Register extends MY_Controller {
 	}
 
 	// --------------------------------------------------------------
-
+	public function province_pop() {
+		echo 'a';
+	}
 }
 
 /* End of file register.php */
