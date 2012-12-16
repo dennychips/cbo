@@ -47,28 +47,22 @@ if( ! isset( $on_hold_message ) )
 ?>
 
 	<div class="form-column-left">
-		<div class="form-row">
+		
 			<label for="login_string" class="form_label">Username or Email</label>
 			<input type="text" name="login_string" id="login_string" class="form_input" autocomplete="off" maxlength="255" />
-		</div>
-		<div class="form-row">
+		
+		
 			<label for="login_pass" class="form_label">Password</label>
 			<input type="password" name="login_pass" id="login_pass" class="form_input password" autocomplete="off" maxlength="<?php echo MAX_CHARS_4_PASSWORD; ?>" />
-		</div>
-		<div class="form-row">
-			<label for="show-password" class="form_label">Show Passwords</label>
-			<input type="checkbox" id="show-password" />
-		</div>
+		
+			<label class="checkbox"><input type="checkbox" id="show-password"> Show Password</label>
 
 		<?php
 			if( config_item('allow_remember_me') )
 			{
 		?>
-
-		<div class="form-row">
-			<label for="remember_me" class="form_label">Remember Me</label>
-			<input type="checkbox" id="remember_me" name="remember_me" value="yes" />
-		</div>
+			<label for="remember_me" class="checkbox"><input type="checkbox" id="remember_me" name="remember_me" value="yes" /> Remember Me</label>
+		
 
 		<?php
 			}
@@ -83,7 +77,7 @@ if( ! isset( $on_hold_message ) )
 		</div>
 		<div class="form-row">
 			<div id="submit_box">
-				<input type="submit" name="submit" value="Login" id="submit_button"  />
+				<input type="submit" name="submit" value="Login" class="btn btn-primary btn-small" id="submit_button"  />
 			</div>
 		</div>
 	</div>

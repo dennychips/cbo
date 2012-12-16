@@ -27,31 +27,51 @@ $config['registration_form'] = array(
 		'label' => 'EMAIL ADDRESS',
 		'rules' => 'trim|required|max_length[255]|valid_email|external_callbacks[model,formval_callbacks,_email_exists_check]'
 	),
-	array(
-		'field' => 'last_name',
-		'label' => 'LAST NAME',
-		'rules' => 'trim|required|max_length[20]|xss_clean'
-	),
-	array(
-		'field' => 'first_name',
-		'label' => 'FIRST NAME',
-		'rules' => 'trim|required|max_length[20]|xss_clean'
-	),
+	// array(
+	// 	'field' => 'last_name',
+	// 	'label' => 'LAST NAME',
+	// 	'rules' => 'trim|required|max_length[20]|xss_clean'
+	// ),
+	// array(
+	// 	'field' => 'first_name',
+	// 	'label' => 'FIRST NAME',
+	// 	'rules' => 'trim|required|max_length[20]|xss_clean'
+	// ),
 	array(
 		'field' => 'street_address',
-		'label' => 'STREET ADDRESS',
-		'rules' => 'trim|required|xss_clean|max_length[60]'
+		'label' => 'Street Address',
+		'rules' => 'trim|required|xss_clean'
 	),
 	array(
-		'field' => 'city',
-		'label' => 'CITY',
-		'rules' => 'trim|required|xss_clean|max_length[60]'
+		'field' => 'organization',
+		'label' => 'Organization',
+		'rules' => 'trim|required|xss_clean'
 	),
 	array(
-		'field' => 'state',
-		'label' => 'STATE or PROVINCE',
-		'rules' => 'trim|required|alpha|max_length[50]'
+		'field' => 'country',
+		'label' => 'Country',
+		'rules' => 'trim|required|xss_clean'
 	),
+	array(
+		'field' => 'province',
+		'label' => 'Province',
+		'rules' => 'trim|required|xss_clean'
+	),
+	array(
+		'field' => 'phone_number',
+		'label' => 'Phone Number',
+		'rules' => 'trim|required|numeric|xss_clean'
+	),
+	// array(
+	// 	'field' => 'city',
+	// 	'label' => 'CITY',
+	// 	'rules' => 'trim|required|xss_clean|max_length[60]'
+	// ),
+	// array(
+	// 	'field' => 'state',
+	// 	'label' => 'STATE or PROVINCE',
+	// 	'rules' => 'trim|required|alpha|max_length[50]'
+	// ),
 	array(
 		'field' => 'focus_area',
 		'label' => 'Focus Area',

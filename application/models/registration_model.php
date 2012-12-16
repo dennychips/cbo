@@ -70,6 +70,7 @@ class Registration_model extends MY_Model {
 			// Generate random user salt
 			$user_salt = md5( mt_rand() );
 
+			
 			// Create insert array for registration record
 			$insert_array = array(
 				'reg_id'         => $registration_id,
@@ -78,16 +79,27 @@ class Registration_model extends MY_Model {
 				'user_pass'      => $this->encrypt->encode( $user_salt . set_value('user_pass') ),
 				'user_salt'      => $user_salt,
 				'user_email'     => set_value('user_email'),
-				'first_name'     => set_value('first_name'),
-				'last_name'      => set_value('last_name'),
+				'organization'	 => set_value('organization'),
+				'country'		 => set_value('country'),
+				'province'		 => set_value('province'),
 				'street_address' => set_value('street_address'),
-				'city'           => set_value('city'),
-				'state'          => set_value('state'),
-				'zip'            => set_value('zip')
+				'phone_number'	 => set_value('phone_number'),
+				'focus_area'	 => serialize(set_value('focus_area')),
+				'website'		 => set_value('website'),
+				'blog'			 => set_value('blog'),
+				'facebook'		 => set_value('facebook'),
+				'twitter' 		 => set_value('twitter')
+				// 'first_name'     => set_value('first_name'),
+				// 'last_name'      => set_value('last_name'),
+				// 'street_address' => set_value('street_address'),
+				// 'city'           => set_value('city'),
+				// 'state'          => set_value('state'),
+				// 'zip'            => set_value('zip')
 			);
-
+			
 			// Insert record
 			$this->db->insert( config_item('temp_reg_data_table'), $insert_array );
+
 
 			if( $this->db->affected_rows() > 0 )
 			{
@@ -228,12 +240,22 @@ class Registration_model extends MY_Model {
 				'user_name'      => $result->user_name,
 				'user_email'     => $result->user_email,
 				'user_pass'      => $real_password,
-				'first_name'     => $result->first_name,
-				'last_name'      => $result->last_name,
+				'organization'	 => $result->organization,
+				'country'		 => $result->country,
+				'province'		 => $result->province,
 				'street_address' => $result->street_address,
-				'city'           => $result->city,
-				'state'          => $result->state,
-				'zip'            => $result->zip,
+				'phone_number'	 => $result->phone_number,
+				'focus_area'	 => $result->focus_area,
+				'website'		 => $result->website,
+				'blog'			 => $result->blog,
+				'facebook'		 => $result->facebook,
+				'twitter' 		 => $result->twitter
+				// 'first_name'     => $result->first_name,
+				// 'last_name'      => $result->last_name,
+				// 'street_address' => $result->street_address,
+				// 'city'           => $result->city,
+				// 'state'          => $result->state,
+				// 'zip'            => $result->zip,
 			);
 
 			return $result->user_email;

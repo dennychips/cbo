@@ -3,7 +3,6 @@
 <h1>CBO eLibrary Registration Field</h1>
 
 <?php 
-
 if($reg_mode == 0 ) {
 	echo '
 		<div class="alert alert-info">
@@ -23,7 +22,7 @@ if($reg_mode == 0 ) {
 					' . $validation_errors . '
 				</ul>
 				<p>
-					USER NOT REGISTERED
+					Please Fix The Error Below
 				</p>
 			</div>
 		';
@@ -41,9 +40,10 @@ if($reg_mode == 0 ) {
 
 	if(isset($validation_passed) && $reg_mode == 2) {
 		echo '
-			<div class="alert alert-info">
+			<div class="alert alert-success">
 				<p>
-					Thank you for registering. You may now ' . secure_anchor('user', 'login') . '.
+					Please check your email to confirm your account.<br />
+					Click the link contained in the email.
 				</p>
 			</div>
 		';
@@ -104,7 +104,7 @@ if($reg_mode == 0 ) {
 				echo form_password($input_data);
 			?>
 			<label class="checkbox">
-                  <input type="checkbox"> Show Password
+                  <input type="checkbox" id="show-password"> Show Password
             </label>	
 
 
@@ -141,7 +141,7 @@ if($reg_mode == 0 ) {
     		?>
     		<?php
 				// STREET ADDRESS LABEL AND INPUT ***********************************
-				echo form_label('Street Address','street_address',array('class'=>'form_label'));
+				echo form_label('Street Address *','street_address',array('class'=>'form_label'));
 
 				$input_data = array(
 					'name'		=> 'street_address',
@@ -157,7 +157,7 @@ if($reg_mode == 0 ) {
 
 			<?php
 				// STREET ADDRESS LABEL AND INPUT ***********************************
-				echo form_label('Phone Number','phone_number',array('class'=>'form_label'));
+				echo form_label('Phone Number *','phone_number',array('class'=>'form_label'));
 
 				$input_data = array(
 					'name'		=> 'phone_number',
@@ -171,7 +171,7 @@ if($reg_mode == 0 ) {
 
 			?>
 			<?php 
-				echo form_label('Focus Area','focus_area',array('class'=>'form_label'));
+				echo form_label('Focus Area *','focus_area',array('class'=>'form_label'));
 				$options = array(
                   'MSM'  => 'MSM',
                   'Transgender'    => 'Transgender',

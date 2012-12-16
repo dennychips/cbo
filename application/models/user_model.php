@@ -41,6 +41,7 @@ class User_model extends MY_Model {
 	 */
 	public function create_user( $role, $insert_array = array() )
 	{
+		echo $role;
 		// The form validation class doesn't allow for multiple config files, so we do it the old fashion way
 		$this->config->load( 'form_validation/administration/create_user/create_' . $role );
 		$this->validation_rules = config_item( $role . '_creation_rules' );
@@ -48,6 +49,7 @@ class User_model extends MY_Model {
 		// If the data is already validated, there's no reason to do it again
 		if( ! empty( $insert_array ) OR $this->validate() === TRUE )
 		{
+
 			// Prepare user_data array for insert into user table
 			$user_data = array(
 				'user_name'  => ( isset( $insert_array['user_name'] ) ) ? $insert_array['user_name'] : set_value('user_name'),
@@ -57,6 +59,7 @@ class User_model extends MY_Model {
 
 			// User level derived directly from the role argument
 			$user_data['user_level'] = $this->authentication->levels[$role];
+			print_r($user_data);die();
 
 			// If we are using form validation for the user creation
 			if( empty( $insert_array ) )
@@ -106,18 +109,21 @@ class User_model extends MY_Model {
 			// Perform transaction
 			$this->db->trans_start();
 
+
 			$user_data['user_id']       = $random_unique_int;
 			$user_data['user_pass']     = $this->authentication->hash_passwd( $user_data['user_pass'], $user_salt );
 			$user_data['user_salt']     = $user_salt;
 			$user_data['user_date']     = time();
 			$user_data['user_modified'] = time();
 
+
 			// Insert data in user table
 			$this->db->set($user_data)
 						->insert( config_item('user_table'));
 
-			$profile_data['user_id'] = $random_unique_int;
 
+			$profile_data['user_id'] = $random_unique_int;
+			
 			// Insert data in profile table
 			$this->db->set($profile_data)
 						->insert( config_item( $role . '_profiles_table'));
@@ -131,6 +137,8 @@ class User_model extends MY_Model {
 				// Load var to confirm user inserted into database
 				$this->load->vars( array( 'user_created' => 1 ) );
 			}
+
+
 
 			return TRUE;
 		}
@@ -393,6 +401,7 @@ class User_model extends MY_Model {
 				$this->db->where('user_id', $the_user)
 					->update( config_item( $role . '_profiles_table'), $profile_data );
 			}
+
 		}
 
 		// Complete transaction
