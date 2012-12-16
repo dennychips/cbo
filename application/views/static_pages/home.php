@@ -44,19 +44,19 @@
       <div class="row">
         <div class="span3">
           <h2>Indonesia</h2>
-          <p><a class="btn" href="#">View details &raquo;</a></p>
+          <p><?php echo anchor('cbodirectory', 'View details &raquo;', 'class="btn"')?></p>
         </div><!-- /.span4 -->
         <div class="span3">
           <h2>Philippines</h2>
-          <p><a class="btn" href="#">View details &raquo;</a></p>
+          <p><?php echo anchor('cbodirectory', 'View details &raquo;', 'class="btn"')?></p>
         </div><!-- /.span4 -->
         <div class="span3">
           <h2>Singapore</h2>
-          <p><a class="btn" href="#">View details &raquo;</a></p>
+          <p><?php echo anchor('cbodirectory', 'View details &raquo;', 'class="btn"')?></p>
         </div><!-- /.span4 -->
         <div class="span3">
           <h2>Timor Leste</h2>
-          <p><a class="btn" href="#">View details &raquo;</a></p>
+          <p><?php echo anchor('cbodirectory', 'View details &raquo;', 'class="btn"')?></p>
         </div><!-- /.span4 -->
       </div><!-- /.row -->
      <!-- FOOTER -->
