@@ -3,6 +3,7 @@
 <h1>CBO eLibrary Registration Field</h1>
 
 <?php 
+
 if($reg_mode == 0 ) {
 	echo '
 		<div class="alert alert-info">
@@ -110,6 +111,34 @@ if($reg_mode == 0 ) {
 
 		    <h4>Contact Information</h4>
     		<hr />
+    		<?php
+				// FIRST NAME LABEL AND INPUT ***********************************
+				echo form_label('First Name *','first_name',array('class'=>'form_label'));
+				$input_data = array(
+					'name'		=> 'first_name',
+					'id'		=> 'first_name',
+					'class'		=> 'form_input first_name span4',
+					'value'		=> set_value('first_name'),
+					'maxlength'	=> '20',
+				);
+
+				echo form_input($input_data);
+
+			?>
+			<?php
+				// LAST NAME LABEL AND INPUT ***********************************
+				echo form_label('Last Name *','last_name',array('class'=>'form_label'));
+				$input_data = array(
+					'name'		=> 'last_name',
+					'id'		=> 'last_name',
+					'class'		=> 'form_input last_name span4',
+					'value'		=> set_value('last_name'),
+					'maxlength'	=> '20',
+				);
+
+				echo form_input($input_data);
+
+			?>
     		<?php 
     			echo form_label('Organization Name *','organization',array('class'=>'form_label'));
 				$input_data = array(

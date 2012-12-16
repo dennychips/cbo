@@ -1,14 +1,11 @@
+<?php print_r($user_data);?>
 <div class="form-column-left">
 	<fieldset>
 		<legend>Account Details:</legend>
-		<div class="form-row">
-
+		
 			<?php
 				// FIRST NAME LABEL AND INPUT ***********************************
 				echo form_label('First Name','first_name',array('class'=>'form_label'));
-
-				echo input_requirement('*');
-
 				$input_data = array(
 					'name'		=> 'first_name',
 					'id'		=> 'first_name',
@@ -21,15 +18,10 @@
 
 			?>
 
-		</div>
-		<div class="form-row">
 
 			<?php
 				// LAST NAME LABEL AND INPUT ***********************************
 				echo form_label('Last Name','last_name',array('class'=>'form_label'));
-
-				echo input_requirement('*');
-
 				$input_data = array(
 					'name'		=> 'last_name',
 					'id'		=> 'last_name',
@@ -41,16 +33,9 @@
 				echo form_input($input_data);
 
 			?>
-
-		</div>
-		<div class="form-row">
-
 			<?php
 				// EMAIL ADDRESS *************************************************
 				echo form_label('Email Address','user_email',array('class'=>'form_label'));
-
-				echo input_requirement('*');
-
 				$input_data = array(
 					'name'		=> 'user_email',
 					'id'		=> 'user_email',
@@ -62,14 +47,9 @@
 				echo form_input($input_data);
 			?>
 
-		</div>
-		<div class="form-row">
-
 			<?php
 				// STREET ADDRESS LABEL AND INPUT ***********************************
 				echo form_label('Street Address','street_address',array('class'=>'form_label'));
-
-				echo input_requirement('*');
 
 				$input_data = array(
 					'name'		=> 'street_address',
@@ -83,15 +63,9 @@
 
 			?>
 
-		</div>
-		<div class="form-row">
-
 			<?php
 				// CITY LABEL AND INPUT ***********************************
 				echo form_label('City','city',array('class'=>'form_label'));
-
-				echo input_requirement('*');
-
 				$input_data = array(
 					'name'		=> 'city',
 					'id'		=> 'city',
@@ -104,15 +78,9 @@
 
 			?>
 
-		</div>
-		<div class="form-row">
-
 			<?php
 				// STATE LABEL AND INPUT ***********************************
 				echo form_label('State','state',array('class'=>'form_label'));
-
-				echo input_requirement('*');
-
 				$input_data = array(
 					'name'		=> 'state',
 					'id'		=> 'state',
@@ -125,15 +93,9 @@
 
 			?>
 
-		</div>
-		<div class="form-row">
-
 			<?php
 				// ZIP LABEL AND INPUT ***********************************
 				echo form_label('Zip','zip',array('class'=>'form_label'));
-
-				echo input_requirement('*');
-
 				$input_data = array(
 					'name'		=> 'zip',
 					'id'		=> 'zip',
@@ -145,17 +107,11 @@
 				echo form_input($input_data);
 
 			?>
-
-		</div>
-		<div class="form-row">
 			<h3 style="margin:1em 0;color:#bf1e2e;">Leave Blank To Keep Current Password:</h3>
 
 			<?php
 				// PASSWORD LABEL AND INPUT ********************************
 				echo form_label('Change Password','user_pass',array('class'=>'form_label'));
-
-				echo input_requirement();
-
 				$input_data = array(
 					'name'       => 'user_pass',
 					'id'         => 'user_pass',
@@ -166,15 +122,12 @@
 				echo form_password($input_data);
 			?>
 
-		</div>
-		<div class="form-row">
+		
+		
 
 			<?php
 				// CONFIRM PASSWORD LABEL AND INPUT ******************************
 				echo form_label('Confirm New Password','user_pass_confirm',array('class'=>'form_label'));
-
-				echo input_requirement();
-
 				$input_data = array(
 					'name'       => 'user_pass_confirm',
 					'id'         => 'user_pass_confirm',
@@ -185,23 +138,12 @@
 				echo form_password($input_data);
 			?>
 
-		</div>
-		<div class="form-row">
+		
+			<label class="form_label checkbox">
+				<input type="checkbox" id="show-password" /> Show Password
+			</label>
 
-			<?php
-				// SHOW PASSWORD CHECKBOX
-				echo form_label('Show Passwords','show-password',array('class'=>'form_label'));
-
-				echo input_requirement();
-
-				$checkbox_data = array(
-					'id' => 'show-password'
-				);
-
-				echo form_checkbox( $checkbox_data );
-			?>
-
-		</div>
+		
 	</fieldset>
 	<fieldset>
 		<legend>Profile Image</legend>

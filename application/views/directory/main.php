@@ -47,7 +47,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec lorem libero. N
 		  </thead>
 		  <tbody>
 		  	<tr>
-		  		<td><a href="#">Document</a></td>
+		  		<td><?php echo anchor('library/view/1', 'lorem Ipsum')?></td>
 		  		<td>Jonathan Doe</td>
 		  		<td>2011</td>
 		  		<td>PDF</td>

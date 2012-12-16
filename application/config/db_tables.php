@@ -13,7 +13,7 @@
 
 // USER RELATED TABLES
 $config['user_table']                   = 'users';
-$config['customer_profiles_table']      = 'customer_profiles';
+$config['customer_profiles_table']      = 'customer_profile';
 $config['manager_profiles_table']       = 'manager_profiles';
 $config['admin_profiles_table']         = 'admin_profiles';
 
@@ -25,7 +25,7 @@ $config['denied_access_table']          = 'denied_access';
 
 // REGISTRATION RELATED TABLES
 $config['registration_table']           = 'registration';
-$config['temp_reg_data_table']          = 'temp_registration_data';
+$config['temp_reg_data_table']          = 'temp_registration';
 
 // MISC TABLES
 $config['custom_uploader_table']        = 'custom_uploader_table';

@@ -12,7 +12,7 @@
  */
 ?>
 
-<h1>My Profile</h1>
+<h3>My Profile</h3>
 
 <?php
 
@@ -47,29 +47,36 @@
 	{
 
 ?>
-<div class="profile_image">
-	<?php
-		// PROFILE IMAGE
-		echo img(
-			( ! empty( $user_data->profile_image ) ) ? $user_data->profile_image : 'img/default-profile-image.jpg',
-			FALSE,
-			( $upload_destination == 'database' && ! empty( $user_data->profile_image ) ) ? TRUE : FALSE
-		);
-	?>
-</div>
-<div id="user_info">
-	<h3><?php echo $user_data->user_name; ?></h3>
-	<ul class="std-list">
-		<li>
-			Registration Date: <?php echo  date('F j, Y, g:i a',$user_data->user_date); ?>
-		</li>
-		<li>
-			Last Modified: <?php echo  date('F j, Y, g:i a',$user_data->user_modified); ?>
-		</li>
-		<li>
-			Last Login: <?php echo ($user_data->user_last_login != FALSE)? date('F j, Y, g:i a',$user_data->user_last_login) : '<span class="redfield">NEVER LOGGED IN</span>'; ?>
-		</li>
-	</ul>
+<hr />
+<div class="row">
+	<div class="span2">
+		<div class="profile_image">
+			<?php
+				// PROFILE IMAGE
+				echo img(
+					( ! empty( $user_data->profile_image ) ) ? $user_data->profile_image : 'images/Profile-Placeholder.png',
+					FALSE,
+					( $upload_destination == 'database' && ! empty( $user_data->profile_image ) ) ? TRUE : FALSE
+				);
+			?>
+		</div>
+	</div>
+	<div class="span7">
+		<div id="user_info">
+			<h3><?php echo $user_data->user_name; ?></h3>
+			<ul class="std-list">
+				<li>
+					Registration Date: <?php echo  date('F j, Y, g:i a',$user_data->user_date); ?>
+				</li>
+				<li>
+					Last Modified: <?php echo  date('F j, Y, g:i a',$user_data->user_modified); ?>
+				</li>
+				<li>
+					Last Login: <?php echo ($user_data->user_last_login != FALSE)? date('F j, Y, g:i a',$user_data->user_last_login) : '<span class="redfield">NEVER LOGGED IN</span>'; ?>
+				</li>
+			</ul>
+		</div>
+	</div>
 </div>
 
 <?php 

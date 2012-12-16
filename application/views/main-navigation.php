@@ -28,9 +28,36 @@ if( isset( $auth_first_name ) )	{
           </ul>
           <ul class="nav pull-right">
             <?php if(isset($_user_first_name)) : ?>
-            	<li><a href="#">Welcome <?php echo $_user_first_name?></a></li>
-            	<li><?php echo secure_anchor('user','User') ?></li>
-            	<li><?php echo secure_anchor('user/logout','Logout') ?></li>
+            	<!-- <li><a href="#">Welcome <?php echo $_user_first_name?></a></li> -->
+            	<!-- <li><?php echo secure_anchor('user','User') ?></li> -->
+              <li class="dropdown">
+                <?php echo secure_anchor('user/self_update', 'My Profile') ?>
+              </li>	
+              <?php if( isset( $auth_level ) && $auth_level >= 6 ) : ?>
+                  <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a>
+                      <ul class="dropdown-menu">
+                        <li>
+                            <?php echo  secure_anchor('administration/create_user', 'Create User');?>
+                        </li> 
+                        <li>
+                          <?php echo secure_anchor('administration/manage_users', 'Manage Users');?>
+                        </li>
+                        <li>
+                            <?php echo secure_anchor('register/pending_registrations', 'Pending Registrations');?>
+                        </li> 
+                        <?php if( isset( $auth_level ) && $auth_level == 9 ): ?>
+                        <li>
+                            <?php echo secure_anchor('register/settings', 'Registration Mode')?>
+                        </li> 
+                        <li>
+                            <?php echo secure_anchor('administration/deny_access', 'Deny Access');?>
+                        </li> 
+                      <?php endif;?>
+                      </ul>
+                  </li>
+              <?php endif;?>
+            <li><?php echo secure_anchor('user/logout','Logout') ?></li>
             <?php else : ?>
 	            <li><?php echo secure_anchor('register','Register')?></li>
 	            <li><?php echo secure_anchor('user','Login');?></li>

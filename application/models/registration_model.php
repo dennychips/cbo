@@ -70,7 +70,6 @@ class Registration_model extends MY_Model {
 			// Generate random user salt
 			$user_salt = md5( mt_rand() );
 
-			
 			// Create insert array for registration record
 			$insert_array = array(
 				'reg_id'         => $registration_id,
@@ -79,6 +78,8 @@ class Registration_model extends MY_Model {
 				'user_pass'      => $this->encrypt->encode( $user_salt . set_value('user_pass') ),
 				'user_salt'      => $user_salt,
 				'user_email'     => set_value('user_email'),
+				'first_name'	 => set_value('first_name'),
+				'last_name'	 	 => set_value('last_name'),
 				'organization'	 => set_value('organization'),
 				'country'		 => set_value('country'),
 				'province'		 => set_value('province'),
@@ -96,7 +97,7 @@ class Registration_model extends MY_Model {
 				// 'state'          => set_value('state'),
 				// 'zip'            => set_value('zip')
 			);
-			
+						
 			// Insert record
 			$this->db->insert( config_item('temp_reg_data_table'), $insert_array );
 
@@ -240,6 +241,8 @@ class Registration_model extends MY_Model {
 				'user_name'      => $result->user_name,
 				'user_email'     => $result->user_email,
 				'user_pass'      => $real_password,
+				'first_name'	 => $result->first_name,
+				'last_name'	 	 => $result->last_name,
 				'organization'	 => $result->organization,
 				'country'		 => $result->country,
 				'province'		 => $result->province,

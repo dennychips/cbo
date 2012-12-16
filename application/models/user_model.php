@@ -59,7 +59,7 @@ class User_model extends MY_Model {
 
 			// User level derived directly from the role argument
 			$user_data['user_level'] = $this->authentication->levels[$role];
-			print_r($user_data);die();
+
 
 			// If we are using form validation for the user creation
 			if( empty( $insert_array ) )

@@ -27,16 +27,16 @@ $config['registration_form'] = array(
 		'label' => 'EMAIL ADDRESS',
 		'rules' => 'trim|required|max_length[255]|valid_email|external_callbacks[model,formval_callbacks,_email_exists_check]'
 	),
-	// array(
-	// 	'field' => 'last_name',
-	// 	'label' => 'LAST NAME',
-	// 	'rules' => 'trim|required|max_length[20]|xss_clean'
-	// ),
-	// array(
-	// 	'field' => 'first_name',
-	// 	'label' => 'FIRST NAME',
-	// 	'rules' => 'trim|required|max_length[20]|xss_clean'
-	// ),
+	array(
+		'field' => 'last_name',
+		'label' => 'Last Name',
+		'rules' => 'trim|required|max_length[20]|xss_clean'
+	),
+	array(
+		'field' => 'last_name',
+		'label' => 'FIRST NAME',
+		'rules' => 'trim|required|max_length[20]|xss_clean'
+	),
 	array(
 		'field' => 'street_address',
 		'label' => 'Street Address',
@@ -76,7 +76,29 @@ $config['registration_form'] = array(
 		'field' => 'focus_area',
 		'label' => 'Focus Area',
 		'rules' => 'required'
-	)
+	),
+	array(
+		'field' => 'website',
+		'label' => 'Website',
+		'rules' => 'xss_clean'
+	),
+	array(
+		'field' => 'blog',
+		'label' => 'Blog',
+		'rules' => 'xss_clean'
+	),
+
+	array(
+		'field' => 'facebook',
+		'label' => 'Facebook',
+		'rules' => 'xss_clean'
+	),
+	array(
+		'field' => 'twitter',
+		'label' => 'Twitter',
+		'rules' => 'xss_clean'
+	),
+
 );
 
 /* End of file registration_form.php */
