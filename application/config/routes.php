@@ -49,6 +49,7 @@ $route['robots.txt']         = 'static_pages/robots_txt';
 $route['screenshots']        = 'static_pages/screenshots';
 $route['about'] 		     = 'static_pages/about';
 $route['feature'] 		     = 'static_pages/feature';
+$route['links'] 		     = 'static_pages/links';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

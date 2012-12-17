@@ -21,8 +21,26 @@ if( isset( $auth_first_name ) )	{
           <ul class="nav">
             <li class="active"><?php echo anchor('/', 'Home') ?></li>							
             <li><?php echo anchor('about', 'About') ?></li>
-            <li><?php echo anchor('cbodirectory', 'CBO Directory') ?></li>
-            <li><?php echo anchor('library', 'Library') ?></li>
+            <!-- <li><?php echo anchor('cbodirectory', 'CBO Directory') ?></li> -->
+            <li class="dropdown">
+              <?php echo anchor('cbodirectory', 'CBO Directory <b class="caret"></b>', ' data-toggle="dropdown" class="dropdown-toggle"') ?>
+              <ul class="dropdown-menu" id="menu1">
+                <li><?php echo anchor('cbodirectory', 'Indonesia')?></li>
+                <li><?php echo anchor('cbodirectory', 'Philiphines') ?></li>
+                <li><?php echo anchor('cbodirectory', 'Singapore') ?></li>
+                <li><?php echo anchor('cbodirectory', 'Timor Leste') ?></li>
+              </ul>
+            </li>
+            <li class="dropdown"><?php echo anchor('library', 'Library <b class="caret"></b>', ' data-toggle="dropdown" class="dropdown-toggle"') ?>
+              <ul class="dropdown-menu" id="menu2">
+                <li><?php echo anchor('library', 'Report')?></li>
+                <li><?php echo anchor('library', 'Research') ?></li>
+                <li><?php echo anchor('library', 'Guideline') ?></li>
+                <li><?php echo anchor('library', 'Best Practice') ?></li>
+                <li><?php echo anchor('library', 'Journal') ?></li>
+              </ul>
+
+            </li>
             <li><?php echo anchor('links', 'Links') ?></li>
             <li><?php echo anchor('contact', 'Contact') ?></li>
           </ul>

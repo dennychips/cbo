@@ -86,7 +86,7 @@ class Static_pages extends MY_Controller {
 	public function links() {
 		$data = array(
 				'title' => 'CBO eLibrary - Feature',
-				'content' => $this->load->view('static_pages/feature', '', TRUE),
+				'content' => $this->load->view('static_pages/links', '', TRUE),
 			);
 		$this->load->view($this->template, $data);	
 	}
