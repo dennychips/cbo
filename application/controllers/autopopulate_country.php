@@ -11,7 +11,7 @@
  * @link        http://community-auth.com
  */
 
-class Auto_populate extends MY_Controller {
+class Autopopulate_country extends MY_Controller {
 
 	private $recursion = 0;
 	private $dropdown_data;
@@ -27,44 +27,7 @@ class Auto_populate extends MY_Controller {
 
 		// Load common resources
 		$this->load->library('csrf');
-		$this->load->model( 'auto_populate_model', 'autopop' );
-	}
-
-	// --------------------------------------------------------------
-
-	/**
-	 * Display the auto population form
-	 */
-	public function index()
-	{
-		if( $this->require_min_level(1) )
-		{
-			// Get the vehicle types
-			$view_data['types'] = $this->autopop->get_types();
-
-			if( $this->csrf->token_match )
-			{
-				if( $this->input->post('type') )
-				{
-					$view_data['makes'] = $this->autopop->get_makes_in_type();
-
-					if( $this->input->post('make') )
-					{
-						$view_data['models'] = $this->autopop->get_models_in_make();
-					}
-				}
-			}
-
-			$data = array(
-				'title' =>  WEBSITE_NAME . ' - Auto Population of Form Selects',
-				'javascripts' => array(
-					'js/auto_populate/auto-populate.js'
-				),
-				'content' => $this->load->view( 'auto_populate/auto_populate', $view_data, TRUE )
-			);
-
-			$this->load->view( $this->template, $data );
-		}
+		$this->load->model( 'province_autopopulate_model', 'autopop' );
 	}
 
 	// --------------------------------------------------------------
@@ -92,7 +55,6 @@ class Auto_populate extends MY_Controller {
 				{
 					$options_data[$x] = array();
 				}
-
 				if( $this->input->post( $config['levels'][0] ) )
 				{
 					$this->_build_dropdown_data( $config );

@@ -35,7 +35,7 @@ class Register extends MY_Controller {
 		// Load resources
 		$this->load->library('csrf');
 		$this->load->model('registration_model');
-		$this->load->model( 'auto_populate_model', 'autopop' );
+		$this->load->model( 'province_autopopulate_model', 'autopop' );
 
 		$reg_mode = $this->registration_model->get_reg_mode();
 
@@ -111,7 +111,16 @@ class Register extends MY_Controller {
 		$view_data['reg_mode'] = $reg_mode;
 		//$view_data ['country'] =  $this->autopop->get_types();
 		$view_data ['country'] =  $this->registration_model->get_country();
-		$view_data ['province'] =  $this->registration_model->get_province();
+
+			if( $this->csrf->token_match )
+			{
+				if( $this->input->post('type') )
+				{
+					$view_data['province'] = $this->autopop->get_province_in_country();
+
+				}
+			}
+		
 		// Ouput alert-bar message if cookies not enabled
 		$this->check_cookies_enabled();
 
@@ -124,7 +133,8 @@ class Register extends MY_Controller {
 			'javascripts' => array(
 				'js/jquery.passwordToggle-1.1.js',
 				'js/jquery.char-limiter-3.0.0.js',
-				'js/default-char-limiters.js'
+				'js/default-char-limiters.js',
+				'js/autopopulate_country.js'
 			),
 
 			// Use the show password script
@@ -325,9 +335,7 @@ class Register extends MY_Controller {
 	}
 
 	// --------------------------------------------------------------
-	public function province_pop() {
-		echo 'a';
-	}
+	
 }
 
 /* End of file register.php */

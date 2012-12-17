@@ -31,6 +31,7 @@ $config['temp_reg_data_table']          = 'temp_registration';
 $config['custom_uploader_table']        = 'custom_uploader_table';
 $config['auto_populate_table']          = 'auto_populate';
 $config['category_menu_table']          = 'category_menu';
+$config['auto_populate_table_country']  = 'country_province';
 
 /* End of file db_tables.php */
 /* Location: /application/config/db_tables.php */

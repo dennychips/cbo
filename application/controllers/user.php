@@ -81,7 +81,6 @@ class User extends MY_Controller {
 			 * the flashdata for nothing
 			 */
 			$this->load->library('csrf');
-
 			// If the form post looks good
 			if( $this->csrf->token_match && $this->input->post('user_email') )
 			{
@@ -278,21 +277,26 @@ class User extends MY_Controller {
 	 */
 	public function self_update()
 	{
+
 		// Require a logged in user of any level
 		if( $this->require_min_level(1) )
 		{
+
 			// Load resources
 			$this->load->library('csrf');
 			$this->load->library('encrypt');
 			$this->load->model('user_model');
 			$this->load->library('upload');
+			
 
 			// Check if an update post was made
-			if( $this->csrf->token_match )
-			{
+			// if( $this->csrf->token_match )
+			// {
+			if($this->input->post('submit') == "Update"){
 				// Update the user
 				$this->user_model->update_user( $this->auth_role, $this->auth_user_id, 'self_update' );
 			}
+			//}
 
 			// Get the user record
 			$user_row = $this->user_model->view_user_record( $this->auth_user_id );

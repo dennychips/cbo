@@ -218,6 +218,7 @@ class User_model extends MY_Model {
 	 */
 	public function update_user( $role, $the_user, $update_type, $user_data = array(), $profile_data = array() )
 	{
+		
 		// Load the appropriate form validation rules from the config file
 		$this->config->load( 'form_validation/user/user_update' );
 
@@ -298,7 +299,9 @@ class User_model extends MY_Model {
 			{
 				$this->db->where('user_id', $the_user)
 				->update( config_item( $role . '_profiles_table'), $profile_arr );
+				
 			}
+
 
 			// If a self update, recreate the auth_identifier
 			if( config_item('auth_user_id') == $the_user )
@@ -315,7 +318,6 @@ class User_model extends MY_Model {
 					)
 				);
 			}
-
 			// Complete transaction
 			$this->db->trans_complete();
 

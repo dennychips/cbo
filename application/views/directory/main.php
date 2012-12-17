@@ -28,7 +28,21 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec lorem libero. N
 		  		<td>HIV / AIDS, MSM, Transgender</td>
 		  		<td><?php echo anchor('cbodirectory/view/1', 'View Profile', 'class="btn btn-mini btn-info"') ?></a></td>
 		  		
-		  	</tr>   
+		  	</tr> 
+		  	<tr>
+		  		<td><?php echo anchor('cbodirectory/view/1', 'IGAMA'); ?></td>
+		  		<td>West Java</td>
+		  		<td>HIV / AIDS, MSM</td>
+		  		<td><?php echo anchor('cbodirectory/view/1', 'View Profile', 'class="btn btn-mini btn-info"') ?></a></td>
+		  		
+		  	</tr> 
+		  	<tr>
+		  		<td><?php echo anchor('cbodirectory/view/1', 'Gaya Dewata'); ?></td>
+		  		<td>West Java</td>
+		  		<td>HIV / AIDS, MSM, Transgender</td>
+		  		<td><?php echo anchor('cbodirectory/view/1', 'View Profile', 'class="btn btn-mini btn-info"') ?></a></td>
+		  		
+		  	</tr> 
 		  </tbody>
 		</table>
 	</div>
@@ -52,7 +66,21 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec lorem libero. N
 		  		<td>2011</td>
 		  		<td>PDF</td>
 		  		<td>Journal</td>
-		  	</tr>   
+		  	</tr> 
+		  	<tr>
+		  		<td><?php echo anchor('library/view/1', '#QLDFLOODS AND @QPSMEDIA: CRISIS COMMUNICATION ON TWITTER IN THE 2011 SOUTH EAST QUEENSLAND FLOODS')?></td>
+		  		<td>Jonathan Doe</td>
+		  		<td>2010</td>
+		  		<td>PDF</a></td>
+		  		<td>Reports</td>
+		  	</tr>
+		  	<tr>
+		  		<td><?php echo anchor('library/view/1', '#QLDFLOODS AND @QPSMEDIA: CRISIS COMMUNICATION ON TWITTER IN THE 2011 SOUTH EAST QUEENSLAND FLOODS')?></td>
+		  		<td>Jonathan Doe</td>
+		  		<td>2010</td>
+		  		<td>PDF</a></td>
+		  		<td>Reports</td>
+		  	</tr>
 		  </tbody>
 		</table>
 	</div>

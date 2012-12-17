@@ -15,7 +15,6 @@
 <h3>My Profile</h3>
 
 <?php
-
 	if( isset( $validation_errors ) )
 	{
 		echo '

@@ -1,25 +1,5 @@
 <?php if( ! defined('BASEPATH') ) exit('No direct script access allowed');
 ?>
-<script type="text/javascript">
-	// $(document).ready(function(){
-	// 	$('#country').change(function() {
-	// 		var data = $('#country option:selected').val();
-	// 		$.ajax({
-	// 			type: 'post',
-	// 			url: $('#ajax_url').val(),
-	// 			data : data,
-	// 			dataType : 'json',
-	// 			success: function(response){
-	// 				if(response.status == 'success') {
-	// 					$('#province').html(response.province)
-	// 				} else {
-	// 					alert(response.message);
-	// 				}
-	// 			}
-	// 		});
-	// 	});
-	// });
-</script>
 <h1>CBO eLibrary Registration Field</h1>
 <?php 
 
@@ -181,13 +161,25 @@ if($reg_mode == 0 ) {
     		?>
     		<?php 
     			echo form_label('Province *','province',array('class'=>'form_label'));
-    			$provinces[''] = '-- Select Province --';
-    			foreach ($province as $row) {
-    				$provinces[$row->province] = $row->province;	
-    			}
-    			
 
-				echo form_dropdown('province', $provinces, set_value('country'), 'id="province" class="span4"');
+    			if( isset( $provinces ) )
+				{
+					// Default option
+					$country_province[''] = '-- Select --';
+
+					// Options from query
+					foreach( $provinces as $row )
+					{
+						$country_province[$row['province']] = $row['province'];
+					}
+				}
+				else
+				{
+					// Default option if not POST request
+					$country_province[''] = '-- Select Country --';
+				}
+    			
+				echo form_dropdown('province', $country_province, set_value('province'), 'id="province" class="span4"');
     		?>
     		<?php
 				// STREET ADDRESS LABEL AND INPUT ***********************************
@@ -291,8 +283,8 @@ if($reg_mode == 0 ) {
 			
 		    
 		    <div class="clearfix"></div>
-		    
-		    <input type="hidden" id="ajax_url" value="<?php echo if_secure_site_url('register/province_pop'); ?>" />
+		    <input type="hidden" id="ci_csrf_token_name" value="<?php echo config_item('csrf_token_name'); ?>" />
+		    <input type="hidden" id="ajax_url" value="<?php echo if_secure_site_url('autopopulate_country/process_request/country'); ?>" />
 
 		    <input type="submit" value="Sign up" class="btn btn-primary pull-left">
 		    <div class="clearfix"></div>

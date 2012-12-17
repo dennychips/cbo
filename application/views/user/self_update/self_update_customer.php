@@ -1,7 +1,3 @@
-<?php //print_r($user_data); 
-$focus = unserialize($user_data->focus_area);
-
-?>
 <div class="form-column-left">
 	<fieldset>
 		<legend>Account Details:</legend>
@@ -103,6 +99,7 @@ $focus = unserialize($user_data->focus_area);
 			?>
 			<?php 
 				echo form_label('Focus Area *','focus_area',array('class'=>'form_label'));
+				$focus = unserialize($user_data->focus_area);
 				$options = array(
                   'MSM'  => 'MSM',
                   'Transgender'    => 'Transgender',
