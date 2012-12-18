@@ -1,4 +1,5 @@
 
+
 		<h3>CBO Directory</h3>
 		<p>
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec lorem libero. Nunc pharetra auctor purus sit amet elementum. Sed imperdiet nunc et tellus ultrices lacinia. Proin id turpis quis lectus interdum rutrum. Mauris sit amet urna felis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Cras accumsan nunc eget lorem vehicula tincidunt. Nunc tellus libero, scelerisque eu sollicitudin id, elementum ac justo.
@@ -22,27 +23,27 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec lorem libero. N
 		    </tr>
 		  </thead>
 		  <tbody>
+		  	<?php foreach($profiles as $profile) :?>
 		  	<tr>
-		  		<td><?php echo anchor('cbodirectory/view/1', 'Perhimpunan Abiasa'); ?></td>
-		  		<td>West Java</td>
-		  		<td>HIV / AIDS, MSM, Transgender</td>
-		  		<td><?php echo anchor('cbodirectory/view/1', 'View Profile', 'class="btn btn-mini btn-info"') ?></a></td>
+		  		<td><?php echo anchor('cbodirectory/view/'. $profile->user_id, $profile->organization); ?></td>
+		  		<td><?php echo $profile->province; ?></td>
+		  		<td>
+		  			<?php 
+		  			
+		  				$focus = unserialize($profile->focus_area);
+		  				$last = end($focus);
+		  				foreach($focus as $row){
+		  					echo $row;	
+		  					if($row !== $last) {
+		  						echo  ', ';
+		  					}
+		  				}
+		  			?>
+		  		</td>
+		  		<td><?php echo anchor('cbodirectory/view/'. $profile->user_id, 'View Profile', 'class="btn btn-mini btn-info"') ?></a></td>
 		  		
 		  	</tr> 
-		  	<tr>
-		  		<td><?php echo anchor('cbodirectory/view/1', 'IGAMA'); ?></td>
-		  		<td>West Java</td>
-		  		<td>HIV / AIDS, MSM</td>
-		  		<td><?php echo anchor('cbodirectory/view/1', 'View Profile', 'class="btn btn-mini btn-info"') ?></a></td>
-		  		
-		  	</tr> 
-		  	<tr>
-		  		<td><?php echo anchor('cbodirectory/view/1', 'Gaya Dewata'); ?></td>
-		  		<td>West Java</td>
-		  		<td>HIV / AIDS, MSM, Transgender</td>
-		  		<td><?php echo anchor('cbodirectory/view/1', 'View Profile', 'class="btn btn-mini btn-info"') ?></a></td>
-		  		
-		  	</tr> 
+		  <?php endforeach?>
 		  </tbody>
 		</table>
 	</div>

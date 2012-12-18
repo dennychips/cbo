@@ -1,6 +1,6 @@
 <?php 
-if( isset( $auth_first_name ) )	{
-	$_user_first_name = $auth_first_name;
+if( isset( $auth_first_name ) ) {
+  $_user_first_name = $auth_first_name;
 }
 ?>
 <div class="navbar-wrapper">
@@ -19,7 +19,7 @@ if( isset( $auth_first_name ) )	{
         <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
         <div class="nav-collapse collapse">
           <ul class="nav">
-            <li class="active"><?php echo anchor('/', 'Home') ?></li>							
+            <li class="active"><?php echo anchor('/', 'Home') ?></li>             
             <li><?php echo anchor('about', 'About') ?></li>
             <!-- <li><?php echo anchor('cbodirectory', 'CBO Directory') ?></li> -->
             <li class="dropdown">
@@ -46,11 +46,14 @@ if( isset( $auth_first_name ) )	{
           </ul>
           <ul class="nav pull-right">
             <?php if(isset($_user_first_name)) : ?>
-            	<!-- <li><a href="#">Welcome <?php echo $_user_first_name?></a></li> -->
-            	<!-- <li><?php echo secure_anchor('user','User') ?></li> -->
+            <?php if( isset( $auth_level ) && $auth_level >= 1 ) : ?>
+              <li><?php echo secure_anchor('library/add', 'Share Document');?></li>
+              <!-- <li><a href="#">Welcome <?php echo $_user_first_name?></a></li> -->
+              <!-- <li><?php echo secure_anchor('user','User') ?></li> -->
               <li class="dropdown">
                 <?php echo secure_anchor('user/self_update', 'My Profile') ?>
-              </li>	
+              </li> 
+            <?php endif;?>
               <?php if( isset( $auth_level ) && $auth_level >= 6 ) : ?>
                   <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a>
@@ -77,9 +80,9 @@ if( isset( $auth_first_name ) )	{
               <?php endif;?>
             <li><?php echo secure_anchor('user/logout','Logout') ?></li>
             <?php else : ?>
-	            <li><?php echo secure_anchor('register','Register')?></li>
-	            <li><?php echo secure_anchor('user','Login');?></li>
-	        <?php endif ?>
+              <li><?php echo secure_anchor('register','Register')?></li>
+              <li><?php echo secure_anchor('user','Login');?></li>
+          <?php endif ?>
             </ul>
         </div><!--/.nav-collapse -->
       </div><!-- /.navbar-inner -->
