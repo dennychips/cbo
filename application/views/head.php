@@ -1,6 +1,7 @@
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
 <title><?php echo ( isset( $title ) ) ? $title : WEBSITE_NAME; ?></title>
-<meta name="google-translate-customization" content="4f4b5c22f4813d3-5f9d6ce7d7db9f36-gbb1c7e842aba78a7-14"></meta>
 <?php
 	// Add any keywords
 	echo ( isset( $keywords ) ) ? meta('keywords', $keywords) : '';
@@ -14,10 +15,10 @@
 <base href="<?php echo if_secure_base_url(); ?>" />
 <?php
 	// Always add the main stylesheet
-	echo link_tag( array( 'href' => 'css/bootstrap.min.css', 'media' => 'screen', 'rel' => 'stylesheet' ) ) . "\n";
-	echo link_tag( array( 'href' => 'css/bootstrap-responsive.min.css', 'media' => 'screen', 'rel' => 'stylesheet' ) ) . "\n";
-	echo link_tag( array( 'href' => 'css/style.css', 'media' => 'screen', 'rel' => 'stylesheet' ) ) . "\n";
-	
+	echo link_tag( array( 'href' => 'assets/css/bootstrap.min.css', 'media' => 'screen', 'rel' => 'stylesheet' ) ) . "\n";
+	echo link_tag( array( 'href' => 'assets/css/style.css', 'media' => 'screen', 'rel' => 'stylesheet' ) ) . "\n";
+	echo link_tag( array( 'href' => 'assets/css/header-1.css', 'media' => 'screen', 'rel' => 'stylesheet' ) ) . "\n";
+		
 	// Add any additional stylesheets
 	if( isset( $style_sheets ) )
 	{
@@ -28,17 +29,9 @@
 	}
 
 	// jQuery is always loaded
-	echo script_tag( 'js/jquery.min.js' ) . "\n";
-	echo script_tag( 'js/bootstrap.min.js' ) . "\n";
+	echo script_tag( 'assets/js/jquery.min.js' ) . "\n";
+	echo script_tag( 'js/assets/js/modernizr.custom.87724.js' ) . "\n";
 
-	// Add any additional javascript
-	if( isset( $javascripts ) )
-	{
-		for( $x=0; $x<=count( $javascripts )-1; $x++ )
-		{
-			echo script_tag( $javascripts["$x"] ) . "\n";
-		}
-	}
 
 	// Add anything else to the head
 	echo ( isset( $extra_head ) ) ? $extra_head : '';

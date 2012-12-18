@@ -12,7 +12,8 @@
  */
 ?>
 
-<h1>Contact</h1>
+<div class="row-fluid">
+<h1 class="short_headline"><span>Contact</span></h1>
 
 <?php
 
@@ -163,7 +164,7 @@
 		</div>
 	</div>
 </form>
-
+</div>
 <?php
 
 /* End of file contact.php */

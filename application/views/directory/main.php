@@ -1,18 +1,13 @@
-
-
-		<h3>CBO Directory</h3>
-		<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec lorem libero. Nunc pharetra auctor purus sit amet elementum. Sed imperdiet nunc et tellus ultrices lacinia. Proin id turpis quis lectus interdum rutrum. Mauris sit amet urna felis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Cras accumsan nunc eget lorem vehicula tincidunt. Nunc tellus libero, scelerisque eu sollicitudin id, elementum ac justo.
-		</p>
-
-<hr />
-<div class="row">
-	
+<div class="row-fluid">
+<h3 class="short_headline"><span>CBO Directory</span></h3>
+	<p>
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec lorem libero. Nunc pharetra auctor purus sit amet elementum. Sed imperdiet nunc et tellus ultrices lacinia. Proin id turpis quis lectus interdum rutrum. Mauris sit amet urna felis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Cras accumsan nunc eget lorem vehicula tincidunt. Nunc tellus libero, scelerisque eu sollicitudin id, elementum ac justo.
+	</p>
 </div>
-<div class="row">
+<div class="row-fluid">
 	<div class="span6">
-		<h4>List CBO</h4>
-		<hr />
+		<h5 class="short_headline"><span>List CBO</span></h5>
+		
 		<table class="table table-hover" >
 		  <thead>
 		    <tr>
@@ -48,8 +43,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec lorem libero. N
 		</table>
 	</div>
 	<div class="span6">
-		<h4>Recent Uploads</h4>
-		<hr />
+		<h5 class="short_headline"><span>Recent Uploads</span></h5>
 		<table class="table table-hover" >
 		  <thead>
 		    <tr>

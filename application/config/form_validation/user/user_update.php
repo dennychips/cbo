@@ -34,25 +34,81 @@ $config['customer_update_rules'] = array(
 		'rules' => 'trim|required|xss_clean'
 	),
 	array(
+		'field' => 'description',
+		'label' => 'Description',
+		'rules' => 'trim|xss_clean'
+	),
+	array(
 		'field' => 'street_address',
 		'label' => 'STREET ADDRESS',
 		'rules' => 'trim|required|xss_clean|max_length[60]'
 	),
 	array(
-		'field' => 'city',
-		'label' => 'CITY',
-		'rules' => 'trim|required|xss_clean|max_length[60]'
+		'field' => 'street_address',
+		'label' => 'Street Address',
+		'rules' => 'trim|required|xss_clean'
 	),
 	array(
-		'field' => 'state',
-		'label' => 'STATE or PROVINCE',
-		'rules' => 'trim|required|alpha|max_length[50]'
+		'field' => 'organization',
+		'label' => 'Organization',
+		'rules' => 'trim|required|xss_clean'
+	),
+	// array(
+	// 	'field' => 'country',
+	// 	'label' => 'Country',
+	// 	'rules' => 'trim|required|xss_clean'
+	// ),
+	// array(
+	// 	'field' => 'province',
+	// 	'label' => 'Province',
+	// 	'rules' => 'trim|required|xss_clean'
+	// ),
+	array(
+		'field' => 'phone_number',
+		'label' => 'Phone Number',
+		'rules' => 'trim|required|numeric|xss_clean'
 	),
 	array(
-		'field' => 'zip',
-		'label' => 'ZIP or POSTAL CODE',
-		'rules' => 'trim|required|xss_clean|max_length[10]'
-	)
+		'field' => 'focus_area',
+		'label' => 'Focus Area',
+		'rules' => 'required'
+	),
+	array(
+		'field' => 'website',
+		'label' => 'Website',
+		'rules' => 'xss_clean'
+	),
+	array(
+		'field' => 'blog',
+		'label' => 'Blog',
+		'rules' => 'xss_clean'
+	),
+
+	array(
+		'field' => 'facebook',
+		'label' => 'Facebook',
+		'rules' => 'xss_clean'
+	),
+	array(
+		'field' => 'twitter',
+		'label' => 'Twitter',
+		'rules' => 'xss_clean'
+	),
+	// array(
+	// 	'field' => 'city',
+	// 	'label' => 'CITY',
+	// 	'rules' => 'trim|required|xss_clean|max_length[60]'
+	// ),
+	// array(
+	// 	'field' => 'state',
+	// 	'label' => 'STATE or PROVINCE',
+	// 	'rules' => 'trim|required|alpha|max_length[50]'
+	// ),
+	// array(
+	// 	'field' => 'zip',
+	// 	'label' => 'ZIP or POSTAL CODE',
+	// 	'rules' => 'trim|required|xss_clean|max_length[10]'
+	// )
 );
 
 // MANAGER SPECIFIC UPDATE RULES --------------------------

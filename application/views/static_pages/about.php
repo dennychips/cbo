@@ -1,7 +1,31 @@
-<h1>About</h1>
-<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec lorem libero. Nunc pharetra auctor purus sit amet elementum. Sed imperdiet nunc et tellus ultrices lacinia. Proin id turpis quis lectus interdum rutrum. Mauris sit amet urna felis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Cras accumsan nunc eget lorem vehicula tincidunt. Nunc tellus libero, scelerisque eu sollicitudin id, elementum ac justo.
-</p>
-<p>
-Fusce aliquam ultrices rutrum. Etiam sed odio sed odio sollicitudin suscipit ac at dui. Praesent eu sapien nibh, in condimentum erat. Praesent lacus ante, posuere eu vulputate non, mattis eget velit. Praesent ipsum felis, aliquam vel posuere tincidunt, viverra sed ante. Sed sit amet porttitor diam. Mauris cursus condimentum quam, quis rhoncus felis accumsan ut. Vestibulum quam justo, varius vitae pretium et, iaculis viverra urna. Morbi placerat pulvinar scelerisque. Sed elit eros, aliquet ac auctor sed, elementum ut ligula. Integer sagittis ornare nibh, sit amet ultrices arcu rhoncus non. Pellentesque semper fermentum orci sit amet dapibus. Suspendisse faucibus urna ligula. Nulla ante lorem, venenatis quis bibendum nec, tempor in libero.
-</p>
+<!-- <div class="container visible-phone hidden-tablet hidden-desktop">
+	<p class="right"><a class="btn btn-primary" href="#secondary-nav">Page Menu &nbsp;<i class="icon-align-justify"></i></a></p>
+</div> -->
+
+<!--close hero-unit-->
+
+
+<div class="row-fluid sidebar-right"> 
+	<!--begin row-fluid-->
+	<div class="span9 primary-column"> 
+		<!--begin primary content-->
+		<h1 class="short_headline"><span>About</span></h1>
+		<p><strong>Pellentesque habitant morbi tristique</strong> senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. <em>Aenean ultricies mi vitae est.</em> Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, <code>commodo vitae</code>, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. <a href="#">Donec non enim</a> in turpis pulvinar facilisis. Ut felis.</p>				
+	</div>
+	<!-- close span9 primary-column-->
+	
+	<section class="span3 sidebar secondary-column" id="secondary-nav">
+		<aside class="widget">
+			<h5 class="short_headline"><span>Menu</span></h5>
+			<ul class="navigation">
+				<li><a href="#">Link</a></li>
+				<li><a href="#">Link</a></li>
+				<li><a href="#">Link</a></li>
+			</ul>
+		</aside>
+		<!--close aside widget-->
+		
+	</section>
+	<!--close section sidebar span3--> 
+</div>
+<!--close row-fluid-->

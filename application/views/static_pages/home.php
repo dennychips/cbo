@@ -12,54 +12,100 @@
  */
 ?>
 
-<!-- Carousel
-    ================================================== -->
-    <div id="myCarousel" class="carousel slide">
-      <div class="carousel-inner">
-        
-        
-        <div class="item active">
-          <img src="images/slide-03.jpg" alt="">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>eLibrary</h1>
-              <p class="lead">This Site provide information on local MSM &amp; TG Community Based Organization (CBO) in the region. This site also  allows you to share information about your organization and your work. It is also a place where you can upload research publication and other country information that you want to share with others.</p>
-              <a class="btn btn-large btn-primary" href="#">Browse Library</a>
-            </div>
-          </div>
+<!-- begin #page - the container for everything but header -->
+<div id="page">
+  <div class="hero-unit center no-border">
+    <div class="container">
+      <h5>This Site provide information on local MSM & TG Community Based Organization (CBO) in the region. This site also allows you to share information about your organization and your work. It is also a place where you can upload research publication and other country information that you want to share with others.
+</h5>
+    </div>
+    <!--close container--> 
+  </div>
+  <div class="container clearfix" id="main-content"> 
+    <!--begin main content-->
+    <div class="row-fluid center"> 
+      <div class="span4">
+        <h3 class="short_headline"><span>CBO Directory</span></h3>
+        <div>
+          <img class="thumbnail" src="assets/images/directory.jpg" />
+          <p><strong>16 CBO Registered</strong></p>
+          On this website you can see list of CBO in each country and the profile each CBO. Select a country to see a list of CBO <br />
+          <select>
+            <option>-- Select Country --</option>
+            <option>Indonesia</option>
+            <option>Malaysia</option>
+            <option>Brunei Darussalam</option>
+            <option>Singapore</option>
+            <option>Timor Lester</option>
+            <option>Philiphines</option>
+          </select>
+          
         </div>
       </div>
-      <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-      <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
-    </div><!-- /.carousel -->
-
-
-    <!-- Marketing messaging and featurettes
-    ================================================== -->
-    <!-- Wrap the rest of the page in another container to center all the content. -->
-
-    <div class="container marketing">
-
-      <!-- Three columns of text below the carousel -->
-      <div class="row">
-        <div class="span3">
-          <h2>Indonesia</h2>
-          <p><?php echo anchor('cbodirectory', 'View details &raquo;', 'class="btn"')?></p>
-        </div><!-- /.span4 -->
-        <div class="span3">
-          <h2>Philippines</h2>
-          <p><?php echo anchor('cbodirectory', 'View details &raquo;', 'class="btn"')?></p>
-        </div><!-- /.span4 -->
-        <div class="span3">
-          <h2>Singapore</h2>
-          <p><?php echo anchor('cbodirectory', 'View details &raquo;', 'class="btn"')?></p>
-        </div><!-- /.span4 -->
-        <div class="span3">
-          <h2>Timor Leste</h2>
-          <p><?php echo anchor('cbodirectory', 'View details &raquo;', 'class="btn"')?></p>
-        </div><!-- /.span4 -->
-      </div><!-- /.row -->
-     <!-- FOOTER -->
+      <div class="span4">
+        <h3 class="short_headline"><span>CBO E-Library</span></h3>
+        <img class="thumbnail" src="assets/images/iStock_Library.jpg" />
+        <p><strong>160 Files Uploaded</strong></p>
+          On this website you can see list of CBO in each country and the profile each CBO. Select a country to see a list of CBO 
+          <br />
+          <select>
+            <option>-- Select Country --</option>
+            <option>Indonesia</option>
+            <option>Malaysia</option>
+            <option>Brunei Darussalam</option>
+            <option>Singapore</option>
+            <option>Timor Lester</option>
+            <option>Philiphines</option>
+          </select>
+      </div>
+      <div class="span4">
+        <h3 class="short_headline"><span>Upload and share knowledge</span></h3>
+        <img class="thumbnail" src="assets/images/register.jpg" />
+        <p><strong>Start Sharing Now</strong></p>
+          You can upload your organization profile and also knowledge material after you registered
+          <br />
+          <br />
+          <a href="#" class="btn btn-warning">Register Now!!</a>
+      </div>
+    </div>
+    <div class="border-t"></div>
+    
+    <div class="row-fluid center">
+      <div class="span2">
+        <a href="#"><img src="assets/images/flags/Indonesia-Flag.png" style="display:inline;" /></a>
+        <h5>Indonesia</h5>
+        <p class="center"><a href="#" class="btn btn-small btn-very-subtle">Visit &rarr;</a></p>
+      </div>
+      <div class="span2">
+        <a href="#"><img src="assets/images/flags/Malaysia-Flag.png" style="display:inline;" /></a>
+        <h5>Malaysia</h5>
+        <p class="center"><a href="#" class="btn btn-small btn-very-subtle">Visit &rarr;</a></p>
+      </div>
+      <div class="span2">
+        <a href="#"><img src="assets/images/flags/Brunei-Flag.png" style="display:inline;" /></a>
+        <h5>Brunei Darussalam</h5>
+        <p class="center"><a href="#" class="btn btn-small btn-very-subtle">Visit &rarr;</a></p>
+      </div>
+      <div class="span2">
+        <a href="#"><img src="assets/images/flags/Singapore-Flag.png" style="display:inline;" /></a>
+        <h5>Singapore</h5>
+        <p class="center"><a href="#" class="btn btn-small btn-very-subtle">Visit &rarr;</a></p>
+      </div>
+      <div class="span2"> 
+        <a href="#"><img src="assets/images/flags/Timor-Leste-Flag.png" style="display:inline;" /></a>
+        <h5>Timor Leste</h5>
+        <p class="center"><a href="#" class="btn btn-small btn-very-subtle">Visit &rarr;</a></p>
+      </div>
+      <div class="span2">
+        <a href="#"><img src="assets/images/flags/Philippines-Flag.png" style="display:inline;" /></a>
+        <h5>Philiphines</h5>
+        <p class="center"><a href="#" class="btn btn-small btn-very-subtle">Visit &rarr;</a></p>
+      </div>
+    </div>
+    <!--close row-fluid -->
+    
+  </div>
+  <!--close .container id="main-content" -->
 
 <?php
 

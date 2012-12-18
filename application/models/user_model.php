@@ -234,6 +234,7 @@ class User_model extends MY_Model {
 			case 'profile_image':
 
 			default:
+				//print_r($profile_data);
 				$_POST = array_merge( $user_data, $profile_data );
 				$this->validation_rules = config_item( $update_type );
 				break;
@@ -255,6 +256,7 @@ class User_model extends MY_Model {
 				else
 				{
 					$profile_arr[$k] = $v['postdata'];
+
 				}
 			}
 
@@ -297,8 +299,21 @@ class User_model extends MY_Model {
 			// Update profile table record
 			if( ! empty( $profile_arr ) )
 			{
+				
+				$data_profile = array(
+						'first_name' => $this->input->post('first_name'),
+						'last_name' => $this->input->post('last_name'),
+						'street_address' => $this->input->post('street_address'),
+						'organization' => $this->input->post('organization'),
+						'phone_number' => $this->input->post('phone_number'),
+						'focus_area' => serialize($this->input->post('focus_area')),
+						'website' => $this->input->post('website'),
+						'blog' => $this->input->post('blog'),
+						'facebook' => $this->input->post('facebook'),
+						'twitter' => $this->input->post('twitter')
+					);
 				$this->db->where('user_id', $the_user)
-				->update( config_item( $role . '_profiles_table'), $profile_arr );
+				->update( config_item( $role . '_profiles_table'), $data_profile);
 				
 			}
 

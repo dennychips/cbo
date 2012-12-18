@@ -18,11 +18,11 @@
 	if( isset( $validation_errors ) )
 	{
 		echo '
-			<div class="feedback error_message" style="margin-bottom:10px;">
+			<div class="alert alert-danger">
 				<p class="feedback_header">
 					Profile Update Contained The Following Errors:
 				</p>
-				<ul>
+				<ul class="unstyled">
 					' . $validation_errors . '
 				</ul>
 				<p>
@@ -34,7 +34,7 @@
 	else if( isset( $validation_passed ) )
 	{
 		echo '
-			<div class="feedback confirmation" style="margin-bottom:10px;">
+			<div class="alert alert-success">
 				<p class="feedback_header">
 					Your profile has been successfully updated.
 				</p>

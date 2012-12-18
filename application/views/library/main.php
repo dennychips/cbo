@@ -1,33 +1,33 @@
-<div class="row">
-	<div class="span8">
+<div class="row-fluid">
+	<div class="span">
 		<h3>Library</h3>
 		<p>
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec lorem libero. Nunc pharetra auctor purus sit amet elementum. Sed imperdiet nunc et tellus ultrices lacinia. Proin id turpis quis lectus interdum rutrum. Mauris sit amet urna felis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Cras accumsan nunc eget lorem vehicula tincidunt. Nunc tellus libero, scelerisque eu sollicitudin id, elementum ac justo.
 		</p>
 	</div>
-	<div class="span4">
+	<!-- <div class="span4">
 		<div class="well">
 			<p>
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec lorem libero. Nunc pharetra auctor purus sit amet elementum. Sed imperdiet nunc et tellus ultrices lacinia. Proin id turpis quis lectus interdum rutrum. Mauris sit amet urna felis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Cras accumsan nunc eget lorem vehicula tincidunt. Nunc tellus libero, scelerisque eu sollicitudin id, elementum ac justo.
 		</p>
 		</div>
-	</div>
+	</div> -->
 </div>
-<hr />
-<div class="row">
-	<div class="span2">
+<h4 class="short_headline"><span>Document</span></h4>
+<div class="row-fluid">
+	<div class="span3">
 		<form class="">
 			<label>Subject</label>
-			<input type="text" placeholder="subject" class="span2"  />
+			<input type="text" placeholder="subject"   />
 		</form>
 	</div>
-	<div class="span2">
+	<div class="span3">
 		<label>Author</label>
-		<input type="text" placeholder="Author" class="span2" />	
+		<input type="text" placeholder="Author" />	
 	</div>
-	<div class="span2">
+	<div class="span3">
 		<label>Document Type</label>
-			<select class="span2" >
+			<select >
 				<option>Report</option>
 				<option>Research</option>
 				<option>Guideline</option>
@@ -37,7 +37,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec lorem libero. N
 	</div>
 
 </div>
-<div class="row">
+<div class="row-fluid">
 	<div class="span12">
 		<table class="table table-hover">
 		  <thead>
