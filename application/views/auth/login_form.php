@@ -9,11 +9,76 @@
  * @copyright   Copyright (c) 2011 - 2012, Robert B Gottier. (http://brianswebdesign.com/)
  * @license     BSD - http://http://www.opensource.org/licenses/BSD-3-Clause
  * @link        http://community-auth.com
- */
+ */?>
 
+ <div class="row-fluid">
+			<div class="span12"> 
+				
+				<!--begin hidden by js forgot pw form -->
+				<div class="forgot-password" style="display: none;">
+					<p class="statement">Forgot Password? Please enter your email and we’ll send it you.</p>
+					<form action="yourscript.php" method="post">
+						<div class="input-append">
+							<input type="email" class="span6" placeholder="Email Address" name="email">
+							<button class="btn btn-primary">Send Password</button>
+						</div>
+						<!--close input-append-->
+					</form>
+				</div>
+				<!--*******end forgot-password********--> 
+				
+				<!--begin login-box-->
+				<div class="login-box clearfix">
+					<header>
+						<h2 class="short_headline"><span>Login to your account...</span></h2>
+					</header>
+					<div class="login-wrapper clearfix">
+						<div class="float-right">
+							<form id="login-form" action="yourloginscript.php" method="post" novalidate="novalidate">
+								<label for="LoginFormUsername" class="required">Username <span class="required">*</span></label>
+								<div class="input-prepend"> <span class="add-on">@</span>
+									<input name="LoginFormUsername" id="LoginFormUsername" type="email">
+								</div>
+								<label for="LoginFormPassword" class="required">Password <span class="required">*</span></label>
+								<div class="input-prepend"> <span class="add-on">#</span>
+									<input name="LoginFormPassword" id="LoginFormPassword" type="password">
+								</div>
+								<label class="checkbox inline" for="LoginRemember">Remember Me
+									<input type="checkbox" id="LoginRemember" value="LoginRemember">
+								</label>
+								<div class="form-controls">
+									<input class="btn btn-primary btn-large" type="submit" name="login" value="Login">
+								</div>
+							</form>
+							<footer class="clearfix"> <a href="#" class="forgotpw">Forgot Password?</a> </footer>
+						</div>
+						<!--close .float-right-->
+						
+						<div class="float-left">
+							<ul>
+								<li><a href="#"><img src="assets/images/sign-in-twitter.png" alt="sign in with twitter"></a></li>
+								<li><a href="#"><img src="assets/images/sign-in-facebook.png" alt="sign in with facebook"></a></li>
+								<li><a href="#"><img src="assets/images/sign-in-google.png" alt="sign in with google"></a></li>
+								<li><a href="#"><img src="assets/images/sign-in-openid.png" alt="sign in with openid"></a></li>
+								<li><a href="#"><img src="assets/images/sign-in-yahoo.png" alt="sign in with yahoo"></a></li>
+								<li><a href="#"><img src="assets/images/sign-in-linkedin.png" alt="sign in with linkedin"></a></li>
+							</ul>
+							<p><a href="register.html" class="center">Not a member? Join today!</a></p>
+						</div>
+						<!--close .float-left--> 
+					</div>
+					<!--end .login-wrapper clearfix--> 
+				</div>
+				<!--end .login-box--> 
+				
+			</div>
+			<!--close .span12--> 
+		</div>
+ <?php 
+/*
 if( ! isset( $optional_login ) )
 {
-	echo '<h1>Login</h1>';
+	echo '<h1 class="short_headline"><span>Login</span></h1>';
 }
 
 if( ! isset( $on_hold_message ) )
@@ -108,6 +173,6 @@ if( ! isset( $on_hold_message ) )
 			</div>
 		';
 	}
-
+*/
 /* End of file login_form.php */
 /* Location: /application/views/auth/login_form.php */ 

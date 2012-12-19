@@ -20,6 +20,7 @@ if( isset( $auth_first_name ) ) {
   <?php if(isset($_user_first_name)) : ?>
         <nav class="user clearfix"><?php echo secure_anchor('library/add', 'Share Document');?></nav>
         <nav class="user clearfix"><?php echo secure_anchor('user/self_update', 'My Profile') ?></nav>
+         <nav class="user clearfix"><?php echo secure_anchor('user/logout','Logout') ?></nav>
   
   <?php else :?>
   <nav class="user clearfix"><?php echo secure_anchor('register','<i class="icon-user"></i> Register')?></nav>

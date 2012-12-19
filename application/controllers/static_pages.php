@@ -23,8 +23,6 @@ class Static_pages extends MY_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->helper('detect_location');
-
 		// Defeat duplicate content
 		if( $this->uri->segment(1) == 'static_pages' )
 		{
@@ -55,7 +53,7 @@ class Static_pages extends MY_Controller {
 		$data = array(
 			'title' => 'CBO eLibrary',
 			'content' => $this->load->view( 'static_pages/home', '', TRUE ),
-			'location' => get_country_by_ip()
+			
 		);	
 		$this->load->view( $this->template, $data );
 	}

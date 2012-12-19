@@ -31,33 +31,6 @@
 	{
 		echo $cookie_checker;
 	}
-	// Add any additional javascript
-	if( isset( $javascripts ) )
-	{
-		for( $x=0; $x<=count( $javascripts )-1; $x++ )
-		{
-			echo script_tag( $javascripts["$x"] ) . "\n";
-		}
-	}
-	echo script_tag('assets/js/bootstrap.min.js') . "\n";
-	echo script_tag('assets/js/ddsmoothmenu-min.js') . "\n";
-	echo script_tag('assets/js/jquery.dcjqaccordion.2.7.min.js') . "\n";
-	echo script_tag('assets/js/jquery.easytabs.min.js') . "\n";
-	echo script_tag('assets/js/slide-to-top-accordion-min.js') . "\n";
-	echo script_tag('assets/js/jquery.easing-1.3.min.js') . "\n";
-	echo script_tag('assets/js/jquery.flexslider-min.js') . "\n";
-	echo script_tag('assets/js/responsive-tables.js') . "\n";
-	echo script_tag('assets/js/jquery.fitvid.js') . "\n";
-	echo script_tag('assets/js/scripts.js') . "\n";
-	// Add any javascript before the closing body tag
-	if( isset( $dynamic_extras ) )
-	{
-		echo '<script>
-		';
-		echo $dynamic_extras;
-		echo '</script>
-		';
-	}
 ?>
 </body>
 </html>

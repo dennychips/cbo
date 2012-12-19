@@ -427,7 +427,7 @@ class MY_Controller extends CI_Controller
 			'content' => $this->load->view( 'auth/login_form', ( isset( $view_data ) ) ? $view_data : '', TRUE )
 		);
 
-		$this->load->view('templates/pages_template', $data);
+		$this->load->view('templates/login_template', $data);
 	}
 
 	// --------------------------------------------------------------
