@@ -1,3 +1,8 @@
+<?php 
+if( isset( $auth_first_name ) ) {
+  $_user_first_name = $auth_first_name;
+}
+?>
 <!-- begin accesibility skip to nav skip content -->
 <ul class="visuallyhidden" id="top">
   <li><a href="#nav" title="Skip to navigation" accesskey="n">Skip to navigation</a></li>
@@ -12,8 +17,16 @@
 <section class="container preheader"> 
   
   <!--this is the login for the user-->
-  <nav class="user clearfix"> <a href="login.html"><i class="icon-user"></i> Login</a></nav>
+  <?php if(isset($_user_first_name)) : ?>
+        <nav class="user clearfix"><?php echo secure_anchor('library/add', 'Share Document');?></nav>
+        <nav class="user clearfix"><?php echo secure_anchor('user/self_update', 'My Profile') ?></nav>
+  
+  <?php else :?>
+  <nav class="user clearfix"><?php echo secure_anchor('register','<i class="icon-user"></i> Register')?></nav>
+  <nav class="user clearfix"><?php echo secure_anchor('/user', '<i class="icon-signin"></i> Login') ?></nav>
   <!--close user nav-->
+
+  <?php endif?>
   
   <!--
 <div class="search-wrapper">

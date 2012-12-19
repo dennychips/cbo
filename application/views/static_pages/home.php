@@ -13,6 +13,7 @@
 ?>
 
 <!-- begin #page - the container for everything but header -->
+<!-- <?php $location ?> -->
 <div id="page">
   <div class="hero-unit center no-border">
     <div class="container">
