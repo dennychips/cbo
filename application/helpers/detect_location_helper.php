@@ -67,8 +67,7 @@ function get_country_by_ip()
 		$s=explode (':',$sstr);
 		$a[$keys[$r]] = trim($s[1]);
 	}
-	print_r($a);
- 
+	
 	return $a;
  
 }
