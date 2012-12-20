@@ -29,6 +29,8 @@ $config['temp_reg_data_table']          = 'temp_registration';
 
 // MISC TABLES
 $config['custom_uploader_table']        = 'custom_uploader_table';
+$config['profile_document_table']        = 'profile_document';
+$config['library_document_table']        = 'library_document';
 $config['auto_populate_table']          = 'auto_populate';
 $config['category_menu_table']          = 'category_menu';
 $config['auto_populate_table_country']  = 'country_province';

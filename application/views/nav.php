@@ -15,21 +15,21 @@
     </li>
     <li class="parent"><a href="#">Library<i></i></a>
       <ul class="dropdown-menu" id="menu2">
-        <li><?php echo anchor('library', 'Report')?></li>
-        <li><?php echo anchor('library', 'Research') ?></li>
-        <li><?php echo anchor('library', 'Guideline') ?></li>
-        <li><?php echo anchor('library', 'Best Practice') ?></li>
-        <li><?php echo anchor('library', 'Journal') ?></li>
+        <li><?php echo anchor('elibrary', 'Report')?></li>
+        <li><?php echo anchor('elibrary', 'Research') ?></li>
+        <li><?php echo anchor('elibrary', 'Guideline') ?></li>
+        <li><?php echo anchor('elibrary', 'Best Practice') ?></li>
+        <li><?php echo anchor('elibrary', 'Journal') ?></li>
       </ul>
     </li>
     <li><?php echo anchor('links', 'Links') ?></li>
     <li><?php echo anchor('contact', 'Contact') ?></li>
     <?php if( isset( $auth_level ) && $auth_level == 1 ) : ?>
-      <li><?php echo secure_anchor('library/add', 'Share Document');?></li>
+      <li><?php echo secure_anchor('elibrary/add', 'Share Document');?></li>
       <li><?php echo secure_anchor('user/self_update', 'My Profile') ?></li> 
   <?php endif;?>
   <?php if( isset( $auth_level ) && $auth_level >= 6 ) : ?>
-      <li><?php echo secure_anchor('library/add', 'Share Document');?></li>
+      <li><?php echo secure_anchor('elibrary/add', 'Share Document');?></li>
       <li class="parent">
           <a href="#">Admin <i></i></b></a>
           <ul class="dropdown-menu">

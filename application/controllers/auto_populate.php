@@ -76,6 +76,7 @@ class Auto_populate extends MY_Controller {
 	{
 		// if( $this->require_min_level(1) )
 		// {
+		
 			if( $this->input->is_ajax_request() && $this->csrf->token_match )
 			{
 				// Load resources

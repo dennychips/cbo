@@ -39,9 +39,10 @@ class Autopopulate_country extends MY_Controller {
 	{
 		// if( $this->require_min_level(1) )
 		// {
-
-			if( $this->input->is_ajax_request() && $this->csrf->token_match )
+			
+			if( $this->input->is_ajax_request())
 			{
+
 				
 
 				// Load resources
@@ -74,7 +75,7 @@ class Autopopulate_country extends MY_Controller {
 				{
 					for( $x = 1; $x < $levels_count; $x++ )
 					{
-						$this->options_output[$config['levels'][$x]] = '<option value="0">' . $config['defaults'][0] . '</option>';
+						$this->options_output[$config['levels'][$x]] = '<option value="">' . $config['defaults'][0] . '</option>';
 					}
 				}
 
@@ -104,7 +105,7 @@ class Autopopulate_country extends MY_Controller {
 			$data_key = $this->recursion + 2;
 
 			// Set default option
-			$this->dropdown_data[$data_key]['0'] = '-- Select --';
+			$this->dropdown_data[$data_key][''] = '-- Select --';
 
 			// Set the method
 			$method = $config['methods'][$this->recursion];

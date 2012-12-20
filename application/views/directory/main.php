@@ -8,17 +8,52 @@
 
 		<h5 class="short_headline"><span>List CBO</span></h5>
 		<div class="">
+			
 			<table>
 				<tr>
+					<td width="20%">Organization Name</td>
+					<td class="select">
+						<input type="text" id="organization" autocomplete="off" value="" />
+					</td>
+				</tr>
+				<tr>
+					<?php echo form_open( '', array( 'class' => 'reg-form' ) ); ?>
+					<td width="20%">Country</td>
+					<td class="select">
+						<?php 
+			    			$countries[''] = '-- Select Country --';
+			    			foreach ($country as $row) {
+			    				$countries[$row->country] = $row->country;	
+			    			}
+							echo form_dropdown('country', $countries, set_value('country'), 'id ="country" class="span12"');
+						?>
+					</td>
+				</tr>
+				<tr>
 					<td width="20%">Province</td>
-					<td class="select"></td>
+					<td class="select">
+						<?php 
+			    			
+			    			if( isset( $provinces ) ){
+								// Default option
+								$country_province[''] = '-- Select --';
+								// Options from query
+								foreach( $provinces as $row ){
+									$country_province[$row['province']] = $row['province'];
+								}
+							} else {
+								// Default option if not POST request
+								$country_province[''] = '-- Select Country --';
+							}
+							echo form_dropdown('province', $country_province, set_value('province'), 'id="province" class="span12"');
+						?>
+						<input type="hidden" id="ajax_url" value="<?php echo if_secure_site_url('autopopulate_country/process_request/country'); ?>" />
+						<input type="hidden" id="ci_csrf_token_name" value="<?php echo config_item('csrf_token_name'); ?>" />
+					</td>
+					<?php echo form_close();?>
 				</tr>
 				<tr>
 					<td width="20%">Focus Area</td>
-					<td class="select"></td>
-				</tr>
-				<tr>
-					<td width="20%">Name</td>
 					<td class="select"></td>
 				</tr>
 			</table>

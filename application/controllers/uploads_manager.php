@@ -41,6 +41,8 @@ class Uploads_manager extends MY_Controller {
 	 */
 	public function bridge_filesystem( $type )
 	{
+		
+
 		$this->bridge_type = 'filesystem';
 
 		$this->_facilitate_upload( $type );
@@ -86,6 +88,7 @@ class Uploads_manager extends MY_Controller {
 	 */
 	private function _facilitate_upload( $type )
 	{
+
 		$auth_roles =  config_item( 'authentication_' . $type );
 
 		if( $auth_roles !== FALSE && $this->require_role( $auth_roles ) )

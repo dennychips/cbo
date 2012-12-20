@@ -81,6 +81,20 @@ $config['upload_configuration_custom_uploader'] = array(
 	'add_hash'      => 'secondary_dir' // <- add a hash to ( for unwanted direct browsing )
 );
 
+$config['upload_configuration_library'] = array(
+
+	// Settings for any destination
+	'allowed_types' => 'gif|jpg|jpeg|png',
+	'max_size'      => '50',
+	'max_width'     => '100',
+	'max_height'    => '100',
+
+	// FILESYSTEM specific settings
+	'primary_dir'   => 'dir_name',     // <- POST key of primary directory
+	'secondary_dir' => 'user_id',      // <- POST key of secondary directory
+	'add_hash'      => 'secondary_dir' // <- add a hash to ( for unwanted direct browsing )
+);
+
 // --------------------------------------------------------------
 
 /* End of file uploads_manager.php */
