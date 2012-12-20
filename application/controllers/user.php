@@ -293,7 +293,7 @@ class User extends MY_Controller {
 			// Check if an update post was made
 			// if( $this->csrf->token_match )
 			// {
-			if($this->input->post('submit') == "Update"){
+			if($this->csrf->token_match){
 				// Update the user
 				$this->user_model->update_user( $this->auth_role, $this->auth_user_id, 'self_update' );
 			}

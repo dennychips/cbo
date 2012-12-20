@@ -8,31 +8,22 @@
 
 		<h5 class="short_headline"><span>List CBO</span></h5>
 		<div class="">
-
 			<table>
 				<tr>
 					<td width="20%">Province</td>
-					<td>
-						<select>
-							<option>Jakarta</option>
-						</select>
-					</td>
+					<td class="select"></td>
 				</tr>
 				<tr>
 					<td width="20%">Focus Area</td>
-					<td>
-						<select>
-							<option>MSM</option>
-						</select>
-					</td>
+					<td class="select"></td>
 				</tr>
 				<tr>
 					<td width="20%">Name</td>
-					<td> <input type="text" name="name" /> </td>
+					<td class="select"></td>
 				</tr>
 			</table>
 		</div>
-		<table class="table table-hover" >
+		<table id="directory-table" class="table table-hovered" >
 		  <thead>
 		    <tr>
 		      <th style="width:20%">Name Of CBO</th>
@@ -42,9 +33,9 @@
 		    </tr>
 		  </thead>
 		  <tbody>
-		  	<?php foreach($profiles as $profile) :?>
-		  	<tr>
-		  		<td><?php echo anchor('cbodirectory/view/'. $profile->user_id, $profile->organization); ?></td>
+		  	<?php //foreach($profiles as $profile) :?>
+		  	<!-- <tr> -->
+		  		<!-- <td><?php echo anchor('cbodirectory/view/'. $profile->user_id, $profile->organization); ?></td>
 		  		<td><?php echo $profile->province; ?></td>
 		  		<td>
 		  			<?php 
@@ -59,10 +50,10 @@
 		  				}
 		  			?>
 		  		</td>
-		  		<td><?php echo anchor('cbodirectory/view/'. $profile->user_id, 'View Profile', 'class="btn btn-mini btn-info"') ?></a></td>
+		  		<td><?php echo anchor('cbodirectory/view/'. $profile->user_id, 'View Profile', 'class="btn btn-mini btn-info"') ?></a></td> -->
 		  		
-		  	</tr> 
-		  <?php endforeach?>
+		  	<!-- </tr>  -->
+		  <?php //endforeach?>
 		  </tbody>
 		</table>
 	</div>

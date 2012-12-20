@@ -23,8 +23,37 @@
       </ul>
     </li>
     <li><?php echo anchor('links', 'Links') ?></li>
-    <li><?php echo anchor('contact', 'Contact') ?></li>	
-    
+    <li><?php echo anchor('contact', 'Contact') ?></li>
+    <?php if( isset( $auth_level ) && $auth_level == 1 ) : ?>
+      <li><?php echo secure_anchor('library/add', 'Share Document');?></li>
+      <li><?php echo secure_anchor('user/self_update', 'My Profile') ?></li> 
+  <?php endif;?>
+  <?php if( isset( $auth_level ) && $auth_level >= 6 ) : ?>
+      <li><?php echo secure_anchor('library/add', 'Share Document');?></li>
+      <li class="parent">
+          <a href="#">Admin <i></i></b></a>
+          <ul class="dropdown-menu">
+            <li><?php echo secure_anchor('user/self_update', 'My Profile') ?></li> 
+            <li>
+                <?php echo  secure_anchor('administration/create_user', 'Create User');?>
+            </li> 
+            <li>
+              <?php echo secure_anchor('administration/manage_users', 'Manage Users');?>
+            </li>
+            <li>
+                <?php echo secure_anchor('register/pending_registrations', 'Pending Registrations');?>
+            </li> 
+            <?php if( isset( $auth_level ) && $auth_level == 9 ): ?>
+            <li>
+                <?php echo secure_anchor('register/settings', 'Registration Mode')?>
+            </li> 
+            <li>
+                <?php echo secure_anchor('administration/deny_access', 'Deny Access');?>
+            </li> 
+          <?php endif;?>
+          </ul>
+      </li>
+  <?php endif;?>
   </ul>
 </nav>
 <!-- close / #main_menu --> 

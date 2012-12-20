@@ -19,6 +19,14 @@ class Cbodirectory extends MY_Controller {
 		$data = array(
 				'title' => 'CBO - eLibrary',
 				'content' => $this->load->view('directory/main', $view_data, TRUE),
+				'javascripts'	=> array(
+						'assets/js/jquery.dataTables.min.js',
+						'assets/js/bootstrap-DT-init.js',
+						'assets/js/directory.js'
+					),
+				'style_sheets' => array(
+						'assets/css/jquery.dataTables.css' => 'screen',
+					),
 			);
 		$this->load->view($this->template, $data);
 	}
@@ -46,5 +54,11 @@ class Cbodirectory extends MY_Controller {
 				'content' 	=> $this->load->view('directory/detail', $view_data, TRUE)
 			);
 		$this->load->view($this->template, $data);
+	}
+	public function process_request() {
+		if( $this->input->is_ajax_request())
+			{
+				echo 'hello';
+			}
 	}
 }

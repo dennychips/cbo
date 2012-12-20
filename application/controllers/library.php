@@ -9,8 +9,16 @@ class Library extends MY_Controller {
 	public function index() {
 		$this->template = 'templates/library_template';
 		$data = array(
-				'title' => 'CBO - eLibrary',
-				'content' => $this->load->view('library/main', '', TRUE)
+				'title' 		=> 'CBO - eLibrary',
+				'content' 		=> $this->load->view('library/main', '', TRUE),
+				'javascripts'	=> array(
+						'assets/js/jquery.dataTables.min.js',
+						'assets/js/bootstrap-DT-init.js',
+						'assets/js/library.js'
+					),
+				'style_sheets' => array(
+						'assets/css/jquery.dataTables.css' => 'screen',
+					),
 			);
 		$this->load->view($this->template, $data);
 	}
@@ -35,5 +43,8 @@ class Library extends MY_Controller {
 				);
 			$this->load->view($this->template, $data);	
 		}
+	}
+	public function process_request() {
+		
 	}
 }

@@ -113,13 +113,13 @@
 							</div>
 						</div>
 						<div class="controls"><!--watch the white space in IOS!-->
-							<label class="checkbox">
+							<label class="checkbox form_label">
 				                  <input type="checkbox" id="show-password"> Show Password
 				            </label>
 						</div>
+						<br />
 						<h5 class="short_headline"><span>Contact Information</span></h5>
 						<div class="control-group">
-							<!-- <label for="FirstNameRegister" class="required control-label">First Name <span class="required">*</span></label> -->
 							<?php echo form_label('First Name *','first_name',array('class'=>'required control-label form_label')); ?>
 							<div class="controls">
 								<?php 
@@ -247,7 +247,12 @@
 					                  'Youth' => 'Youth',
 					                  'Other' => 'Other'
 					                );
-									echo form_dropdown('focus_area[]', $options, set_value('focus_area'), 'class="span12" multiple="multiple"');
+
+									foreach($options as $k => $v ){
+
+										 echo '<label class="checkbox">'. form_checkbox('focus_area[]', $k, set_checkbox('focus_area', $k) , false) . $v .'</label>';
+									}
+									//echo form_dropdown('focus_area[]', $options, set_value('focus_area'), 'class="span12" multiple="multiple"');
 								?>
 							</div>
 						</div>
@@ -309,22 +314,6 @@
 										'id'		=> 'twitter',
 										'class'		=> 'form_input max_chars span12',
 										'value'		=> set_value('twitter'),
-									);
-
-									echo form_input($input_data);
-								?>
-							</div>
-						</div>
-						<div class="control-group">
-							<?php echo form_label('Official Website URL','website',array('class'=>'control-label required form_label'));?>
-							<div class="controls">
-								<?php 
-									$input_data = array(
-										'name'		=> 'website',
-										'id'		=> 'website',
-										'class'		=> 'form_input max_chars span12',
-										'value'		=> set_value('website'),
-										
 									);
 
 									echo form_input($input_data);

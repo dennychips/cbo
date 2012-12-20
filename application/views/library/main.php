@@ -14,7 +14,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec lorem libero. N
 	</div> -->
 </div>
 <h4 class="short_headline"><span>Document</span></h4>
-<div class="row-fluid">
+<!-- <div class="row-fluid">
 	<div class="span3">
 		<form class="">
 			<label>Subject</label>
@@ -37,9 +37,10 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec lorem libero. N
 	</div>
 
 </div>
-<div class="row-fluid">
+ -->
+ <div class="row-fluid">
 	<div class="span12">
-		<table class="table table-hover">
+		<table id="library-table" class="table table-hover">
 		  <thead>
 		    <tr>
 		      <th style="width:40%">Title</th>

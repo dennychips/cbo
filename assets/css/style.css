@@ -1982,3 +1982,7 @@ h2,  h3 { page-break-after: avoid; }
     color: #fff;
 
  }
+ .form_label {
+    font-weight: bold;
+    font-size: 11px;
+ }

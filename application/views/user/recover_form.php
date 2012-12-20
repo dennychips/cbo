@@ -12,7 +12,7 @@
  */
 ?>
 
-<h1>Account Recovery</h1>
+<h1 class="short_headline"><span>Account Recovery</span></h1>
 
 <?php
 if( isset( $disabled ) )
@@ -93,7 +93,7 @@ if( isset( $show_form ) )
 		 <?php echo form_open( '', array( 'class' => 'std-form', 'style' => 'margin-top:20px;' ) ); ?>
 			<div class="form-column-left">
 				<fieldset>
-					<legend>Enter your account's email address:</legend>
+					<h4 class="short_headline"><span>Enter your account's email address:</span></h4>
 					<div class="form-row">
 
 						<?php
@@ -118,6 +118,7 @@ if( isset( $show_form ) )
 							// SUBMIT BUTTON **************************************************************
 							$input_data = array(
 								'name'  => 'submit',
+								'class' => 'btn btn-primary',
 								'id'    => 'submit_button',
 								'value' => 'Send Email'
 							);

@@ -1,6 +1,7 @@
 <?php 
 if( isset( $auth_first_name ) ) {
   $_user_first_name = $auth_first_name;
+  $_user_last_name = $auth_last_name;
 }
 ?>
 <!-- begin accesibility skip to nav skip content -->
@@ -18,10 +19,8 @@ if( isset( $auth_first_name ) ) {
   
   <!--this is the login for the user-->
   <?php if(isset($_user_first_name)) : ?>
-        <nav class="user clearfix"><?php echo secure_anchor('library/add', 'Share Document');?></nav>
-        <nav class="user clearfix"><?php echo secure_anchor('user/self_update', 'My Profile') ?></nav>
+        <nav class="user clearfix"><?php echo secure_anchor('user/self_update', 'Welcome, '.$_user_first_name.' '. $_user_last_name )?></nav>
          <nav class="user clearfix"><?php echo secure_anchor('user/logout','Logout') ?></nav>
-  
   <?php else :?>
   <nav class="user clearfix"><?php echo secure_anchor('register','<i class="icon-user"></i> Register')?></nav>
   <nav class="user clearfix"><?php echo secure_anchor('/user', '<i class="icon-signin"></i> Login') ?></nav>
