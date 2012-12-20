@@ -56,9 +56,21 @@ class Cbodirectory extends MY_Controller {
 		$this->load->view($this->template, $data);
 	}
 	public function process_request() {
-		if( $this->input->is_ajax_request())
-			{
-				echo 'hello';
-			}
+		//if( $this->input->is_ajax_request())
+		//	{
+			$this->load->library('datatables');
+
+			$this->datatables
+		    ->select('organization, country, province, focus_area')
+		    ->from('customer_profile');
+
+		  $data = $this->datatables->generate();
+		  echo $data;
+		  //echo json_encode($data);
+
+		  //echo $data;
+		  //$this->load->view('ajax', $data);
+
+		//	}
 	}
 }

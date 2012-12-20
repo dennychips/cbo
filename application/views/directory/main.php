@@ -27,6 +27,7 @@
 		  <thead>
 		    <tr>
 		      <th style="width:20%">Name Of CBO</th>
+		      <th style="width:20%">Country</th>
 		      <th  style="width:15%">Province</th>
 		      <th style="width:25%">Focus Area</th>
 		      <th style="width:20%">Action</th>
