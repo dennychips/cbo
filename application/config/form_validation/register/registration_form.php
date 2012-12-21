@@ -62,16 +62,6 @@ $config['registration_form'] = array(
 		'label' => 'Phone Number',
 		'rules' => 'trim|required|numeric|xss_clean'
 	),
-	// array(
-	// 	'field' => 'city',
-	// 	'label' => 'CITY',
-	// 	'rules' => 'trim|required|xss_clean|max_length[60]'
-	// ),
-	// array(
-	// 	'field' => 'state',
-	// 	'label' => 'STATE or PROVINCE',
-	// 	'rules' => 'trim|required|alpha|max_length[50]'
-	// ),
 	array(
 		'field' => 'focus_area',
 		'label' => 'Focus Area',

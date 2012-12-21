@@ -12,14 +12,59 @@
  */
 
 $config['customer_creation_rules'] = array(
+	// array(
+	// 	'field' => 'user_name',
+	// 	'label' => 'USERNAME',
+	// 	'rules' => 'trim|required|alpha_numeric|max_length['. MAX_CHARS_4_USERNAME .']|min_length['. MIN_CHARS_4_USERNAME .']|external_callbacks[model,formval_callbacks,_username_check]'
+	// ),
+	// array(
+	// 	'field' => 'user_pass',
+	// 	'label' => 'PASSWORD',
+	// 	'rules' => 'trim|required|external_callbacks[model,formval_callbacks,_check_password_strength,TRUE]'
+	// ),
+	// array(
+	// 	'field' => 'user_email',
+	// 	'label' => 'EMAIL ADDRESS',
+	// 	'rules' => 'trim|required|max_length[255]|valid_email|external_callbacks[model,formval_callbacks,_email_exists_check]'
+	// ),
+	// array(
+	// 	'field' => 'last_name',
+	// 	'label' => 'LAST NAME',
+	// 	'rules' => 'trim|required|xss_clean'
+	// ),
+	// array(
+	// 	'field' => 'first_name',
+	// 	'label' => 'FIRST NAME',
+	// 	'rules' => 'trim|required|xss_clean'
+	// ),
+	// array(
+	// 	'field' => 'street_address',
+	// 	'label' => 'STREET ADDRESS',
+	// 	'rules' => 'trim|required|xss_clean|max_length[60]'
+	// ),
+	// array(
+	// 	'field' => 'city',
+	// 	'label' => 'CITY',
+	// 	'rules' => 'trim|required|xss_clean|max_length[60]'
+	// ),
+	// array(
+	// 	'field' => 'state',
+	// 	'label' => 'STATE or PROVINCE',
+	// 	'rules' => 'trim|required|alpha|max_length[50]'
+	// ),
+	// array(
+	// 	'field' => 'zip',
+	// 	'label' => 'ZIP or POSTAL CODE',
+	// 	'rules' => 'trim|required|xss_clean|max_length[10]'
+	// )
 	array(
 		'field' => 'user_name',
-		'label' => 'USERNAME',
+		'label' => 'Username',
 		'rules' => 'trim|required|alpha_numeric|max_length['. MAX_CHARS_4_USERNAME .']|min_length['. MIN_CHARS_4_USERNAME .']|external_callbacks[model,formval_callbacks,_username_check]'
 	),
 	array(
 		'field' => 'user_pass',
-		'label' => 'PASSWORD',
+		'label' => 'Password',
 		'rules' => 'trim|required|external_callbacks[model,formval_callbacks,_check_password_strength,TRUE]'
 	),
 	array(
@@ -29,34 +74,66 @@ $config['customer_creation_rules'] = array(
 	),
 	array(
 		'field' => 'last_name',
-		'label' => 'LAST NAME',
-		'rules' => 'trim|required|xss_clean'
+		'label' => 'Last Name',
+		'rules' => 'trim|required|max_length[20]|xss_clean'
 	),
 	array(
-		'field' => 'first_name',
+		'field' => 'last_name',
 		'label' => 'FIRST NAME',
-		'rules' => 'trim|required|xss_clean'
+		'rules' => 'trim|required|max_length[20]|xss_clean'
 	),
 	array(
 		'field' => 'street_address',
-		'label' => 'STREET ADDRESS',
-		'rules' => 'trim|required|xss_clean|max_length[60]'
+		'label' => 'Street Address',
+		'rules' => 'trim|required|xss_clean'
 	),
 	array(
-		'field' => 'city',
-		'label' => 'CITY',
-		'rules' => 'trim|required|xss_clean|max_length[60]'
+		'field' => 'organization',
+		'label' => 'Organization',
+		'rules' => 'trim|required|xss_clean'
 	),
 	array(
-		'field' => 'state',
-		'label' => 'STATE or PROVINCE',
-		'rules' => 'trim|required|alpha|max_length[50]'
+		'field' => 'country',
+		'label' => 'Country',
+		'rules' => 'trim|required|xss_clean'
 	),
 	array(
-		'field' => 'zip',
-		'label' => 'ZIP or POSTAL CODE',
-		'rules' => 'trim|required|xss_clean|max_length[10]'
-	)
+		'field' => 'province',
+		'label' => 'Province',
+		'rules' => 'trim|required|xss_clean'
+	),
+	array(
+		'field' => 'phone_number',
+		'label' => 'Phone Number',
+		'rules' => 'trim|required|numeric|xss_clean'
+	),
+	
+	array(
+		'field' => 'focus_area',
+		'label' => 'Focus Area',
+		'rules' => 'required'
+	),
+	array(
+		'field' => 'website',
+		'label' => 'Website',
+		'rules' => 'xss_clean'
+	),
+	array(
+		'field' => 'blog',
+		'label' => 'Blog',
+		'rules' => 'xss_clean'
+	),
+
+	array(
+		'field' => 'facebook',
+		'label' => 'Facebook',
+		'rules' => 'xss_clean'
+	),
+	array(
+		'field' => 'twitter',
+		'label' => 'Twitter',
+		'rules' => 'xss_clean'
+	),
 );
 
 /* End of file create_customer.php */

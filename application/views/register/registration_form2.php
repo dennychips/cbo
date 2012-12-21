@@ -329,6 +329,11 @@
 					</fieldset>
 				<?php form_close()?>
 				<!-- end registration form--> 
+				<?php 		
+	}
+
+}
+?>
 				
 			</div>
 			<!--close .span7-->
@@ -341,9 +346,4 @@
 		</div>
 		<!-- close row-fluid--> 
 	</div>
-	
-<?php 		
-	}
-
-}
 
