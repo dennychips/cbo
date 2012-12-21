@@ -41,7 +41,6 @@ class User_model extends MY_Model {
 	 */
 	public function create_user( $role, $insert_array = array() )
 	{
-		echo $role;
 		// The form validation class doesn't allow for multiple config files, so we do it the old fashion way
 		$this->config->load( 'form_validation/administration/create_user/create_' . $role );
 		$this->validation_rules = config_item( $role . '_creation_rules' );
