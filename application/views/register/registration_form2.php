@@ -130,7 +130,6 @@
 										'value'		=> set_value('first_name'),
 										'maxlength'	=> '20',
 									);
-
 									echo form_input($input_data);
 								?>
 							</div>
@@ -147,6 +146,7 @@
 										'value'		=> set_value('last_name'),
 										'maxlength'	=> '20',
 									);
+
 
 									echo form_input($input_data);
 								?>

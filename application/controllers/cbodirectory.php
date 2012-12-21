@@ -92,7 +92,7 @@ class Cbodirectory extends MY_Controller {
 	    	if(isset($_POST['focus_area']) && $_POST['focus_area'] !=''){
 	    		$this->datatables->where('focus_area LIKE "%' . $_POST['focus_area'] .'%"');
 	    	}
-			$this->datatables->add_column('edit', '<a href="'.base_url().'/cbodirectory/view/$1" class="btn btn-small btn-primary">View Profile</a>', 'user_id');
+			$this->datatables->add_column('edit', '<a href="'.base_url().'/cbodirectory/view/$i" class="btn btn-small btn-primary">View Profile</a>', 'user_id');
 
 		  	$data = $this->datatables->generate();
 		  	$a =  json_decode($data);

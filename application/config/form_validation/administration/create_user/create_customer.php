@@ -73,13 +73,13 @@ $config['customer_creation_rules'] = array(
 		'rules' => 'trim|required|max_length[255]|valid_email|external_callbacks[model,formval_callbacks,_email_exists_check]'
 	),
 	array(
-		'field' => 'last_name',
-		'label' => 'Last Name',
+		'field' => 'first_name',
+		'label' => 'First Name',
 		'rules' => 'trim|required|max_length[20]|xss_clean'
 	),
 	array(
 		'field' => 'last_name',
-		'label' => 'FIRST NAME',
+		'label' => 'Last Name',
 		'rules' => 'trim|required|max_length[20]|xss_clean'
 	),
 	array(
@@ -107,7 +107,6 @@ $config['customer_creation_rules'] = array(
 		'label' => 'Phone Number',
 		'rules' => 'trim|required|numeric|xss_clean'
 	),
-	
 	array(
 		'field' => 'focus_area',
 		'label' => 'Focus Area',
@@ -116,23 +115,23 @@ $config['customer_creation_rules'] = array(
 	array(
 		'field' => 'website',
 		'label' => 'Website',
-		'rules' => 'xss_clean'
+		'rules' => 'trim|xss_clean|prep_url'
 	),
 	array(
 		'field' => 'blog',
 		'label' => 'Blog',
-		'rules' => 'xss_clean'
+		'rules' => 'trim|xss_clean|prep_url'
 	),
 
 	array(
 		'field' => 'facebook',
 		'label' => 'Facebook',
-		'rules' => 'xss_clean'
+		'rules' => 'trim|xss_clean|prep_url'
 	),
 	array(
 		'field' => 'twitter',
 		'label' => 'Twitter',
-		'rules' => 'xss_clean'
+		'rules' => 'trim|xss_clean|prep_url'
 	),
 );
 

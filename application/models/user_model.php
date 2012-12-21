@@ -41,6 +41,7 @@ class User_model extends MY_Model {
 	 */
 	public function create_user( $role, $insert_array = array() )
 	{
+
 		// The form validation class doesn't allow for multiple config files, so we do it the old fashion way
 		$this->config->load( 'form_validation/administration/create_user/create_' . $role );
 		$this->validation_rules = config_item( $role . '_creation_rules' );
@@ -67,7 +68,7 @@ class User_model extends MY_Model {
 				$this->form_validation->unset_field_data( array(
 					'user_name',
 					'user_pass',
-					'user_email'
+					'user_email',
 				));
 
 				// Create array of profile data
@@ -75,6 +76,7 @@ class User_model extends MY_Model {
 				{
 					$profile_data[$k] = $v['postdata'];
 				}
+
 
 				// Unset all data for set_value(), so we can create another user
 				$this->kill_set_value();
@@ -99,6 +101,9 @@ class User_model extends MY_Model {
 				$profile_data['license_number'] = $this->encrypt->encode( $profile_data['license_number'] );
 			}
 
+			if(isset($profile_data['focus_area'])){
+				$profile_data['focus_area'] = serialize($profile_data['focus_area']);
+			}
 			// Create a random user id if not already set
 			$random_unique_int = $this->get_unused_id();
 
@@ -119,11 +124,11 @@ class User_model extends MY_Model {
 			// Insert data in user table
 			$this->db->set($user_data)
 						->insert( config_item('user_table'));
-
-
+						
 			$profile_data['user_id'] = $random_unique_int;
-			
+			// $profile_data['focus_area'] = serialize($this->input->post('focus_area'));
 			// Insert data in profile table
+			
 			$this->db->set($profile_data)
 						->insert( config_item( $role . '_profiles_table'));
 
@@ -233,7 +238,7 @@ class User_model extends MY_Model {
 			case 'profile_image':
 
 			default:
-				//print_r($profile_data);
+				
 				$_POST = array_merge( $user_data, $profile_data );
 				$this->validation_rules = config_item( $update_type );
 				break;
