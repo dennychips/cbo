@@ -1,12 +1,12 @@
 <div class="row-fluid  sidebar-right">
 	<div class="span9 primary-column">
 		<h3 class="short_headline"><span>CBO Profile Directory</span></h3>
-		<p>
+		<!-- <p>
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec lorem libero. Nunc pharetra auctor purus sit amet elementum. Sed imperdiet nunc et tellus ultrices lacinia. Proin id turpis quis lectus interdum rutrum. Mauris sit amet urna felis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Cras accumsan nunc eget lorem vehicula tincidunt. Nunc tellus libero, scelerisque eu sollicitudin id, elementum ac justo.
-		</p>
+		</p> -->
 
 
-		<h5 class="short_headline"><span>List CBO</span></h5>
+		<h5 class="short_headline"><span>Filter</span></h5>
 		<div class="">
 			
 			<table>
@@ -25,7 +25,7 @@
 			    			foreach ($country as $row) {
 			    				$countries[$row->country] = $row->country;	
 			    			}
-							echo form_dropdown('country', $countries, set_value('country'), 'id ="country" class="span12"');
+							echo form_dropdown('country', $countries, '', 'id ="country"');
 						?>
 					</td>
 				</tr>
@@ -43,9 +43,9 @@
 								}
 							} else {
 								// Default option if not POST request
-								$country_province[''] = '-- Select Country --';
+								$country_province[''] = '-- Select Country First --';
 							}
-							echo form_dropdown('province', $country_province, set_value('province'), 'id="province" class="span12"');
+							echo form_dropdown('province', $country_province, '', 'id="province"');
 						?>
 						<input type="hidden" id="ajax_url" value="<?php echo if_secure_site_url('autopopulate_country/process_request/country'); ?>" />
 					</td>
@@ -54,11 +54,25 @@
 				<tr>
 					<td width="20%">Focus Area</td>
 					<td class="select">
-						<input name="focus_area[]" type="checkbox" value="MSM" class="f_area" />msm
+						<?php
+						$options = array(
+							'' => '-- Select Area --',
+							'MSM' => 'MSM',
+							'Transgender' => 'Transgender',
+							'HIV/AIDS' => 'HIV/AIDS',
+							'General Population' => 'General Population',
+							'IDU' => 'IDU',
+							'Sex Worker' => 'Sex Worker',
+							'Youth' => 'Youth',
+							'Other' => 'Other'
+							);
+							echo form_dropdown('focus_area', $options, '', 'id="focus_area"');
+						?>
 					</td>
 				</tr>
 			</table>
 		</div>
+		<h5 class="short_headline"><span>CBO Profile Directory List</span></h5>
 		<table id="directory-table" class="table table-hovered" >
 		  <thead>
 		    <tr>

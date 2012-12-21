@@ -1,7 +1,7 @@
 /* Table initialisation */
 $(document).ready(function() {
 	var oTable = $('#directory-table').dataTable( {
-		// "bProcessing": true,
+		"bProcessing": true,
         "bServerSide": true,
         "sAjaxSource": "cbodirectory/process_request",
 		"sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
@@ -15,7 +15,7 @@ $(document).ready(function() {
 		      	 		{ "name": "organization", "value": $( "#organization" ).val() },
 		      	 		{ "name": "province", "value": $( "#province" ).val() },
 		      	 		{ "name": "country", "value": $( "#country" ).val() },
-		      	 		{ "name": "focus_area", "value": $( ".f_area" ).val() }
+		      	 		{ "name": "focus_area", "value": $( "#focus_area" ).val() }
 					);
 		        $.ajax
 		        ({
@@ -45,8 +45,8 @@ $(document).ready(function() {
       /* Filter on the column (the index) of this element */
       oTable.fnFilter( this.value, $("#organization"));
     });
-    $('.f_area').click(function(){
-    	oTable.fnFilter( this.value, $(".f_area"));
+    $('#focus_area').change(function(){
+    	oTable.fnFilter( this.value, $("#focus_area"));
     });
 
 } );

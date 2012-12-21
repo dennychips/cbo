@@ -70,8 +70,8 @@ class Cbodirectory extends MY_Controller {
 		$this->load->view($this->template, $data);
 	}
 	public function process_request() {
-		// if( $this->input->is_ajax_request())
-		// {
+		if( $this->input->is_ajax_request())
+		 {
 	        $this->load->library('Datatables');
 	        
 	    	$this->datatables->select('organization, country, province , focus_area, user_id');
@@ -81,7 +81,7 @@ class Cbodirectory extends MY_Controller {
 	    	
 	    	if(isset($org) && $org !== ''){
 	    		// $this->datatables->where('organization', $_POST['organization']);
-	    		$this->datatables->filter('organization >=', $_POST['organization']);
+	    		$this->datatables->filter('organization LIKE "%' . $_POST['organization'] .'%"');
 	    	} 
 	    	if(isset($_POST['country']) && $_POST['country'] !== ''){
 	    		$this->datatables->filter('country', $_POST['country']);
@@ -92,7 +92,7 @@ class Cbodirectory extends MY_Controller {
 	    	if(isset($_POST['focus_area']) && $_POST['focus_area'] !=''){
 	    		$this->datatables->where('focus_area LIKE "%' . $_POST['focus_area'] .'%"');
 	    	}
-			$this->datatables->add_column('edit', '<a href="view/$1" class="btn btn-primary">View Profile</a>', 'user_id');
+			$this->datatables->add_column('edit', '<a href="view/$1" class="btn btn-small btn-primary">View Profile</a>', 'user_id');
 
 		  	$data = $this->datatables->generate();
 		  	$a =  json_decode($data);
@@ -104,12 +104,10 @@ class Cbodirectory extends MY_Controller {
 		  			}
 		  			$a->aaData[$k][3] = $return;		
 		  	}
-		  	print_r($this->db->last_query());
-		  	echo json_encode($a);
-		  	//print_r(unserialize($a->aaData[0][3])) ;
+		  	// print_r($this->db->last_query());
+		  	echo json_encode($a);	  	
 		  	
-		  	//echo $data;
-    	//}
+    	}
 
 	}
 }

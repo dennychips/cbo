@@ -3,7 +3,7 @@
   <ul class="accordmobile">
     <li><?php echo anchor('/', 'Home') ?></li>
     <li><?php echo anchor('about', 'About') ?></li>
-    <li class="parent"><a href="#">CBO Directory<i></i></a>
+    <li class="parent"><?php echo anchor('cbodirectory', 'CBO Directory<i></i>')?></a>
       <ul>
         <li><?php echo anchor('cbodirectory', 'Indonesia')?></li>
         <li><?php echo anchor('cbodirectory', 'Malaysia') ?></li>
