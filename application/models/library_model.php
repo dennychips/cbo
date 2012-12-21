@@ -3,7 +3,7 @@
 class Library_model extends CI_Model {
 
 	function get_library_document($user_id) {
-		$query = $this->db->get_where( config_item('library_document'), array( 'user_id' => $user_id ) );
+		$query = $this->db->get_where( config_item('library_document_table'), array( 'user_id' => $user_id ) );
 
 		if( $query->num_rows() == 1 )
 		{
@@ -12,16 +12,16 @@ class Library_model extends CI_Model {
 
 		return FALSE;
 	}
-	
+
 	// --------------------------------------------------------------
 
 	/**
 	 * Save images data
 	 */
-	public function save_image_data( $user_id, $image_data )
+	public function save_document_data( $user_id, $image_data )
 	{
 		// Check for existing images
-		$query = $this->get_custom_uploader_images( $user_id );
+		$query = $this->get_library_document( $user_id );
 
 		// If there is no existing record
 		if( $query === FALSE )
@@ -39,7 +39,7 @@ class Library_model extends CI_Model {
 		else
 		{
 			$query = $this->db->update( 
-				config_item('custom_uploader_table'), 
+				config_item('library_document'), 
 				array('images_data' => $image_data), 
 				array( 'user_id' => $user_id ) 
 			);

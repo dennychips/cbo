@@ -15,7 +15,7 @@ $(document).ready(function() {
 		      	 		{ "name": "organization", "value": $( "#organization" ).val() },
 		      	 		{ "name": "province", "value": $( "#province" ).val() },
 		      	 		{ "name": "country", "value": $( "#country" ).val() },
-		      	 		{ "name": "focus_area", "value": $( "#focus_area" ).val() }
+		      	 		{ "name": "focus_area", "value": $( ".f_area" ).val() }
 					);
 		        $.ajax
 		        ({
@@ -44,6 +44,9 @@ $(document).ready(function() {
     $("#organization").keyup( function () {
       /* Filter on the column (the index) of this element */
       oTable.fnFilter( this.value, $("#organization"));
+    });
+    $('.f_area').click(function(){
+    	oTable.fnFilter( this.value, $(".f_area"));
     });
 
 } );

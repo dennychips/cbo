@@ -308,6 +308,7 @@ class Registration_model extends MY_Model {
 
 		return FALSE;
 	}
+	
 
 }
 

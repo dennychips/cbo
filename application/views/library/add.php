@@ -1,4 +1,5 @@
 <?php if( ! defined('BASEPATH') ) exit('No direct script access allowed');
+
 ?>
 <?php
 	echo form_open( '', array( 'class' => 'add-docs-form' ) ); 
@@ -33,9 +34,9 @@
 			$input_data = array(
 				'name'		=> 'description',
 				'id'		=> 'description',
-				'class'		=> 'form_input span12',
+				'class'		=> 'ckeditor form_input span12',
 				'value'		=> set_value('user_name'),
-				'rows'		=> 8
+				'rows'		=> 13
 			);
 			echo form_textarea($input_data);
 		?>
@@ -90,7 +91,7 @@
 <input type="hidden" id="allowed_types" value="<?php echo $uploader_settings['allowed_types']; ?>" />
 <input type="hidden" id="update_image_order_url" value="<?php echo secure_site_url('custom_uploader/update_image_order'); ?>" />
 <input type="hidden" id="delete_image_url" value="<?php echo secure_site_url('custom_uploader/delete_image'); ?>" />
-<input type="hidden" id="upload_image_url" value="<?php echo secure_site_url('uploads_manager/bridge_filesystem/custom_uploader'); ?>" />
+<input type="hidden" id="upload_library_url" value="<?php echo secure_site_url('uploads_manager/bridge_filesystem/library_uploader'); ?>" />
 <input type="submit" value="Publish Document" class="btn btn-block btn-primary btn-large pull-right" />
 <input type="hidden" id="ci_csrf_token_name" value="<?php echo config_item('csrf_token_name'); ?>" />
 </div>

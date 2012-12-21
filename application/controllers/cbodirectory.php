@@ -78,6 +78,7 @@ class Cbodirectory extends MY_Controller {
 	    	$org = $this->input->post('organization');
 			$this->datatables->from('customer_profile');
 	    	$this->datatables->unset_column('user_id');
+	    	
 	    	if(isset($org) && $org !== ''){
 	    		// $this->datatables->where('organization', $_POST['organization']);
 	    		$this->datatables->filter('organization >=', $_POST['organization']);
@@ -88,14 +89,26 @@ class Cbodirectory extends MY_Controller {
 	    	if(isset($_POST['province']) && $_POST['province'] !==''){
 	    		$this->datatables->where('province', $_POST['province']);
 	    	}
+	    	if(isset($_POST['focus_area']) && $_POST['focus_area'] !=''){
+	    		$this->datatables->where('focus_area LIKE "%' . $_POST['focus_area'] .'%"');
+	    	}
 			$this->datatables->add_column('edit', '<a href="view/$1" class="btn btn-primary">View Profile</a>', 'user_id');
 
 		  	$data = $this->datatables->generate();
-		  	// $a =  json_decode($data);
-		  	// print_r($a);
+		  	$a =  json_decode($data);
+		  	foreach($a->aaData as $k => $row){
+		  			$j = unserialize($row[3]);
+		  			$return = '';
+		  			foreach($j as $i => $m) {
+		  				$return .= ($i>0) ? ", " . $m : $m;
+		  			}
+		  			$a->aaData[$k][3] = $return;		
+		  	}
+		  	print_r($this->db->last_query());
+		  	echo json_encode($a);
 		  	//print_r(unserialize($a->aaData[0][3])) ;
 		  	
-		  	echo $data;
+		  	//echo $data;
     	//}
 
 	}

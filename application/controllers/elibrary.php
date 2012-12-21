@@ -6,6 +6,7 @@ class Elibrary extends MY_Controller {
 		$this->is_logged_in();
 		$this->load->library('csrf');
 		$this->load->library('upload');
+		$this->load->model('library_model');
 		$this->config->load('uploads_manager');
 
 	}
@@ -47,8 +48,15 @@ class Elibrary extends MY_Controller {
 			$this->template = 'templates/single';
 			$data = array(
 					'title' 	=> 'CBO - eLibrary',
-					
-					'content' 	=> $this->load->view('library/add', $view_data, TRUE)
+					'content' 	=> $this->load->view('library/add', $view_data, TRUE),
+					'javascripts' => array(
+							'assets/js/ckeditor/ckeditor.js',
+							'js/ajaxupload.js',
+							'assets/js/document-uploader-controls.js',
+						),
+					'style_sheets' => array(
+
+						)
 				);
 			$this->load->view($this->template, $data);	
 		}

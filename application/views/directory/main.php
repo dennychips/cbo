@@ -48,13 +48,14 @@
 							echo form_dropdown('province', $country_province, set_value('province'), 'id="province" class="span12"');
 						?>
 						<input type="hidden" id="ajax_url" value="<?php echo if_secure_site_url('autopopulate_country/process_request/country'); ?>" />
-						<input type="hidden" id="ci_csrf_token_name" value="<?php echo config_item('csrf_token_name'); ?>" />
 					</td>
 					<?php echo form_close();?>
 				</tr>
 				<tr>
 					<td width="20%">Focus Area</td>
-					<td class="select"></td>
+					<td class="select">
+						<input name="focus_area[]" type="checkbox" value="MSM" class="f_area" />msm
+					</td>
 				</tr>
 			</table>
 		</div>
