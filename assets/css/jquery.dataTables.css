@@ -14,7 +14,12 @@
 	background-color: white;
 }
 
-
+.dataTables_info {
+	font-size: 11px;
+}
+.dataTables_paginate {
+font-size: 11px;	
+}
 div.dataTables_length label {
 	float: left;
 	text-align: left;

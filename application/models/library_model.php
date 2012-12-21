@@ -1,6 +1,6 @@
 <?php if( ! defined('BASEPATH') ) exit('No direct script access allowed');
 
-class Library_model extends CI_Model {
+class Library_model extends MY_Model {
 
 	function get_library_document($user_id) {
 		$query = $this->db->get_where( config_item('library_document_table'), array( 'user_id' => $user_id ) );
@@ -51,6 +51,36 @@ class Library_model extends CI_Model {
 		}
 
 		return FALSE;
+	}
+	public function add_library($data) {
+
+		$this->validation_rules = config_item( 'add_library' );
+		if($this->validate())
+		{
+			$lib =  array(
+					'user_id' => $data['user_id'],
+					'title' => $data['title'],
+					'type' => $data['type'] ,
+					'file_path' => '',
+					'created'	=> time(),
+					'modified' => time(),
+					'view_counter' => 0
+				);
+			print_r($lib);
+			$this->db->set($lib)
+							->insert('library_data');
+			print_r($this->db->last_query());
+		}
+	}
+
+	public function get_type() {
+		$this->db->select('catID, category_name');
+		$q = $this->db->get('library_category');
+		if($q->num_rows > 0 ){
+			return $q->result();
+		}
+		return false;
+
 	}
 	
 }
