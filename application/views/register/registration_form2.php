@@ -159,7 +159,7 @@
 									$input_data = array(
 										'name'		=> 'organization',
 										'id'		=> 'organization',
-										'class'		=> 'form_input password span12',
+										'class'		=> 'form_input span12',
 										'value'		=> set_value('organization'),
 									);
 
