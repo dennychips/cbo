@@ -402,9 +402,10 @@ class MY_Upload extends CI_Upload {
 
 			// Merge upload path into config settings
 			$init_config = array_merge( $local_config, config_item( 'upload_configuration_' . $type ) );
-
+			
 			// Initialize file upload class
 			$this->initialize( $init_config );
+
 		}
 
 		// Initialization for DATABASE uploads or FTP transfers

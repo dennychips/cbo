@@ -41,7 +41,6 @@ class Uploads_manager extends MY_Controller {
 	 */
 	public function bridge_filesystem( $type )
 	{
-		
 
 		$this->bridge_type = 'filesystem';
 
@@ -88,7 +87,7 @@ class Uploads_manager extends MY_Controller {
 	 */
 	private function _facilitate_upload( $type )
 	{
-		echo $type;die();
+		
 		$auth_roles =  config_item( 'authentication_' . $type );
 
 		if( $auth_roles !== FALSE && $this->require_role( $auth_roles ) )
@@ -112,7 +111,6 @@ class Uploads_manager extends MY_Controller {
 
 			$response['token'] = $this->csrf->token;
 			$response['ci_csrf_token'] = $this->security->get_csrf_hash();
-
 			echo json_encode( $response );
 		}
 	}

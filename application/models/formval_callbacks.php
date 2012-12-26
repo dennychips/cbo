@@ -41,7 +41,11 @@ class Formval_callbacks extends CI_Model {
 			// If the password is not required, and if it is empty, no reason to proceed
 			return TRUE;
 		}
-		else if( preg_match( '/^(?=.{' . MIN_CHARS_4_PASSWORD . ',' . MAX_CHARS_4_PASSWORD . '})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)(?!.*[\\\\\'"]).*$/', $password, $matches ) )
+		/*
+else if( preg_match( '/^(?=.{' . MIN_CHARS_4_PASSWORD . ',' . MAX_CHARS_4_PASSWORD . '})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)(?!.*[\\\\\'"]).*$/', $password, $matches ) )
+		{
+*/
+		else if( preg_match( '/^(?=.{' . MIN_CHARS_4_PASSWORD . ',' . MAX_CHARS_4_PASSWORD . '})(?=.*[a-z])(?!.*\s)(?!.*[\\\\\'"]).*$/', $password, $matches ) )
 		{
 			return $password;
 		}

@@ -11,7 +11,7 @@ $config['add_library'] = array(
 	array(
 		'field' => 'type',
 		'label' => 'Type',
-		'rules' => 'trim|xss_clean'
+		'rules' => 'trim|xss_clean|required'
 	),
 	array(
 		'field' => 'author',
@@ -21,7 +21,7 @@ $config['add_library'] = array(
 	array(
 		'field' => 'link',
 		'label' => 'Link',
-		'rules' => 'trim|xss_clean'
+		'rules' => 'trim|xss_clean|prep_url'
 	),
 	array(
 		'field' => 'description',

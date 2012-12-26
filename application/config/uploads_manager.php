@@ -81,13 +81,13 @@ $config['upload_configuration_custom_uploader'] = array(
 	'add_hash'      => 'secondary_dir' // <- add a hash to ( for unwanted direct browsing )
 );
 
-$config['upload_configuration_library'] = array(
+$config['library_uploader_destination'] = 'filesystem';
+$config['authentication_library_uploader'] = 'admin,manager,customer';
+$config['upload_configuration_library_uploader'] = array(
 
 	// Settings for any destination
-	'allowed_types' => 'gif|jpg|jpeg|png',
-	'max_size'      => '50',
-	'max_width'     => '100',
-	'max_height'    => '100',
+	'allowed_types' => 'doc|pdf|ppt',
+	'max_size'      => '1024',
 
 	// FILESYSTEM specific settings
 	'primary_dir'   => 'dir_name',     // <- POST key of primary directory

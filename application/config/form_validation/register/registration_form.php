@@ -28,7 +28,7 @@ $config['registration_form'] = array(
 		'rules' => 'trim|required|max_length[255]|valid_email|external_callbacks[model,formval_callbacks,_email_exists_check]'
 	),
 	array(
-		'field' => 'First Name',
+		'field' => 'first_name',
 		'label' => 'FIRST NAME',
 		'rules' => 'trim|required|max_length[20]|xss_clean'
 	),
@@ -75,18 +75,18 @@ $config['registration_form'] = array(
 	array(
 		'field' => 'blog',
 		'label' => 'Blog',
-		'rules' => 'trim|xss_clean'
+		'rules' => 'trim|xss_clean|prep_url'
 	),
 
 	array(
 		'field' => 'facebook',
 		'label' => 'Facebook',
-		'rules' => 'trim|xss_clean'
+		'rules' => 'trim|xss_clean|prep_url'
 	),
 	array(
 		'field' => 'twitter',
 		'label' => 'Twitter',
-		'rules' => 'trim|xss_clean'
+		'rules' => 'trim|xss_clean|prep_url'
 	),
 
 );

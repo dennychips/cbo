@@ -4,7 +4,6 @@
 class Cboprofile_model extends CI_Model {
 	public function getallcbo(){
 		$q = $this->db->get(config_item('customer_profiles_table'));
-		//print_r($this->db->last_query());
 		if($q->num_rows() > 0 ) {
 			return $q->result();
 		}

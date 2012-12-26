@@ -25,7 +25,7 @@
 			<div id="indicator">&nbsp;</div>
 			<div class="width-limiter">
 				<div id="logo">
-					<a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>"><img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/img/logo.jpg" alt="Community Auth"/></a>
+					
 				</div>
 				<div id="two-left" class="content">
 					<h1><?php echo $heading; ?></h1>
@@ -59,7 +59,7 @@
 			</div>
 		</div>
 		<div class="footer">
-			<p>Copyright (c) 2011 - 2012 &bull; Robert B. Gottier &bull; <a href="http://brianswebdesign.com">Brian's Web Design - Temecula, CA</a></p>
+			
 		</div>
 	</body>
 </html><?php

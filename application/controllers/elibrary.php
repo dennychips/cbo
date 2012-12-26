@@ -11,10 +11,13 @@ class Elibrary extends MY_Controller {
 	}
 
 	public function index() {
+		$view_data = array(
+				'profiles' => $this->lib->get_all_lib_data(),
+			);
 		$this->template = 'templates/library_template';
 		$data = array(
 				'title' 		=> 'CBO - eLibrary',
-				'content' 		=> $this->load->view('library/main', '', TRUE),
+				'content' 		=> $this->load->view('library/main', $view_data, TRUE),
 				'javascripts'	=> array(
 						'assets/js/jquery.dataTables.min.js',
 						'assets/js/bootstrap-DT-init.js',
@@ -38,18 +41,15 @@ class Elibrary extends MY_Controller {
 	}
 	public function add() {
 		if( $this->require_min_level(1))
-		{
-			$this->config->load( 'form_validation/library/add_library' );
-			
+		{			
 			if($this->csrf->token_match){
-				$libdata = $this->input->post();
-				$this->lib->add_library($libdata);
+				$this->lib->add_library($this->input->post());
 			}
-			$view_data['uploader_settings'] = config_item('upload_configuration_libary_document');
+			$view_data['uploader_settings'] = config_item('upload_configuration_library');
 
 			// Create a more human friendly version of the allowed_types
 			$view_data['file_types'] = str_replace( '|', ' &bull; ', $view_data['uploader_settings']['allowed_types'] );
-			$view_data['images'] = $this->lib->get_library_document( $this->auth_user_id );
+			// $view_data['images'] = $this->lib->get_library_document( $this->auth_user_id );
 			$view_data['doc_type'] = $this->lib->get_type();
 			$this->template = 'templates/single';
 			$data = array(
@@ -57,18 +57,50 @@ class Elibrary extends MY_Controller {
 					'content' 	=> $this->load->view('library/add', $view_data, TRUE),
 					'javascripts' => array(
 							'assets/js/ckeditor/ckeditor.js',
-							// 'js/ajaxupload.js',
-							// 'assets/js/document-uploader-controls.js',
+							'js/ajaxupload.js',
+							'assets/js/document-uploader-controls.js',
 						),
 					'style_sheets' => array(
-
+ 							// 'assets/js/fineuploader/fineuploader.css' => 'screen'
 						)
 				);
 			$this->load->view($this->template, $data);	
 			
 		}
 	}
+	public function add_document(){
+		print_r($this->input->post());
+	}
+	public function insert_lib_data() {
+		 if($this->csrf->token_match){
+		 	$data = $this->input->post();
+		 	
+		 	$insert_data = array(
+		 			'file_path' => $data['image_data']['file_url'],
+		 			'file_size' => $data['image_data']['file_size'],
+		 			'file_ext' 	=> $data['image_data']['file_ext']
+		 		);
+		 	if($res = $this->lib->insert_lib_doc($insert_data)) {
+		 		
+		 		$response['id'] = $res['id'];
+		 		$response['file_ext'] = $res['file_ext'];
+		 		$response['file_name'] = $data['image_data']['file_name'];
+				$response['token']         = $this->csrf->token;
+				$response['ci_csrf_token'] = $this->security->get_csrf_hash();
+			}
+			echo json_encode($response);
+		 }
+
+	}
 	public function process_request() {
-		
+		$this->load->library('Datatables');
+		$this->datatables->select('id, title, author, created, type, library_category.category_name');
+		$this->datatables->from('library_data');
+		$this->datatables->join('library_category', 'library_category.catID = library_data.type');
+		$this->datatables->unset_column('id');
+		$this->datatables->unset_column('type');
+		$data = $this->datatables->generate();
+		// print_r($this->db->last_query());
+		echo $data;
 	}
 }
