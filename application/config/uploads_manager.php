@@ -86,8 +86,8 @@ $config['authentication_library_uploader'] = 'admin,manager,customer';
 $config['upload_configuration_library_uploader'] = array(
 
 	// Settings for any destination
-	'allowed_types' => 'doc|pdf|ppt',
-	'max_size'      => '1024',
+	'allowed_types' => 'doc|pdf|ppt|docx',
+	'max_size'      => '3072',
 
 	// FILESYSTEM specific settings
 	'primary_dir'   => 'dir_name',     // <- POST key of primary directory

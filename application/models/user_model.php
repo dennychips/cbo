@@ -101,8 +101,15 @@ class User_model extends MY_Model {
 				$profile_data['license_number'] = $this->encrypt->encode( $profile_data['license_number'] );
 			}
 
+			$this->load->model('registration_model');
+			$reg_mode = $this->registration_model->get_reg_mode();
+
 			if(isset($profile_data['focus_area'])){
-				$profile_data['focus_area'] = serialize($profile_data['focus_area']);
+				if($reg_mode == 1){
+					$profile_data['focus_area'] = serialize($profile_data['focus_area']);
+				} else if ($reg_mode == 2 || $reg_mode == 3) {
+					$profile_data['focus_area'] = $profile_data['focus_area'];
+				}
 			}
 			// Create a random user id if not already set
 			$random_unique_int = $this->get_unused_id();

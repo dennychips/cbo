@@ -97,10 +97,9 @@ class Registration_model extends MY_Model {
 				// 'state'          => set_value('state'),
 				// 'zip'            => set_value('zip')
 			);
-						
 			// Insert record
+			
 			$this->db->insert( config_item('temp_reg_data_table'), $insert_array );
-
 
 			if( $this->db->affected_rows() > 0 )
 			{
@@ -223,7 +222,6 @@ class Registration_model extends MY_Model {
 		if( $query->num_rows() == 1 )
 		{
 			$result = $query->row();
-
 			/**
 			 * Password and license number are decoded because 
 			 * the create_user method encrypts them.
@@ -253,14 +251,7 @@ class Registration_model extends MY_Model {
 				'blog'			 => $result->blog,
 				'facebook'		 => $result->facebook,
 				'twitter' 		 => $result->twitter
-				// 'first_name'     => $result->first_name,
-				// 'last_name'      => $result->last_name,
-				// 'street_address' => $result->street_address,
-				// 'city'           => $result->city,
-				// 'state'          => $result->state,
-				// 'zip'            => $result->zip,
 			);
-
 			return $result->user_email;
 		}
 

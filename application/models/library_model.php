@@ -28,7 +28,7 @@ class Library_model extends MY_Model {
 		$this->validation_rules = config_item( 'add_library' );
 		if($this->validate())
 		{
-			print_r($this->input->post());
+			//print_r($this->input->post());
 			$lib =  array(
 					'id' => $this->_generate_lib_id(),
 					'user_id' => $this->input->post('user_id'),
@@ -48,7 +48,8 @@ class Library_model extends MY_Model {
 			// } elseif($this->input->post('link') !== '' && $this->input->post('libid') !== ''){
 			// 	$getformat = $this->getformat($this->input->post('libid'));
 				
-			// 	$format = array(0 => 'Link', 1 => $doctype);
+			// 	print_r($getformat);
+			// 	echo '<hr />';
 			// }
 			// print_r($lib);die();
 
@@ -67,7 +68,7 @@ class Library_model extends MY_Model {
 
 		if($q->num_rows() > 0){
 			$result = $q->row_array();
-			print_r($this->db->last_query());
+			return $result;
 		}
 
 	}
@@ -75,11 +76,13 @@ class Library_model extends MY_Model {
 		$q = $this->db->get_where('library_file_tmp', array('id' => $id));
 		if($q->num_rows() == 1 ) {
 			$result = $q->row();
+			$doctype = str_replace('.', '', ($result->file_ext));
 			$this->insert_data = array(
 					'lib_id' => $id,
 					'file_path' => $result->file_path,
 					'file_size' => $result->file_size,
 					'file_ext' => $result->file_ext,
+					'doctype' => strtoupper($doctype)
 				);
 			return $result->id;
 		}

@@ -68,9 +68,6 @@ class Elibrary extends MY_Controller {
 			
 		}
 	}
-	public function add_document(){
-		print_r($this->input->post());
-	}
 	public function insert_lib_data() {
 		 if($this->csrf->token_match){
 		 	$data = $this->input->post();
@@ -94,13 +91,22 @@ class Elibrary extends MY_Controller {
 	}
 	public function process_request() {
 		$this->load->library('Datatables');
-		$this->datatables->select('id, title, author, created, type, library_category.category_name');
+		$this->datatables->select('library_data.id, title, author, created, type, library_category.category_name, library_file.doctype');
 		$this->datatables->from('library_data');
 		$this->datatables->join('library_category', 'library_category.catID = library_data.type');
-		$this->datatables->unset_column('id');
+		$this->datatables->join('library_file', 'library_file.lib_id = library_data.libfile_id');
+		$this->datatables->unset_column('library_data.id');
 		$this->datatables->unset_column('type');
 		$data = $this->datatables->generate();
 		// print_r($this->db->last_query());
-		echo $data;
+		$decode = json_decode($data);
+		// print_r($decode->aaData);
+		foreach($decode->aaData as $k => $v ){
+			$time = date('Y', $v[2]);
+			
+			$decode->aaData[$k][2] = $time;
+		}
+		echo json_encode($decode);
+
 	}
 }

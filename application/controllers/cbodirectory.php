@@ -102,7 +102,7 @@ class Cbodirectory extends MY_Controller {
 		  			foreach($j as $i => $m) {
 		  				$return .= ($i>0) ? ", " . $m : $m;
 		  			}
-		  			$a->aaData[$k][3] = $return;		
+		  			$a->aaData[$k][3] = $return;
 		  	}
 		  	// print_r($this->db->last_query());
 		  	echo json_encode($a);	  	
