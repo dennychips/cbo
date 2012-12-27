@@ -59,7 +59,7 @@ $(document).ready(function(){
 				//var json_text = JSON.stringify(response);
 				
 				var post_data = {
-				'image_data': response,
+				'doc_data': response,
 				'token': $('input[name="token"]').val(),
 				'ci_csrf_token_name': $('input[name="' + ci_csrf_token_name + '"]').val()
 				};
@@ -85,7 +85,7 @@ $(document).ready(function(){
 					    type: 'hidden',
 					    id: 'format',
 					    name: 'format',
-					    value : response.file_ext
+					    value : response.doctype
 					}).appendTo('form');
 					$('.progress').hide();
 					// $('#hidden_form').append('<input type="hidden" name="lib_id" value="' + response.id + '"');

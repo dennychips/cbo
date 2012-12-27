@@ -48,6 +48,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec lorem libero. N
 		      <th style="width:5%">Date</th>
 		      <th style="width:10%">Format</th>
 		      <th style="width:20%">Document Type</th>
+		      <th style="width:20%">Action</th>
 		      
 		    </tr>
 		  </thead>

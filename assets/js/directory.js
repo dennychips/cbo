@@ -6,9 +6,13 @@ $(document).ready(function() {
         "sAjaxSource": "cbodirectory/process_request",
 		"sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
 		"sPaginationType": "bootstrap",
+		"aoColumnDefs": [ 
+			{ "bSortable": false, "aTargets": [ 4 ] }
+		],
 		"oLanguage": {
 			"sLengthMenu": "_MENU_ records per page"
 		},
+
 		'fnServerData': function(sSource, aoData, fnCallback)
 		      {
 	      	 	aoData.push( 

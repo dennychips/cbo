@@ -6,6 +6,9 @@ $(document).ready(function() {
 		"sAjaxSource": "elibrary/process_request",
 		"oLanguage": {
 			"sLengthMenu": "_MENU_ records per page"
-		}
+		},
+		"aoColumnDefs": [ 
+			{ "bSortable": false, "aTargets": [ 5 ] }
+		] 
 	} );
 } );

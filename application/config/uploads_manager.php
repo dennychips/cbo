@@ -87,7 +87,7 @@ $config['upload_configuration_library_uploader'] = array(
 
 	// Settings for any destination
 	'allowed_types' => 'doc|pdf|ppt|docx',
-	'max_size'      => '3072',
+	'max_size'      => '20480',
 
 	// FILESYSTEM specific settings
 	'primary_dir'   => 'dir_name',     // <- POST key of primary directory

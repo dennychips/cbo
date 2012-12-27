@@ -1986,6 +1986,6 @@ h2,  h3 { page-break-after: avoid; }
     font-weight: bold;
     font-size: 11px;
  }
- #directory-table, #library-table {
+ #directory-table, #library-table, .infotable {
     font-size: 12px;
  }

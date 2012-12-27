@@ -31,11 +31,19 @@ class Elibrary extends MY_Controller {
 	}
 
 	function view($id) {
+		$count = $this->lib->getdocumentcounter($id);
+		$counter= $count['view_counter'] + 1;
+		$this->lib->update_doc_counter($id, $counter);
+
+		$this->load->helper('bytes_helper');
 		$this->template = 'templates/single';
+		$view_data = array(
+				'document' => $this->lib->get_document($id)
+			);
 		$data = array(
 				'title' 	=> 'CBO - eLibrary',
 				
-				'content' 	=> $this->load->view('library/detail', '', TRUE)
+				'content' 	=> $this->load->view('library/detail', $view_data, TRUE)
 			);
 		$this->load->view($this->template, $data);	
 	}
@@ -68,35 +76,54 @@ class Elibrary extends MY_Controller {
 			
 		}
 	}
+	public function download($id ='') {
+		if( $this->uri->segment(2) == ''){
+			show_404();
+		} else {
+			$this->load->helper('download');
+			$dl = $this->lib->dl_path($id);
+			$data = file_get_contents($dl['file_path']);
+			$count = $this->lib->get_dl_counter($id);
+			$counter = $count['counter'] + 1;
+			$this->lib->update_dl_counter($id, $counter);
+			force_download($dl['file_name'], $data);
+			
+		}
+	}
 	public function insert_lib_data() {
 		 if($this->csrf->token_match){
-		 	$data = $this->input->post();
-		 	
-		 	$insert_data = array(
-		 			'file_path' => $data['image_data']['file_url'],
-		 			'file_size' => $data['image_data']['file_size'],
-		 			'file_ext' 	=> $data['image_data']['file_ext']
-		 		);
-		 	if($res = $this->lib->insert_lib_doc($insert_data)) {
-		 		
-		 		$response['id'] = $res['id'];
-		 		$response['file_ext'] = $res['file_ext'];
-		 		$response['file_name'] = $data['image_data']['file_name'];
-				$response['token']         = $this->csrf->token;
-				$response['ci_csrf_token'] = $this->security->get_csrf_hash();
+		 	if( $this->input->is_ajax_request())
+		 	{
+			 	$data = $this->input->post();
+			 	
+			 	$insert_data = array(
+			 			'file_name' => $data['doc_data']['file_name'],
+			 			'file_path' => $data['doc_data']['file_url'],
+			 			'file_size' => $data['doc_data']['file_size'],
+			 			'file_type' => $data['doc_data']['file_type']
+			 		);
+			 	if($res = $this->lib->insert_lib_doc($insert_data)) {
+			 		
+			 		$response['id'] = $res['id'];
+			 		$response['doctype'] = $res['doctype'];
+			 		$response['file_name'] = $data['doc_data']['file_name'];
+					$response['token']         = $this->csrf->token;
+					$response['ci_csrf_token'] = $this->security->get_csrf_hash();
+				}
+				echo json_encode($response);
 			}
-			echo json_encode($response);
 		 }
 
 	}
 	public function process_request() {
 		$this->load->library('Datatables');
-		$this->datatables->select('library_data.id, title, author, created, type, library_category.category_name, library_file.doctype');
+		$this->datatables->select('library_data.id, title, author, created, type, format, library_category.category_name');
 		$this->datatables->from('library_data');
 		$this->datatables->join('library_category', 'library_category.catID = library_data.type');
-		$this->datatables->join('library_file', 'library_file.lib_id = library_data.libfile_id');
 		$this->datatables->unset_column('library_data.id');
 		$this->datatables->unset_column('type');
+		$this->datatables->edit_column('title', '<a href="elibrary/view/$1">$2</a>', 'library_data.id, title');
+		$this->datatables->add_column('view', '<a href="elibrary/view/$1" class="btn btn-success btn-small"><i class="icon-play icon-white"></i></a>', 'library_data.id');
 		$data = $this->datatables->generate();
 		// print_r($this->db->last_query());
 		$decode = json_decode($data);
