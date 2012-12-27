@@ -111,6 +111,18 @@ class User_model extends MY_Model {
 					$profile_data['focus_area'] = $profile_data['focus_area'];
 				}
 			}
+			if($profile_data['website'] == NULL){
+				$profile_data['website'] = '';
+			}
+			if($profile_data['blog'] == NULL){
+				$profile_data['blog'] = '';
+			}
+			if($profile_data['facebook'] == NULL){
+				$profile_data['facebook'] = '';
+			}
+			if($profile_data['twitter'] == NULL){
+				$profile_data['twitter'] = '';
+			}
 			// Create a random user id if not already set
 			$random_unique_int = $this->get_unused_id();
 
@@ -131,11 +143,9 @@ class User_model extends MY_Model {
 			// Insert data in user table
 			$this->db->set($user_data)
 						->insert( config_item('user_table'));
-						
 			$profile_data['user_id'] = $random_unique_int;
-			// $profile_data['focus_area'] = serialize($this->input->post('focus_area'));
+
 			// Insert data in profile table
-			
 			$this->db->set($profile_data)
 						->insert( config_item( $role . '_profiles_table'));
 
