@@ -13,6 +13,9 @@ class Elibrary extends MY_Controller {
 	public function index() {
 		$view_data = array(
 				'profiles' => $this->lib->get_all_lib_data(),
+				'author' => $this->lib->getdata('author', 'library_data'),
+				'format' => $this->lib->getdata('format', 'library_data'),
+				'doctype' => $this->lib->getdata('category_name', 'library_category'),
 			);
 		$this->template = 'templates/library_template';
 		$data = array(
@@ -38,7 +41,7 @@ class Elibrary extends MY_Controller {
 		$this->load->helper('bytes_helper');
 		$this->template = 'templates/single';
 		$view_data = array(
-				'document' => $this->lib->get_document($id)
+				'document' => $this->lib->get_document($id),
 			);
 		$data = array(
 				'title' 	=> 'CBO - eLibrary',
@@ -123,7 +126,20 @@ class Elibrary extends MY_Controller {
 		$this->datatables->unset_column('library_data.id');
 		$this->datatables->unset_column('type');
 		$this->datatables->edit_column('title', '<a href="elibrary/view/$1">$2</a>', 'library_data.id, title');
-		$this->datatables->add_column('view', '<a href="elibrary/view/$1" class="btn btn-success btn-small"><i class="icon-play icon-white"></i></a>', 'library_data.id');
+		$this->datatables->add_column('view', '<a href="elibrary/view/$1" class="btn btn-success btn-small"><i class="icon-share-alt icon-white"></i> Detail</a>', 'library_data.id');
+		if(isset($_POST['author']) && $_POST['author'] !== ''){
+    		$this->datatables->filter('author', $_POST['author']);
+	    }
+	    if(isset($_POST['format']) && $_POST['format'] !==''){
+	    	$this->datatables->where('format', $_POST['format']);
+	    }
+	    if(isset($_POST['doctype']) && $_POST['doctype'] !==''){
+	    	$this->datatables->where('library_category.category_name', $_POST['doctype']);
+	    }
+	    if(isset($_POST['title']) && $_POST['title'] !==''){
+	    	$this->datatables->where('title LIKE "%' . $_POST['title'] .'%"');
+
+	    }
 		$data = $this->datatables->generate();
 		// print_r($this->db->last_query());
 		$decode = json_decode($data);

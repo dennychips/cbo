@@ -1989,3 +1989,14 @@ h2,  h3 { page-break-after: avoid; }
  #directory-table, #library-table, .infotable {
     font-size: 12px;
  }
+ #directory-table a, #library-table a{
+    text-decoration: none;
+    font-weight: bold;
+ }
+ #directory-table a:hover, #library-table a:hover {
+    text-decoration: underline;
+ }
+ table.filterTableElibrary, table.filterTableElibrary tr, table.filterTableElibrary td {
+    font-size: 12px;
+    font-weight: bold;
+ }

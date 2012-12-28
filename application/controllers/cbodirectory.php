@@ -82,7 +82,7 @@ class Cbodirectory extends MY_Controller {
 	    	if(isset($org) && $org !== ''){
 	    		// $this->datatables->where('organization', $_POST['organization']);
 	    		$this->datatables->filter('organization LIKE "%' . $_POST['organization'] .'%"');
-	    	} 
+	    	}
 	    	if(isset($_POST['country']) && $_POST['country'] !== ''){
 	    		$this->datatables->filter('country', $_POST['country']);
 	    	}

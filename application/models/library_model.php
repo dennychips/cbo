@@ -149,4 +149,9 @@ class Library_model extends MY_Model {
 		$this->db->where('lib_id',$id)->update('library_file', $data);
 	}
 	
+	public function getdata($column, $table){
+		$q = $this->db->distinct()->select($column)->get($table);
+
+		return $q->result_array();
+	}
 }

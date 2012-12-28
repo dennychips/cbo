@@ -29,7 +29,6 @@
 <div class="span4">
 	<div class="well">
 		<h5 class="short_headline"><span>Information</span></h5>
-		
 		<table class="table infotable">
 			<tr>
 				<td><strong>Author</strong></td>

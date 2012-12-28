@@ -1,19 +1,87 @@
-<div class="row-fluid">
+<!-- <div class="row-fluid">
 	<div class="span">
 		<h3 class="short_headline"><span>Library</span></h3>
 		<p>
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec lorem libero. Nunc pharetra auctor purus sit amet elementum. Sed imperdiet nunc et tellus ultrices lacinia. Proin id turpis quis lectus interdum rutrum. Mauris sit amet urna felis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Cras accumsan nunc eget lorem vehicula tincidunt. Nunc tellus libero, scelerisque eu sollicitudin id, elementum ac justo.
 		</p>
 	</div>
-	<!-- <div class="span4">
-		<div class="well">
-			<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec lorem libero. Nunc pharetra auctor purus sit amet elementum. Sed imperdiet nunc et tellus ultrices lacinia. Proin id turpis quis lectus interdum rutrum. Mauris sit amet urna felis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Cras accumsan nunc eget lorem vehicula tincidunt. Nunc tellus libero, scelerisque eu sollicitudin id, elementum ac justo.
-		</p>
-		</div>
-	</div> -->
+</div> -->
+<div class="row-fluid  sidebar-right">
+	<div class="span9 primary-column">
+		<h4 class="short_headline" style="margin-top:0px"><span>Filter</span></h4>
+
+		<table class="filterTableElibrary">
+		<tr>
+			<td width="25%">
+				Title
+				
+			</td>
+			<td><input type="text" name="title" id="title" ></td>
+		</tr>
+		<tr>
+			<td>Author</td>
+			<td>
+				<select id="author">
+					<option value="">-- Select --</option>
+					<?php foreach($author as $row) :?>
+					<option value="<?php echo $row['author'] ?>"><?php echo $row['author'] ?></option>
+					<?php endforeach?>
+				</select>
+			</td>
+		<tr>
+			<td>Format</td>
+			<td>
+				<select id="format">
+					<option value="">-- Select --</option>
+					<?php foreach($format as $row) :?>
+					<option value="<?php echo $row['format'] ?>"><?php echo $row['format'] ?></option>
+					<?php endforeach?>
+				</select>
+			</td>
+		</tr>
+			<td>Document Type</td>
+			<td>
+				
+				<select id="doctype">
+					<option value="">-- Select --</option>
+					<?php foreach($doctype as $row) :?>
+					<option value="<?php echo $row['category_name'] ?>"><?php echo $row['category_name'] ?></option>
+					<?php endforeach?>
+				</select>
+			</td>
+		</tr>
+	</table>
+	<h4 class="short_headline" style="margin-top:0px"><span>eLibrary Document</span></h4>
+		<table id="library-table" class="table table-hover">
+		  <thead>
+		    <tr>
+		      <th style="width:35%">Title</th>
+		      <th style="width:15%">Author</th>
+		      <th style="width:10%">Date</th>
+		      <th style="width:10%">Format</th>
+		      <th style="width:15%">Document Type</th>
+		      <th style="width:20%">Action</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		  </tbody>
+		</table>
+	</div>
+	<section class="span3 sidebar secondary-column" id="secondary-nav">
+		<aside class="widget">
+			<h5 class="short_headline"><span>Document Type</span></h5>
+			<ul class="navigation">
+				<li><a href="#">Report</a></li>
+				<li><a href="#">Research</a></li>
+				<li><a href="#">Journal</a></li>
+				<li><a href="#">Guideline</a></li>
+			</ul>
+		</aside>
+		<!--close aside widget-->
+		
+	</section>
+	<!--close section sidebar span3--> 
 </div>
-<h4 class="short_headline"><span>Document</span></h4>
 <!-- <div class="row-fluid">
 	<div class="span3">
 		<form class="">
@@ -39,60 +107,11 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec lorem libero. N
 </div>
  -->
  <div class="row-fluid">
-	<div class="span12">
-		<table id="library-table" class="table table-hover">
-		  <thead>
-		    <tr>
-		      <th style="width:40%">Title</th>
-		      <th  style="width:15%">Author</th>
-		      <th style="width:5%">Date</th>
-		      <th style="width:10%">Format</th>
-		      <th style="width:20%">Document Type</th>
-		      <th style="width:20%">Action</th>
-		      
-		    </tr>
-		  </thead>
-		  <tbody>
-		  	<tr>
-		  		<td><?php echo anchor('library/view/1', '#QLDFLOODS AND @QPSMEDIA: CRISIS COMMUNICATION ON TWITTER IN THE 2011 SOUTH EAST QUEENSLAND FLOODS')?></td>
-		  		<td>Jonathan Doe</td>
-		  		<td>2010</td>
-		  		<td>PDF</a></td>
-		  		<td>Reports</td>
-		  	</tr>
-		  	<tr>
-		  		<td><?php echo anchor('library/view/1', '#QLDFLOODS AND @QPSMEDIA: CRISIS COMMUNICATION ON TWITTER IN THE 2011 SOUTH EAST QUEENSLAND FLOODS')?></td>
-		  		<td>Jonathan Doe</td>
-		  		<td>2010</td>
-		  		<td>PDF</a></td>
-		  		<td>Reports</td>
-		  	</tr>
-		  	<tr>
-		  		<td><?php echo anchor('library/view/1', '#QLDFLOODS AND @QPSMEDIA: CRISIS COMMUNICATION ON TWITTER IN THE 2011 SOUTH EAST QUEENSLAND FLOODS')?></td>
-		  		<td>Jonathan Doe</td>
-		  		<td>2010</td>
-		  		<td>PDF</a></td>
-		  		<td>Reports</td>
-		  	</tr>
-		  	<tr>
-		  		<td><?php echo anchor('library/view/1', '#QLDFLOODS AND @QPSMEDIA: CRISIS COMMUNICATION ON TWITTER IN THE 2011 SOUTH EAST QUEENSLAND FLOODS')?></td>
-		  		<td>Jonathan Doe</td>
-		  		<td>2010</td>
-		  		<td>PDF</a></td>
-		  		<td>Reports</td>
-		  	</tr>		   
-		  </tbody>
-		</table>
-		<div class="pagination pagination-centered">
-		  <ul>
-		    <li><a href="#">Prev</a></li>
-		    <li><a href="#">1</a></li>
-		    <li><a href="#">2</a></li>
-		    <li><a href="#">3</a></li>
-		    <li><a href="#">4</a></li>
-		    <li><a href="#">Next</a></li>
-		  </ul>
-		</div>
+ 	<div class="span3">
+	
+ 	</div>
+	<div class="span9">
+		
 	</div>
 </div>	
 
