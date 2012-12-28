@@ -142,12 +142,6 @@
 		<table cellpadding="0" cellspacing="0" border="0" align="center">
 			<tr>
 				<td width="600" valign="top">
-					<img class="image_fix" src="http://community-auth.com/img/logo.jpg" alt="Community Auth" width="351" height="81" />
-					<hr />
-				</td>
-			</tr>
-			<tr>
-				<td width="600" valign="top">
 					<?php 
 						echo '<!--' . "\n" .
 						'Sender\'s Email: ' .  $from_email .      "\n" . 
@@ -162,7 +156,7 @@
 			<tr>
 				<td width="600" valign="top">
 					<hr />
-					Copyright (c) 2011 - <?php echo date('Y'); ?> &bull; Robert B. Gottier, <a href="http://brianswebdesign.com" target ="_blank" style="color: orange; text-decoration: none;">Brian's Web Design - Temecula, CA</a>
+					Copyright (c) 2011 - <?php echo date('Y'); ?> &bull; ISEAN HIVOS
 				</td>
 			</tr>
 		</table>
