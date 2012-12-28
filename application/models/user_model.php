@@ -280,11 +280,16 @@ class User_model extends MY_Model {
 
 				}
 			}
+			
 
 			// Encrypt anything that needs encryption
 			if( isset( $profile_arr['license_number'] ) )
 			{
 				$profile_arr['license_number'] = $this->encrypt->encode( $profile_arr['license_number'] );
+			}
+
+			if(isset($profile_arr['focus_area'])){
+				$profile_arr['focus_area'] = serialize($profile_arr['focus_area']);
 			}
 
 			// Perform transaction
@@ -321,20 +326,21 @@ class User_model extends MY_Model {
 			if( ! empty( $profile_arr ) )
 			{
 				
-				$data_profile = array(
-						'first_name' => $this->input->post('first_name'),
-						'last_name' => $this->input->post('last_name'),
-						'street_address' => $this->input->post('street_address'),
-						'organization' => $this->input->post('organization'),
-						'phone_number' => $this->input->post('phone_number'),
-						'focus_area' => serialize($this->input->post('focus_area')),
-						'website' => $this->input->post('website'),
-						'blog' => $this->input->post('blog'),
-						'facebook' => $this->input->post('facebook'),
-						'twitter' => $this->input->post('twitter')
-					);
+				// $data_profile = array(
+				// 		'first_name' => $this->input->post('first_name'),
+				// 		'last_name' => $this->input->post('last_name'),
+				// 		'street_address' => $this->input->post('street_address'),
+				// 		'organization' => $this->input->post('organization'),
+				// 		'phone_number' => $this->input->post('phone_number'),
+				// 		'focus_area' => serialize($this->input->post('focus_area')),
+				// 		'website' => $this->input->post('website'),
+				// 		'blog' => $this->input->post('blog'),
+				// 		'facebook' => $this->input->post('facebook'),
+				// 		'twitter' => $this->input->post('twitter')
+				// 	);
+
 				$this->db->where('user_id', $the_user)
-				->update( config_item( $role . '_profiles_table'), $data_profile);
+				->update( config_item( $role . '_profiles_table'), $profile_arr);
 				
 			}
 

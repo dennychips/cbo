@@ -73,6 +73,7 @@
 			$('#uploader-activity').hide();
 			// check if upload was successful
 			if (response && /^(success)/i.test(response.status)){
+				
 				// display the uploaded image on the page
 				var img_src = ( $('#upload_url').val().indexOf('database') > 0 ) ? 'data:image/jpg;base64,' + response.callback_response : response.callback_response;
 				$('.profile_image img').replaceWith('<img src="' + img_src + '" />');
@@ -109,7 +110,7 @@
 					// Hide the delete link
 					$('#delete-profile-image').hide();
 					// Show the default image
-					$('.profile_image img').replaceWith('<img src="img/default-profile-image.jpg" />');
+					$('.profile_image img').replaceWith('<img src="assets/images/Profile-Placeholder.png" />');
 				}else{
 					alert(response.message);
 				}

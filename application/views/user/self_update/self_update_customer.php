@@ -6,6 +6,22 @@
 				<h4 class="short_headline"><span>Contact Information</span></h4>
 				<fieldset>
 					<div class="control-group">
+					<?php echo form_label('Description *','description',array('class'=>'required control-label form_label')); ?>
+					<div class="controls">
+						<?php 
+							$input_data = array(
+								'name'		=> 'description',
+								'id'		=> 'description',
+								'class'		=> 'form_input first_name span12 ckeditor',
+								'value'		=> set_value('description', $user_data->description),
+								'rows'	=> '10',
+							);
+
+							echo form_textarea($input_data);
+						?>
+					</div>
+				</div>
+					<div class="control-group">
 					<?php echo form_label('First Name *','first_name',array('class'=>'required control-label form_label')); ?>
 					<div class="controls">
 						<?php 
@@ -59,7 +75,7 @@
 							$input_data = array(
 								'name'		=> 'organization',
 								'id'		=> 'organization',
-								'class'		=> 'form_input password span12',
+								'class'		=> 'form_input span12',
 								'value'		=> set_value('organization', $user_data->organization),
 							);
 
@@ -322,20 +338,37 @@
 							?>
 						</div>
 						<div class="uploader-activity-container">
-							<img id="uploader-activity" src="assets/images/network_activity.gif" />
+							<img id="uploader-activity" style="display:none" src="assets/images/network_activity.gif" />
 						</div>
 					</div>
-					<input type="hidden" id="user_id" name="user_id" value="<?php echo $user_data->user_id; ?>" />
-					<input type="hidden" id="allowed_types" value="<?php echo $upload_config['allowed_types']; ?>" />
-					<input type="hidden" id="ci_csrf_token_name" value="<?php echo config_item('csrf_token_name'); ?>" />
-					<input type="hidden" id="upload_url" value="<?php echo secure_site_url('uploads_manager/bridge_' . $upload_destination . '/profile_image'); ?>" />
-					<input type="hidden" id="delete_url" value="<?php echo secure_site_url('user/delete_profile_image'); ?>" />
 				</div>
 			</fieldset>
 			</div>
 		</li>
+		<li class="st-content-wrapper"> <a class="trigger" href="#">Upload Document<i class="icon-chevron-up"></i></a>
+			<div class="st-content" style="display: none;">
+				<span id="upload-doc-button" class="btn-block btn btn-primary fileinput-button"> <span><i class="icon-plus icon-white"></i> Upload Document...</span>
+				<?php 
+					$input_data = array(
+					'name'		=> 'userfile',
+					// 'id' => 'upload-button',
+					// 'class'		=> 'form_input span3',
+					// 'value'		=> set_value('user_name'),
+					);
+					echo form_upload($input_data);
+				?>	
+			</div>
+		</li>
 
 	</ul>
+	<input type="hidden" id="user_id" name="user_id" value="<?php echo $user_data->user_id; ?>" />
+	<input type="hidden" id="allowed_types" value="<?php echo $upload_config['allowed_types']; ?>" />
+
+	<input type="hidden" id="ci_csrf_token_name" value="<?php echo config_item('csrf_token_name'); ?>" />
+	<input type="hidden" id="upload_url" value="<?php echo secure_site_url('uploads_manager/bridge_' . $upload_destination . '/profile_image'); ?>" />
+	<input type="hidden" id="upload_doc_profile_url" value="<?php echo secure_site_url('uploads_manager/bridge_filesystem/doc_profile'); ?>" />
+	<input type="hidden" id="delete_doc_profile" value="<?php echo secure_site_url('user/delete_doc_profile'); ?>" />
+	<input type="hidden" id="delete_url" value="<?php echo secure_site_url('user/delete_profile_image'); ?>" />
 </div>
 <?php
 	// SUBMIT BUTTON ***********************

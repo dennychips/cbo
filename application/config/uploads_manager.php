@@ -44,9 +44,9 @@ $config['upload_configuration_profile_image'] = array(
 
 	// Settings for any destination
 	'allowed_types' => 'gif|jpg|jpeg|png',
-	'max_size'      => '50',
-	'max_width'     => '100',
-	'max_height'    => '100',
+	'max_size'      => '1024',
+	'max_width'     => '200',
+	'max_height'    => '200',
 
 	// FILESYSTEM specific settings
 	'primary_dir'   => 'dir_name',     // <- POST key of primary directory
@@ -96,6 +96,27 @@ $config['upload_configuration_library_uploader'] = array(
 );
 
 // --------------------------------------------------------------
+
+// Document Profile
+$config['doc_profile_destination'] = 'filesystem';
+
+// Profile Image Authentication (for ajax only)
+$config['authentication_doc_profile'] = 'admin,manager,customer';
+
+// Upload config for user's profile image
+$config['upload_configuration_doc_profile'] = array(
+
+	// Settings for any destination
+	'allowed_types' => 'gif|jpg|jpeg|png',
+	'max_size'      => '1024',
+	'max_width'     => '200',
+	'max_height'    => '200',
+
+	// FILESYSTEM specific settings
+	'primary_dir'   => 'dir_name',     // <- POST key of primary directory
+	'secondary_dir' => 'user_id',      // <- POST key of secondary directory
+	'add_hash'      => 'secondary_dir' // <- add a hash to ( for unwanted direct browsing )
+);
 
 /* End of file uploads_manager.php */
 /* Location: /application/config/uploads_manager.php */

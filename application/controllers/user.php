@@ -317,6 +317,7 @@ class User extends MY_Controller {
 
 			// Set destination for file storage.
 			$view_data['upload_destination'] = config_item('profile_image_destination');
+			// $view_data['upload_destination'] = config_item('profile_image_destination');
 
 			// Role specific form
 			$view_data['role_specific_form'] = $this->load->view( 'user/self_update/self_update_' . $role, $view_data, TRUE );
@@ -326,11 +327,13 @@ class User extends MY_Controller {
 
 				// Load the show password script
 				'javascripts' => array(
+					'assets/js/ckeditor/ckeditor.js',
 					'js/jquery.passwordToggle-1.1.js',
 					'js/jquery.char-limiter-3.0.0.js',
 					'js/default-char-limiters.js',
 					'js/ajaxupload.js',
-					'js/user/self-update.js'
+					'js/user/self-update.js',
+					'assets/js/profile-doc-uploader.js'
 				)
 			);
 

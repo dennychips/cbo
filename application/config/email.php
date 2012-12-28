@@ -2,15 +2,15 @@
 
 $config['mailtype']                             = 'html';
 
-$config['admin_email_address']                  = 'admin@example.com';
+$config['admin_email_address']                  = 'admin@cbo.duniakreatif.com';
 
-$config['no_reply_email_address']               = 'no-reply@example.com';
+$config['no_reply_email_address']               = 'no-reply@cbo.duniakreatif.com';
 
-$config['registration_review_email_address']    = 'registration@example.com';
+$config['registration_review_email_address']    = 'registration@cbo.duniakreatif.com';
 
-$config['user_recovery_email_address']          = 'accounts@example.com';
+$config['user_recovery_email_address']          = 'accounts@cbo.duniakreatif.com';
 
-$config['contact_form_recipient_email_address'] = 'customer-service@example.com';
+$config['contact_form_recipient_email_address'] = 'customer-service@cbo.duniakreatif.com';
 
 /* End of file email.php */
 /* Location: /application/config/email.php */

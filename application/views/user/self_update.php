@@ -112,7 +112,7 @@
 				<td>
 					<ul class="unstyled">
 					<?php 
-
+						
 						$area = unserialize($user_data->focus_area);
 						foreach($area as $row){
 							echo '<li>'.$row.'</li>';

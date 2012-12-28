@@ -76,23 +76,23 @@ $config['customer_update_rules'] = array(
 	array(
 		'field' => 'website',
 		'label' => 'Website',
-		'rules' => 'xss_clean'
+		'rules' => 'xss_clean|prep_url'
 	),
 	array(
 		'field' => 'blog',
 		'label' => 'Blog',
-		'rules' => 'xss_clean'
+		'rules' => 'xss_clean|prep_url'
 	),
 
 	array(
 		'field' => 'facebook',
 		'label' => 'Facebook',
-		'rules' => 'xss_clean'
+		'rules' => 'xss_clean|prep_url'
 	),
 	array(
 		'field' => 'twitter',
 		'label' => 'Twitter',
-		'rules' => 'xss_clean'
+		'rules' => 'xss_clean|prep_url'
 	),
 	// array(
 	// 	'field' => 'city',
