@@ -22,7 +22,7 @@ class User extends MY_Controller {
 
 		// Force encrypted connection
 		$this->force_ssl();
-		$this->output->enable_profiler(TRUE);
+		// $this->output->enable_profiler(TRUE);
 		
 	}
 
