@@ -89,6 +89,7 @@ class User_model extends MY_Model {
 				unset( $insert_array['user_name'] );
 				unset( $insert_array['user_pass'] );
 				unset( $insert_array['user_email'] );
+				unset( $insert_array['website'] );
 
 				// Profile data is insert array
 				$profile_data = $insert_array;
@@ -111,18 +112,21 @@ class User_model extends MY_Model {
 					$profile_data['focus_area'] = $profile_data['focus_area'];
 				}
 			}
-			if($profile_data['website'] == NULL){
-				$profile_data['website'] = '';
+			if($role == 'customer'){
+				if($profile_data['website'] == NULL){
+					$profile_data['website'] = '';
+				}
+				if($profile_data['blog'] == NULL){
+					$profile_data['blog'] = '';
+				}
+				if($profile_data['facebook'] == NULL){
+					$profile_data['facebook'] = '';
+				}
+				if($profile_data['twitter'] == NULL){
+					$profile_data['twitter'] = '';
+				}
 			}
-			if($profile_data['blog'] == NULL){
-				$profile_data['blog'] = '';
-			}
-			if($profile_data['facebook'] == NULL){
-				$profile_data['facebook'] = '';
-			}
-			if($profile_data['twitter'] == NULL){
-				$profile_data['twitter'] = '';
-			}
+			
 			// Create a random user id if not already set
 			$random_unique_int = $this->get_unused_id();
 
