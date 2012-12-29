@@ -17,10 +17,9 @@ $(document).ready(function(){
 		action: $('#upload_library_url').val(),
 		responseType: 'json',
 		onSubmit : function(file , ext){
-
 			// Get CI CSRF token name
 			var ci_csrf_token_name = $('#ci_csrf_token_name').val();
-
+			
 			// set dynamic data (post vars) with setData
 			this.setData({
 				'dir_name':'library_doc',
@@ -105,6 +104,7 @@ $(document).ready(function(){
 			} else {
 				// Show error message
 				alert('Error uploading file ('+file+')! \n'+ response.issue);
+				this.enable();
 				$('#status-bar').css('display', 'block');
 				$('#status-bar').html('<p>Upload Failed</p>').delay(2500).fadeOut('slow');
 			}

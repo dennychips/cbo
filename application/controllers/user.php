@@ -314,6 +314,7 @@ class User extends MY_Controller {
 
 			// Send user data to view
 			$view_data['user_data'] = $user_row;
+			$view_data['documents'] = $this->user_model->get_profile_document($this->auth_user_id);
 
 			// Set destination for file storage.
 			$view_data['upload_destination'] = config_item('profile_image_destination');
@@ -444,6 +445,22 @@ class User extends MY_Controller {
 
 		return FALSE;
 	}
+	public function insert_doc_data(){
+		$this->load->library('csrf');
+		$this->load->model('user_model');
+		if($this->csrf->token_match && $this->input->is_ajax_request()){
+			$data = $this->input->post();
+			if($res = $this->user_model->insert_profile_file($data)){
+				$response['id'] = $res['id'];
+				$response['file_name'] = $res['file_name'];
+				$response['token'] = $this->csrf->token;
+				$response['ci_csrf_token'] = $this->security->get_csrf_hash();
+			}
+			
+			echo json_encode($response);
+		}
+	}
+
 
 	// --------------------------------------------------------------
 

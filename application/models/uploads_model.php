@@ -38,7 +38,7 @@ class Uploads_model extends CI_Model {
 	 */
 	public function save_image_data( $user_id, $image_data )
 	{
-		
+		print_r($image_data);
 		// Check for existing images
 		$query = $this->get_custom_uploader_images( $user_id );
 
@@ -62,6 +62,7 @@ class Uploads_model extends CI_Model {
 				array('images_data' => $image_data), 
 				array( 'user_id' => $user_id ) 
 			);
+			print($this->db->last_query());
 		}
 
 		if( $this->db->affected_rows() == 1 )

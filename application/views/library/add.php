@@ -25,7 +25,7 @@ if( isset( $validation_errors ) >= 1 )
 	';
 }
 
-if(isset($validation_passed)) {
+elseif(isset($validation_passed)) {
 	echo '
 		<div class="alert alert-success">
 			<p>
@@ -34,7 +34,7 @@ if(isset($validation_passed)) {
 		</div>
 	';
 } 
-if(!isset($validation_passed)){
+
 ?>
 	<div class="control-group">
 		<?php echo form_label('Title *','title',array('class'=>'form_label control-label'));?>
@@ -89,7 +89,6 @@ if(!isset($validation_passed)){
 		<div class="control-group">
 			<?php echo form_label('Upload File *','upload',array('class'=>'control-label form_label')); ?>
 			<div class="controls" > 
-				<!-- <img src="<?php echo site_url('assets/images/ajax-loader.gif')?>" /> -->
 				<!-- The fileinput-button span is used to style the file input field as button --> 
 				<span id="upload-button" class="btn-block btn btn-primary fileinput-button"> <span><i class="icon-plus icon-white"></i> Upload Document...</span>
 				<?php 
@@ -146,6 +145,6 @@ if(!isset($validation_passed)){
 
 	</div>
 </div>
-<?php } ?>
+
 </div>
 <?php echo form_close();?>

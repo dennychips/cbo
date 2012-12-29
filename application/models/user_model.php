@@ -737,6 +737,33 @@ class User_model extends MY_Model {
 		return $random_unique_int;
 	}
 
+	public function insert_profile_file($data) {
+		$insert_data = array(
+				'id' => $this->get_unused_id(),
+				'customer_id' => $data['user_id'],
+				'file_name' => $data['doc_data']['file_name'],
+				'file_path' => $data['doc_data']['file_url'],
+				'file_size' => $data['doc_data']['file_size'],
+				'doctype' => $data['doc_data']['file_type'],
+			);
+		
+		$q = $this->db->set($insert_data)->insert('customer_profile_file');
+
+		if( $this->db->affected_rows() == 1 ){
+			$response = array(
+					'id' => $insert_data['id'],
+					'file_name' => $insert_data['file_name'],
+				);
+			return $response;
+		} 
+		
+		return FALSE;
+
+	}
+	public function get_profile_document($user_id) {
+		$q = $this->db->get_where('customer_profile_file', array('customer_id' => $user_id));
+		return $q->result();
+	}
 	// --------------------------------------------------------------
 
 }

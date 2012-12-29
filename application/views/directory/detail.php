@@ -19,28 +19,48 @@
 	<a href="http://<?php echo $profile['facebook']?>" class="btn btn-success btn-info btn-small">Facebook</a>
 	<?php endif?>
 	<?php if(!empty($profile['twitter'])):?>
-	<a href="http://<?php echo $profile['website']?>" class="btn btn-success btn-info btn-small">Twitter</a>
+	<a href="http://<?php echo $profile['twitter']?>" class="btn btn-success btn-info btn-small">Twitter</a>
 	<?php endif?>
 	<br /><br />
+	<?php if(!empty($documents)):  ?>
 	<h4 class="short_headline">
 		<span>Documents</span>
 	</h4>
+	<?php 
+		
+	?>
 	<table class="table">
 		<thead>
 			<th>Title</th>
-			<th>Document</th>
+			<th width="20%">Document</th>
 		</thead>
 		<tbody>
+			<?php foreach($documents as $row ): ?>
 			<tr>
-				<td>Presentation Notes</td>
-				<td><a href="#">Download</a></td>
+				<td><?php echo $row->file_name ?></td>
+				<td><?php echo anchor('cbodirectory/download/'.$row->id, 'Download')?></td>
 			</tr>
-			<tr>
-				<td>Projects Document</td>
-				<td><a href="#">Download</a></td>
-			</tr>
+			<?php endforeach;?>
 		</tbody>	
 	</table>
+	<?php endif?>
+	<?php if($a);?>
+	<?php if(!empty($recents)):  ?>
+	<h4 class="short_headline">
+		<span>Recents Uploads</span>
+	</h4>
+		<table id="recent-upload-table">
+			<thead>
+				<th>Title</th>
+				<th>Author</th>
+				<th>Date</th>
+				<th>Format</th>
+				<th>Document Type</th>
+				<th>Action</th>
+			</thead>
+		</table>
+	<?php endif;?>
+	<input type="hidden" id="profile_id" name="profile_id" value="<?php echo site_url('cbodirectory/profile_recent_uploads/'. $profile_id) ?>">
 </div>
 <div class="span4">
 	<div class="well">
@@ -48,7 +68,11 @@
 		<table class="table">
 			<tr>
 				<td colspan="2" style="text-align:center">
-					<img style="display:inline" src="images/Profile-Placeholder.png" width="200" align="center" />
+					<?php if($profile['profile_image'] !== NULL) :?>
+						<img style="display:inline" src="<?php echo $profile['profile_image']?>" width="200" align="center" />
+					<?php else : ?>
+						<img style="display:inline" src="images/Profile-Placeholder.png" width="200" align="center" />
+					<?php endif;?>
 				</td>
 			</tr>
 			<tr>

@@ -107,8 +107,8 @@ $config['authentication_doc_profile'] = 'admin,manager,customer';
 $config['upload_configuration_doc_profile'] = array(
 
 	// Settings for any destination
-	'allowed_types' => 'gif|jpg|jpeg|png',
-	'max_size'      => '1024',
+	'allowed_types' => 'doc|docx|ppt|pdf',
+	'max_size'      => '10240',
 	'max_width'     => '200',
 	'max_height'    => '200',
 

@@ -345,24 +345,59 @@
 			</fieldset>
 			</div>
 		</li>
-		<li class="st-content-wrapper"> <a class="trigger" href="#">Upload Document<i class="icon-chevron-up"></i></a>
-			<div class="st-content" style="display: none;">
-				<span id="upload-doc-button" class="btn-block btn btn-primary fileinput-button"> <span><i class="icon-plus icon-white"></i> Upload Document...</span>
-				<?php 
-					$input_data = array(
-					'name'		=> 'userfile',
-					// 'id' => 'upload-button',
-					// 'class'		=> 'form_input span3',
-					// 'value'		=> set_value('user_name'),
-					);
-					echo form_upload($input_data);
-				?>	
-			</div>
-		</li>
-
 	</ul>
+	<br />
+	<h5 class="short_headline">
+		<span>Upload Document</span>
+	</h5>
+	<div class="upload-wrapper clearfix">
+		<span id="upload-doc-button" class="btn btn-primary fileinput-button"> 
+		<span><i class="icon-plus icon-white"></i> Upload Document...</span>
+		<?php 
+			$input_data = array(
+			'name'		=> 'userfile',
+			// 'id' => 'upload-button',
+			// 'class'		=> 'form_input span3',
+			// 'value'		=> set_value('user_name'),
+			);
+			echo form_upload($input_data);
+		?>
+		</span>
+			<div class="progress progress-striped active" style="display:none">
+				<div class="bar" style="width: 100%;"></div>
+			</div>
+		
+		</div>
+		<br />
+		<?php 
+		// var_dump(!empty($documents));
+			
+		?>
+	<table id="doc_table" class="table">
+		<thead>
+			<th>File Name</th>
+			<th width="20%">Action</th>
+		</thead>
+		<tbody>
+			<?php 
+				if(!empty($documents)){
+					foreach($documents as $row ){
+						echo '<tr>';
+						echo '<td>'.$row->file_name.'</td>';
+						echo '<td><a href="user/delete_doc_profile/'.$row->id.'"">delete</a></td>';
+						echo '</tr>';
+					}
+					
+				}
+			?>
+		</tbody>
+	</table>
+	<?php 
+		$upload_config_profile_doc = config_item('upload_configuration_doc_profile');
+	?>
 	<input type="hidden" id="user_id" name="user_id" value="<?php echo $user_data->user_id; ?>" />
 	<input type="hidden" id="allowed_types" value="<?php echo $upload_config['allowed_types']; ?>" />
+	<input type="hidden" id="allowed_types_doc_profile" value="<?php echo $upload_config_profile_doc['allowed_types']; ?>" />
 
 	<input type="hidden" id="ci_csrf_token_name" value="<?php echo config_item('csrf_token_name'); ?>" />
 	<input type="hidden" id="upload_url" value="<?php echo secure_site_url('uploads_manager/bridge_' . $upload_destination . '/profile_image'); ?>" />

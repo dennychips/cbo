@@ -54,18 +54,27 @@ class Cbodirectory extends MY_Controller {
 	}
 	public function view($id) {
 		//$ip = $this->input->ip_address();
+		$this->load->model('user_model');
+		$this->load->model('library_model');
 		$count = $this->profile->getprofilecounter($id);
 		$counter= $count['counter'] + 1;
 		$this->profile->updatecounter($id, $counter);
 		$view_data = array(
 				'profile' => $this->profile->getprofile($id),
 				'counter' => $this->profile->get_counter($id),
-
+				'documents' => $this->user_model->get_profile_document($id),
+				'recents' => $this->library_model->get_recent_uploads($id),
+				'profile_id' => $id
 			);
 		$this->template = 'templates/single';
 		$data = array(
 				'title' 	=> 'CBO - eLibrary',
-				'content' 	=> $this->load->view('directory/detail', $view_data, TRUE)
+				'content' 	=> $this->load->view('directory/detail', $view_data, TRUE),
+				'javascripts'	=> array(
+						'assets/js/jquery.dataTables.min.js',
+						'assets/js/bootstrap-DT-init.js',
+						'assets/js/recent-uploads.js',
+					),
 			);
 		$this->load->view($this->template, $data);
 	}
@@ -109,5 +118,12 @@ class Cbodirectory extends MY_Controller {
 		  	
     	}
 
+	}
+	public function profile_recent_uploads($id){
+		if($this->input->is_ajax_request()){
+			$this->load->library('datatables');
+
+			$this->datatables->select();
+		}
 	}
 }
