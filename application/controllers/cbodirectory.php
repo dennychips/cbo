@@ -75,6 +75,9 @@ class Cbodirectory extends MY_Controller {
 						'assets/js/bootstrap-DT-init.js',
 						'assets/js/recent-uploads.js',
 					),
+				'style_sheets' => array(
+						'assets/css/jquery.dataTables.css' => 'screen',
+					),
 			);
 		$this->load->view($this->template, $data);
 	}
@@ -123,7 +126,24 @@ class Cbodirectory extends MY_Controller {
 		if($this->input->is_ajax_request()){
 			$this->load->library('datatables');
 
-			$this->datatables->select();
+			$this->datatables->select('library_data.id, title, author, created, type, format, library_category.category_name');
+			$this->datatables->from('library_data');
+			$this->datatables->join('library_category', 'library_category.catID = library_data.type');
+			$this->datatables->where('library_data.user_id = '.$id  );
+			$this->datatables->unset_column('library_data.id');
+			$this->datatables->unset_column('type');
+			$this->datatables->edit_column('title', '<a href="elibrary/view/$1">$2</a>', 'library_data.id, title');
+			$this->datatables->add_column('view', '<a href="elibrary/view/$1" class="btn btn-success btn-small"><i class="icon-share-alt icon-white"></i> Detail</a>', 'library_data.id');
+			
+			$data = $this->datatables->generate();
+			$decode = json_decode($data);
+			// print_r($decode->aaData);
+			foreach($decode->aaData as $k => $v ){
+				$time = date('Y', $v[2]);
+				
+				$decode->aaData[$k][2] = $time;
+			}
+			echo json_encode($decode);
 		}
 	}
 }

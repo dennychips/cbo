@@ -44,23 +44,24 @@
 		</tbody>	
 	</table>
 	<?php endif?>
-	<?php if($a);?>
-	<?php if(!empty($recents)):  ?>
 	<h4 class="short_headline">
 		<span>Recents Uploads</span>
 	</h4>
-		<table id="recent-upload-table">
-			<thead>
-				<th>Title</th>
-				<th>Author</th>
-				<th>Date</th>
-				<th>Format</th>
-				<th>Document Type</th>
-				<th>Action</th>
-			</thead>
+		<table id="recent-upload-table" class="table table-hover">
+		  <thead>
+		    <tr>
+		      <th style="width:35%">Title</th>
+		      <th style="width:15%">Author</th>
+		      <th style="width:10%">Date</th>
+		      <th style="width:10%">Format</th>
+		      <th style="width:15%">Document Type</th>
+		      <th style="width:20%">Action</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		  </tbody>
 		</table>
-	<?php endif;?>
-	<input type="hidden" id="profile_id" name="profile_id" value="<?php echo site_url('cbodirectory/profile_recent_uploads/'. $profile_id) ?>">
+	<input type="hidden" id="profile-recent-uploads-url" name="profile-recent-uploads-url" value="<?php echo site_url('cbodirectory/profile_recent_uploads/'. $profile_id) ?>">
 </div>
 <div class="span4">
 	<div class="well">
