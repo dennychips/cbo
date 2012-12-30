@@ -46,9 +46,19 @@ class User extends MY_Controller {
 		// Check if a user of any level is logged in
 		else if( $this->require_min_level(1) )
 		{
+			$view_data['recent_uploads'] = $this->recent_document($this->auth_user_id);
+			$view_data['id'] = $this->auth_user_id;
 			$data = array(
 				'title' => WEBSITE_NAME . ' User Index',
-				'content' => $this->load->view( 'user/user_index', '', TRUE )
+				'content' => $this->load->view( 'user/user_index', $view_data, TRUE ),
+				'javascripts' => array(
+					'assets/js/jquery.dataTables.min.js',
+					'assets/js/bootstrap-DT-init.js',
+					'assets/js/user-index.js'
+				),
+				'style_sheets' => array(
+					'assets/css/jquery.dataTables.css' => 'screen',
+				),
 			);
 
 			$this->load->view( $this->template, $data );
@@ -461,7 +471,29 @@ class User extends MY_Controller {
 		}
 	}
 
+	public function recent_document($user_id){
+		if($this->input->is_ajax_request()){
+			$this->load->library('datatables');
+			$this->datatables->select('library_data.id, title, author, type, format, library_category.category_name, created, modified');
+			$this->datatables->from('library_data');
+			$this->datatables->join('library_category', 'library_category.catID = library_data.type');
+			$this->datatables->unset_column('library_data.id');
+			$this->datatables->unset_column('type');
+			$this->datatables->edit_column('title', '<a href="elibrary/view/$1">$2</a>', 'library_data.id, title');
+			$this->datatables->add_column('edit', '<a href="'.secure_site_url('elibrary/edit/$1').'" class="btn btn-info btn-small"><i class="icon-share-alt icon-white"></i> Edit</a> <a href="'.secure_site_url('elibrary/delete/$1').'" class="btn btn-small btn-danger"><i class="icon-trash icon-white"></i> Delete</a>', 'library_data.id');
 
+			$data = $this->datatables->generate();
+			$decode = json_decode($data);
+			
+			foreach($decode->aaData as $k => $v ){
+				$created = date('F j, Y, g:i a', $v[4]);
+				$modified = date('F j, Y, g:i a', $v[5]);
+				$decode->aaData[$k][4] = $created;
+				$decode->aaData[$k][5] = $modified;
+			}
+			echo json_encode($decode);
+		}
+	}
 	// --------------------------------------------------------------
 
 	/**

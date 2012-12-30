@@ -48,7 +48,7 @@
 			<h3>Welcome, <?php echo $user_data->user_name; ?></h3>
 			<ul class="std-list">
 				<li>
-					Registration Date: <?php echo  date('F j, Y, g:i a',$user_data->user_date); ?>
+					Registration Date: <?php echo date('F j, Y, g:i a',$user_data->user_date); ?>
 				</li>
 				<li>
 					Last Modified: <?php echo  date('F j, Y, g:i a',$user_data->user_modified); ?>
