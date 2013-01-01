@@ -477,6 +477,7 @@ class User extends MY_Controller {
 			$this->datatables->select('library_data.id, title, author, type, format, library_category.category_name, created, modified');
 			$this->datatables->from('library_data');
 			$this->datatables->join('library_category', 'library_category.catID = library_data.type');
+			$this->datatables->where('user_id ='. $user_id);
 			$this->datatables->unset_column('library_data.id');
 			$this->datatables->unset_column('type');
 			$this->datatables->edit_column('title', '<a href="elibrary/view/$1">$2</a>', 'library_data.id, title');

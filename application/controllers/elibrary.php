@@ -79,6 +79,33 @@ class Elibrary extends MY_Controller {
 			
 		}
 	}
+	public function edit($id) {
+		if( $this->require_min_level(1))
+		{
+			if($this->csrf->token_match){
+				$this->lib->update_library($this->input->post(), $id);
+			}
+
+			// $view_data = array();
+			$view_data['lib_data'] = $this->lib->get_data_by_id($id);
+			$view_data['doc_type'] = $this->lib->get_type();
+			$view_data['doc_id'] = $view_data['lib_data']->lib_id;
+			$view_data['lib_id'] = $id;
+			$data = array(
+					'title' 	=> 'CBO - Edit eLibrary',
+					'content' 	=> $this->load->view('library/edit', $view_data, TRUE),
+					'javascripts' => array(
+							'assets/js/ckeditor/ckeditor.js',
+							'js/ajaxupload.js',
+							'assets/js/document-uploader-controls.js',
+						),
+				);
+			$this->load->view($this->template, $data);
+		}
+	}
+	public function delete($id) {
+
+	}
 	public function download($id ='') {
 		if( $this->uri->segment(2) == ''){
 			show_404();
@@ -152,4 +179,18 @@ class Elibrary extends MY_Controller {
 		echo json_encode($decode);
 
 	}
+	public function delete_document($id){
+
+		$del = $this->lib->delete_lib_file($id);
+		if($del){
+		$response = array(
+				'success' => 'success',
+				'token' => $this->csrf->token
+			);
+		} else {
+			// $response['success'] = 'Error';
+		}
+		echo json_encode($response);
+	}
+
 }

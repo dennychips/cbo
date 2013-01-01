@@ -116,4 +116,28 @@ $(document).ready(function(){
  		ajaxStart: function(){ $(this).show(); },
  		ajaxStop: function(){ $(this).hide(); }
  	});
+
+ 	$('#delete-btn').click(function(){
+ 		var post_data = {
+ 			'libid' : $('#library_id').val(),
+ 			'token': $('input[name="token"]').val(),
+			'ci_csrf_token_name': $('#ci_csrf_token_name').val()
+ 		}
+ 		$.ajax({
+ 			url: $('#delete_doc_url').val(),
+ 			data: post_data,
+ 			type: 'POST',
+ 			dataType: 'json',
+ 			success: function(response){
+ 				$('.progress').show();
+ 				
+ 				$('input[name="token"]').val( response.token );
+				$('#ci_csrf_token_name').val( response.ci_csrf_token );
+
+ 				if(response.success === 'success'){
+ 					$(' ul#doc-placeholder').remove();
+ 				}
+ 			}
+ 		});
+ 	});
 });

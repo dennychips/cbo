@@ -57,7 +57,26 @@ class Library_model extends MY_Model {
 			
 		}
 	}
-	function get_format($id) {
+	public function update_library($data, $id) {
+		$this->config->load( 'form_validation/library/add_library' );
+		$this->validation_rules = config_item( 'add_library' );
+		if($this->validate())
+		{
+		
+			$insert_data = array(
+					'title' => $data['title'],
+					'description' => $data['description'],
+					'type' => $data['type'],
+					'author' => $data['author'],
+					'link' => $data['link'],
+					'modified' => time(),
+				);
+			
+
+			$q = $this->db->set($insert_data)->where('id', $id)->update('library_data');
+		}
+	}
+	public function get_format($id) {
 		$q = $this->db->get_where('library_file_tmp', array('id' => $id));
 
 		if($q->num_rows() > 0){
@@ -158,5 +177,17 @@ class Library_model extends MY_Model {
 		$q = $this->db->get_where('library_data', array('user_id' => $user_id));
 
 		return $q->result();
+	}
+	public function get_data_by_id($data_id) {
+		$this->db->join('library_category', 'library_data.type = library_category.catID');
+		$this->db->join('library_file', 'library_data.libfile_id = library_file.lib_id', 'left');
+		$q = $this->db->get_where('library_data', array('library_data.id' => $data_id));
+		// echo $this->db->last_query();
+		return $q->row();
+	}
+	public function delete_lib_file($id) {
+
+
+
 	}
 }

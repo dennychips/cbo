@@ -1,7 +1,8 @@
 $(document).ready(function(){
-	$('#user-index-library-table').dataTable( {
+	var oTable = $('#user-index-library-table').dataTable( {
 		"bProcessing": true,
         "bServerSide": true,
+        "aaSorting": [[ 5, "desc" ]],
 		"sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
 		"sPaginationType": "bootstrap",
 		"sAjaxSource": $('#user-index-recent').val(),
@@ -12,12 +13,6 @@ $(document).ready(function(){
 			{ "bSortable": false, "aTargets": [ 6 ] }
 		],
 		'fnServerData': function(sSource, aoData, fnCallback){
-      	 	aoData.push( 
-	      	 		{ "name": "title", "value": $( "#title" ).val() },
-	      	 		{ "name": "author", "value": $( "#author" ).val() },
-	      	 		{ "name": "format", "value": $( "#format" ).val() },
-	      	 		{ "name": "doctype", "value": $( "#doctype" ).val() }
-				);
 	        $.ajax
 	        ({
 	          'dataType': 'json',
@@ -28,5 +23,6 @@ $(document).ready(function(){
 	        });
 		}
 	});
+	
 
 });
