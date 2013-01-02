@@ -77,7 +77,8 @@ class Elibrary extends MY_Controller {
 						),
 					'style_sheets' => array(
  							// 'assets/js/fineuploader/fineuploader.css' => 'screen'
-						)
+						),
+					
 				);
 			$this->load->view($this->template, $data);	
 			
@@ -87,6 +88,7 @@ class Elibrary extends MY_Controller {
 		if( $this->require_min_level(1))
 		{
 			if($this->csrf->token_match){
+				
 				$this->lib->update_library($this->input->post(), $id);
 			}
 
@@ -94,6 +96,7 @@ class Elibrary extends MY_Controller {
 
 			$view_data['lib_data'] = $this->lib->get_data_by_id($id);
 			$view_data['doc_type'] = $this->lib->get_type();
+			// $view_data['file'] = $this->lib->get_lib_file();
 			$view_data['doc_id'] = $view_data['lib_data']->lib_id;
 			$view_data['lib_id'] = $id;
 			$data = array(
@@ -193,7 +196,7 @@ class Elibrary extends MY_Controller {
 
 	}
 	public function delete_document($id){	
-		$del = $this->lib->delete_lib_file($this->input->post('libid'));
+		$del = $this->lib->delete_lib_file($this->input->post('libid'), $id);
 		if($del){
 		$response = array(
 				'success' => 'success',

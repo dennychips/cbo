@@ -79,6 +79,7 @@ elseif(isset($validation_passed)) {
 		<input type="hidden" id="library_id" value="<?php echo $doc_id ?>" />
 		<input type="submit" value="Publish Document" class="btn btn-block btn-primary btn-large pull-right" />
 		<input type="hidden" id="ci_csrf_token_name" value="<?php echo config_item('csrf_token_name'); ?>" />
+		<input type="hidden" id="delete_action" value="edits">
 
 	</div>
 </div>
@@ -107,18 +108,20 @@ elseif(isset($validation_passed)) {
 		    	<div class="bar" style="width: 100%;"></div>
    				</div>
    				
-				<ul class="unstyled" id="doc-placeholder">
+				<ul class="unstyled doc-placeholder">
+					<?php if(!empty($lib_data->file_name)) :?>
 					<li>
 						<a href="#"><?php echo $lib_data->file_name?></a>
 						<span class="pull-right"><a href="javascript:void(0)" id="delete-btn" class="btn btn-danger btn-small"><i class="icon-trash icon-white"></i></a></span>
 					</li>
+					<?php endif?>
 				</ul>
 			</div>
 			
-			<div class="doc-placeholder">
+			<!-- <div class="doc-placeholder">
 				<ul class="unstyled">
 				</ul>
-			</div>
+			</div> -->
 		</div>
 		<div class="clearfix"></div>
 		<?php 

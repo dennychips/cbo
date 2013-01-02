@@ -19,7 +19,7 @@ if( isset( $auth_first_name ) ) {
   
   <!--this is the login for the user-->
   <?php if(isset($_user_first_name)) : ?>
-        <nav class="user clearfix"><?php echo secure_anchor('user/self_update', 'Welcome, '.$_user_first_name.' '. $_user_last_name )?></nav>
+        <nav class="user clearfix"><?php echo secure_anchor('user', 'Welcome, '.$_user_first_name.' '. $_user_last_name )?></nav>
          <nav class="user clearfix"><?php echo secure_anchor('user/logout','Logout') ?></nav>
   <?php else :?>
   <nav class="user clearfix"><?php echo secure_anchor('register','<i class="icon-user"></i> Register')?></nav>

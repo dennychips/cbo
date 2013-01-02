@@ -64,8 +64,8 @@ class Library_model extends MY_Model {
 		$this->config->load( 'form_validation/library/add_library' );
 		$this->validation_rules = config_item( 'add_library' );
 		if($this->validate())
-		{
-		
+		{			
+			
 			$insert_data = array(
 					'title' => $data['title'],
 					'description' => $data['description'],
@@ -73,11 +73,25 @@ class Library_model extends MY_Model {
 					'author' => $data['author'],
 					'link' => $data['link'],
 					'modified' => time(),
+					'libfile_id' => $this->input->post('libid')
 				);
-			
 
-			$q = $this->db->set($insert_data)->where('id', $id)->update('library_data');
+			if($this->input->post('link')!== '' && $this->input->post('format') == ''){
+				$insert_data['format'] = 'Link';
+			} else if($this->input->post('link') !== '' && $this->input->post('format') !== ''){
+				$insert_data['format'] = $this->input->post('format');
+			}
+
+			
+			if($this->db->set($insert_data)->where('id', $id)->update('library_data')){
+				if($this->_move_file_tmp($this->input->post('libid')) !== FALSE){
+					$this->db->insert('library_file', $this->insert_data);
+				}
+				$this->db->delete('library_file_tmp', array('id' => $this->input->post('libid')));
+			}
+			return true;
 		}
+		return false;
 	}
 	public function get_format($id) {
 		$q = $this->db->get_where('library_file_tmp', array('id' => $id));
@@ -192,17 +206,19 @@ class Library_model extends MY_Model {
 		$q = $this->db->get_where('library_file', array('lib_id' => $id));
 		return $q->row_array();
 	}
-	public function delete_lib_file($id) {
+	public function delete_lib_file($fileid, $libid) {
 		$user_dir = $this->auth_user_id . '-' . md5( config_item('encryption_key') . $this->auth_user_id );
-		$file = $this->getlibfile($id);
-		print_r($file);
+		$file = $this->getlibfile($fileid);
+		// print_r($file);die();
 		if(strpos( $file['file_path'], $user_dir ) !== FALSE) {
 			$uploaded_file = FCPATH . str_replace( base_url(), '', $file['file_path'] );
-			// unlink($uploaded_file);
-			// $q = $this->db->delete('library_file', array('lib_id' => $id));
-			// var_dump($q);
+			unlink($uploaded_file);
+			$q = $this->db->delete('library_file', array('lib_id' => $fileid));
 		} 
 		if($q) {
+			$data = array('libfile_id' => '0', 'format' => 'Link');
+			$this->db->where('id', $libid);
+			$this->db->set($data)->update('library_data');
 			return true;
 		} 
 		return false;
@@ -210,8 +226,6 @@ class Library_model extends MY_Model {
 	public function delete_library($id){
 		$get_lib = $this->db->get_where('library_data', array('id' => $id));
 		$res = $get_lib->row_array();
-		
-
 		if($id !== '') {
 			if($res['libfile_id'] != '0'){
 				$d = $this->db->get_where('library_file', array('lib_id' => $res['libfile_id']));

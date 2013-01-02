@@ -11,10 +11,10 @@
  * @link        http://community-auth.com
  */
 ?>
-<div class="row-fluid">
+<!-- <div class="row-fluid">
 	<div class="span8">tes</div>
 	<div class="span4">tes</div>
-</div>
+</div> -->
 <h4 class="short_headline">
 	<span>Recent Document</span>
 </h4>
