@@ -35,7 +35,7 @@ $(document).ready(function(){
 			
 			// Allows only images set in config.
 			var allowed_types_doc = $('#allowed_types_doc_profile').val();
-			alert(allowed_types_doc);
+			
 			var regex = new RegExp('^(' + allowed_types_doc + ')', 'i');
 			if (ext && ext.search(regex) != '-1') {
 				this.disable();

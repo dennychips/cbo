@@ -23,11 +23,27 @@ $(document).ready(function(){
 	        });
 		}
 	});
-	$('#confirmation').click(function(){
-		alert('a');
-	});
+	
 });
 
-function confirm(){
+function confirm(id){
 	$('#myModal').modal();
+	$('#confirmation').click(function(){
+		
+		var delete_data = {
+			'id' : id
+		}
+		$.ajax({
+			url: $('#library_delete_url').val(),
+			type: 'POST',
+			data: delete_data,
+			dataType: 'json',
+			success: function( response ){
+				if(response.status === 'success'){
+					location.reload();
+				}
+			}
+		})
+
+	});
 }

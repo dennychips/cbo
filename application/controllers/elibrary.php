@@ -54,7 +54,11 @@ class Elibrary extends MY_Controller {
 		if( $this->require_min_level(1))
 		{			
 			if($this->csrf->token_match){
-				$this->lib->add_library($this->input->post());
+				$add = $this->lib->add_library($this->input->post());
+				if($add){
+					$this->session->set_flashdata('message', 'Document Published');
+					redirect('user');
+				}
 			}
 			$view_data['uploader_settings'] = config_item('upload_configuration_library_uploader');
 
@@ -105,7 +109,15 @@ class Elibrary extends MY_Controller {
 		}
 	}
 	public function delete($id) {
+		if($this->input->is_ajax_request()){
+			if($delete = $this->lib->delete_library($this->input->post('id'))){
+				$response['status'] = 'success';
+			} else {
+				$response['status'] = 'error';
+			}
 
+			echo json_encode($response);
+		}
 	}
 	public function download($id ='') {
 		if( $this->uri->segment(2) == ''){

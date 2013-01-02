@@ -35,6 +35,7 @@
 </table>
 
 <input type="hidden" name="user-index-recent" id="user-index-recent" value="<?php echo secure_site_url('user/recent_document/'.$id)?>" />
+<input type="hidden" name="library_delete_url" id="library_delete_url" value="<?php echo secure_site_url('elibrary/delete/'.$id)?>" />
 <div class="modal fade hide" id="myModal">
   <div class="modal-header">
     <a class="close" data-dismiss="modal">×</a>
@@ -45,7 +46,7 @@
   </div>
   <div class="modal-footer">
     <a href="#" class="btn btn-primary" data-dismiss="modal">Cancel</a>
-    <a href="#" id="confirmation" class="btn btn-danger">Delete</a>
+    <a href="javascript:void(0)" id="confirmation" class="btn btn-danger">Delete</a>
   </div>
 </div>
 <?php

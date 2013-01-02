@@ -54,8 +54,11 @@ class Library_model extends MY_Model {
 				}
 				$this->db->delete('library_file_tmp', array('id' => $this->input->post('libid')));
 			}
+
+			return true;
 			
 		}
+		return false;
 	}
 	public function update_library($data, $id) {
 		$this->config->load( 'form_validation/library/add_library' );
@@ -196,15 +199,33 @@ class Library_model extends MY_Model {
 		if(strpos( $file['file_path'], $user_dir ) !== FALSE) {
 			$uploaded_file = FCPATH . str_replace( base_url(), '', $file['file_path'] );
 			// unlink($uploaded_file);
-			$q = $this->db->delete('library_file', array('lib_id' => $id));
-			var_dump($q);
+			// $q = $this->db->delete('library_file', array('lib_id' => $id));
+			// var_dump($q);
 		} 
 		if($q) {
 			return true;
 		} 
 		return false;
+	} 
+	public function delete_library($id){
+		$get_lib = $this->db->get_where('library_data', array('id' => $id));
+		$res = $get_lib->row_array();
 		
-		
-		
+
+		if($id !== '') {
+			if($res['libfile_id'] != '0'){
+				$d = $this->db->get_where('library_file', array('lib_id' => $res['libfile_id']));
+				$doc = $d->row_array();
+				$uploaded_file = FCPATH . str_replace( base_url(), '', $doc['file_path'] );
+				unlink($uploaded_file);
+				$this->db->delete('library_file', array('lib_id' => $doc['lib_id']));
+			}
+			$del = $this->db->delete('library_data', array('id' => $id));
+		} 
+		if($del){
+			return true;
+		}
+		return false;
+
 	}
 }
