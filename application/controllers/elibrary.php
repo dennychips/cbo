@@ -108,7 +108,7 @@ class Elibrary extends MY_Controller {
 			$this->load->view($this->template, $data);
 		}
 	}
-	public function delete($id) {
+	public function delete() {
 		if($this->input->is_ajax_request()){
 			if($delete = $this->lib->delete_library($this->input->post('id'))){
 				$response['status'] = 'success';

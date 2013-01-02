@@ -14,7 +14,7 @@
       </ul>
     </li>
     <li class="parent"><a href="#">Library<i></i></a>
-      <ul class="dropdown-menu" id="menu2">
+      <ul id="menu2">
         <li><?php echo anchor('elibrary', 'Report')?></li>
         <li><?php echo anchor('elibrary', 'Research') ?></li>
         <li><?php echo anchor('elibrary', 'Guideline') ?></li>

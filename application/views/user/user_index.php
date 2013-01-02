@@ -18,6 +18,9 @@
 <h4 class="short_headline">
 	<span>Recent Document</span>
 </h4>
+<?php if($this->session->flashdata('message')):?>
+<div class="alert alert-success"><?php echo $this->session->flashdata('message')?></div>
+<?php endif;?>
 <table id="user-index-library-table" class="table table-hover">
   <thead>
     <tr>
@@ -35,7 +38,7 @@
 </table>
 
 <input type="hidden" name="user-index-recent" id="user-index-recent" value="<?php echo secure_site_url('user/recent_document/'.$id)?>" />
-<input type="hidden" name="library_delete_url" id="library_delete_url" value="<?php echo secure_site_url('elibrary/delete/'.$id)?>" />
+<input type="hidden" name="library_delete_url" id="library_delete_url" value="<?php echo secure_site_url('elibrary/delete/')?>" />
 <div class="modal fade hide" id="myModal">
   <div class="modal-header">
     <a class="close" data-dismiss="modal">×</a>
