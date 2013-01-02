@@ -59,6 +59,10 @@ class User extends MY_Controller {
 				'style_sheets' => array(
 					'assets/css/jquery.dataTables.css' => 'screen',
 				),
+
+				'dynamic_extras' => '
+
+				'
 			);
 
 			$this->load->view( $this->template, $data );
@@ -481,7 +485,7 @@ class User extends MY_Controller {
 			$this->datatables->unset_column('library_data.id');
 			$this->datatables->unset_column('type');
 			$this->datatables->edit_column('title', '<a href="elibrary/view/$1">$2</a>', 'library_data.id, title');
-			$this->datatables->add_column('edit', '<a href="'.secure_site_url('elibrary/edit/$1').'" class="btn btn-info btn-small"><i class="icon-share-alt icon-white"></i> Edit</a> <a href="'.secure_site_url('elibrary/delete/$1').'" class="btn btn-small btn-danger"><i class="icon-trash icon-white"></i> Delete</a>', 'library_data.id');
+			$this->datatables->add_column('edit', '<a href="'.secure_site_url('elibrary/edit/$1').'" class="btn btn-info btn-small"><i class="icon-share-alt icon-white"></i> Edit</a> <a href="javascript:void(0)" onclick="confirm()" class="delete-btn btn btn-small btn-danger"><i class="icon-trash icon-white"></i> Delete</a>', 'library_data.id');
 
 			$data = $this->datatables->generate();
 			$decode = json_decode($data);

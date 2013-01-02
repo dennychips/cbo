@@ -34,12 +34,14 @@ $(document).ready(function(){
 			var regex = new RegExp('^(' + allowed_types + ')', 'i');
 			if (ext && ext.search(regex) != '-1') {
 				this.disable();
+				// $('input[name="userfile"]').attr("disabled", "disabled");
 				$('.progress').show();
 			} else {
 				// Show error: extension is not allowed
 				$('#status-bar').css('display', 'block');
 				$('#status-bar').html('<p>Error: Only images are allowed ( ' + $('#file_types').val() + ' )</p>').delay(2500).fadeOut('slow');
 				// cancel upload
+				
 				return false;
 			}
 		},
@@ -103,8 +105,10 @@ $(document).ready(function(){
 				$('#status-bar').html('<p>Upload Successful</p>').delay(2500).fadeOut('slow');
 			} else {
 				// Show error message
+				console.log(response);
 				alert('Error uploading file ('+file+')! \n'+ response.issue);
 				this.enable();
+				$('.progress').hide();
 				$('#status-bar').css('display', 'block');
 				$('#status-bar').html('<p>Upload Failed</p>').delay(2500).fadeOut('slow');
 			}

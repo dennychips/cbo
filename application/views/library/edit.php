@@ -75,8 +75,8 @@ elseif(isset($validation_passed)) {
 		<input type="hidden" id="allowed_types" value="<?php //echo $uploader_settings['allowed_types']; ?>" />
 		<!-- <input type="hidden" id="delete_image_url" value="<?php echo secure_site_url('custom_uploader/delete_image'); ?>" /> -->
 		<input type="hidden" id="upload_library_url" value="<?php echo secure_site_url('uploads_manager/bridge_filesystem/library_uploader'); ?>" />
-		<input type="hidden" id="delete_doc_url" value="<?php echo secure_site_url('elibrary/delete_document/'.$doc_id); ?>" />
-		<input type="hidden" id="library_id" value="<?php echo $lib_id ?>" />
+		<input type="hidden" id="delete_doc_url" value="<?php echo secure_site_url('elibrary/delete_document/'.$lib_id); ?>" />
+		<input type="hidden" id="library_id" value="<?php echo $doc_id ?>" />
 		<input type="submit" value="Publish Document" class="btn btn-block btn-primary btn-large pull-right" />
 		<input type="hidden" id="ci_csrf_token_name" value="<?php echo config_item('csrf_token_name'); ?>" />
 

@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	var oTable = $('#user-index-library-table').dataTable( {
+	$('#user-index-library-table').dataTable( {
 		"bProcessing": true,
         "bServerSide": true,
         "aaSorting": [[ 5, "desc" ]],
@@ -23,6 +23,11 @@ $(document).ready(function(){
 	        });
 		}
 	});
-	
-
+	$('#confirmation').click(function(){
+		alert('a');
+	});
 });
+
+function confirm(){
+	$('#myModal').modal();
+}

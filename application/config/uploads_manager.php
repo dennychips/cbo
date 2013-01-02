@@ -86,7 +86,7 @@ $config['authentication_library_uploader'] = 'admin,manager,customer';
 $config['upload_configuration_library_uploader'] = array(
 
 	// Settings for any destination
-	'allowed_types' => 'doc|pdf|ppt|docx',
+	'allowed_types' => 'docx|doc|pdf|ppt',
 	'max_size'      => '20480',
 
 	// FILESYSTEM specific settings

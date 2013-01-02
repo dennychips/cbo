@@ -56,7 +56,7 @@ class Elibrary extends MY_Controller {
 			if($this->csrf->token_match){
 				$this->lib->add_library($this->input->post());
 			}
-			$view_data['uploader_settings'] = config_item('upload_configuration_library');
+			$view_data['uploader_settings'] = config_item('upload_configuration_library_uploader');
 
 			// Create a more human friendly version of the allowed_types
 			$view_data['file_types'] = str_replace( '|', ' &bull; ', $view_data['uploader_settings']['allowed_types'] );
@@ -87,6 +87,7 @@ class Elibrary extends MY_Controller {
 			}
 
 			// $view_data = array();
+
 			$view_data['lib_data'] = $this->lib->get_data_by_id($id);
 			$view_data['doc_type'] = $this->lib->get_type();
 			$view_data['doc_id'] = $view_data['lib_data']->lib_id;
@@ -179,16 +180,15 @@ class Elibrary extends MY_Controller {
 		echo json_encode($decode);
 
 	}
-	public function delete_document($id){
-
-		$del = $this->lib->delete_lib_file($id);
+	public function delete_document($id){	
+		$del = $this->lib->delete_lib_file($this->input->post('libid'));
 		if($del){
 		$response = array(
 				'success' => 'success',
 				'token' => $this->csrf->token
 			);
 		} else {
-			// $response['success'] = 'Error';
+			$response['success'] = 'Error';
 		}
 		echo json_encode($response);
 	}

@@ -52,8 +52,7 @@
 	// Add any javascript before the closing body tag
 	if( isset( $dynamic_extras ) )
 	{
-		echo '<script>
-		';
+		echo '<script>';
 		echo $dynamic_extras;
 		echo '</script>
 		';

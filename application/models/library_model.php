@@ -185,9 +185,26 @@ class Library_model extends MY_Model {
 		// echo $this->db->last_query();
 		return $q->row();
 	}
+	public function getlibfile($id){
+		$q = $this->db->get_where('library_file', array('lib_id' => $id));
+		return $q->row_array();
+	}
 	public function delete_lib_file($id) {
-
-
-
+		$user_dir = $this->auth_user_id . '-' . md5( config_item('encryption_key') . $this->auth_user_id );
+		$file = $this->getlibfile($id);
+		print_r($file);
+		if(strpos( $file['file_path'], $user_dir ) !== FALSE) {
+			$uploaded_file = FCPATH . str_replace( base_url(), '', $file['file_path'] );
+			// unlink($uploaded_file);
+			$q = $this->db->delete('library_file', array('lib_id' => $id));
+			var_dump($q);
+		} 
+		if($q) {
+			return true;
+		} 
+		return false;
+		
+		
+		
 	}
 }

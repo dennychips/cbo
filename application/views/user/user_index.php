@@ -35,7 +35,19 @@
 </table>
 
 <input type="hidden" name="user-index-recent" id="user-index-recent" value="<?php echo secure_site_url('user/recent_document/'.$id)?>" />
-
+<div class="modal fade hide" id="myModal">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>Confirmation</h3>
+  </div>
+  <div class="modal-body">
+    <p>Are your sure want to delete this Library item ? <br /><small><i>this action cannot be undo.</i></small></p>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn btn-primary" data-dismiss="modal">Cancel</a>
+    <a href="#" id="confirmation" class="btn btn-danger">Delete</a>
+  </div>
+</div>
 <?php
 /* End of file user_index.php */
 /* Location: /application/views/user/user_index.php */
