@@ -12,6 +12,7 @@
 	// Add a robots exclusion
 	echo ( isset( $no_robots ) ) ? meta('robots', 'noindex,nofollow') : '';
 ?>
+<link rel="icon" href="<?php echo site_url('assets/images/favicon.ico') ?>" type="image/x-icon" />
 <base href="<?php echo if_secure_base_url(); ?>" />
 <?php
 	// Always add the main stylesheet
@@ -49,6 +50,7 @@
 	echo script_tag('assets/js/responsive-tables.js') . "\n";
 	echo script_tag('assets/js/jquery.fitvid.js') . "\n";
 	echo script_tag('assets/js/scripts.js') . "\n";
+	
 	// Add any javascript before the closing body tag
 	if( isset( $dynamic_extras ) )
 	{

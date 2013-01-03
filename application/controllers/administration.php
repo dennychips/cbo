@@ -57,10 +57,21 @@ class Administration extends MY_Controller {
 					// Create the user
 					$this->load->model('user_model');
 					$this->user_model->create_user( $type );
+					// $view_data['country'] = array('hello' => 'hello');
 				}
+				$this->load->model('registration_model');
+				$this->load->model( 'province_autopopulate_model', 'autopop' );
+				$form_data['country'] =  $this->registration_model->get_country();
+				if( $this->csrf->token_match )
+				{
+					if( $this->input->post('type') )
+					{
+						$view_data['province'] = $this->autopop->get_province_in_country();
 
+					}
+				}
 				// Load the appropriate user creation form
-				$view_data['user_creation_form'] = $this->load->view( 'administration/create_user/create_' . $type, '', TRUE );
+				$view_data['user_creation_form'] = $this->load->view( 'administration/create_user/create_' . $type, $form_data, TRUE );
 			}
 
 			/**
@@ -83,7 +94,7 @@ class Administration extends MY_Controller {
 					redirect( secure_site_url('administration/create_user/' . $types[0] ) );
 				}
 			}
-
+			
 			$data = array(
 				'content' => $this->load->view( 'administration/create_user', ( isset( $view_data ) ) ? $view_data : '', TRUE ),
 
@@ -91,7 +102,8 @@ class Administration extends MY_Controller {
 				'javascripts' => array(
 					'js/jquery.passwordToggle-1.1.js',
 					'js/jquery.char-limiter-3.0.0.js',
-					'js/default-char-limiters.js'
+					'js/default-char-limiters.js',
+					'js/autopopulate_country.js'
 				),
 
 				// Use the show password script
