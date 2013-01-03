@@ -52,6 +52,17 @@ class Cbodirectory extends MY_Controller {
 			);
 		$this->load->view($this->template, $data);	
 	}
+	public function download($id = ''){
+		if($id == ''){
+			show_404();
+		} else {
+			$this->load->helper('download');
+			$dl = $this->profile->dl_path($id);
+			print_r($dl);
+			$data = file_get_contents($dl['file_path']);
+			force_download($dl['file_name'], $data);
+		}
+	}
 	public function view($id) {
 		//$ip = $this->input->ip_address();
 		$this->load->model('user_model');
