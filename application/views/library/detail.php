@@ -18,12 +18,16 @@
 	<?php echo anchor('elibrary/download/'. $document->lib_id, 'Download', 'class="btn btn-small btn-info"' )?>
 	<?php endif?>
 	<br /><br />
+
 	<h4 class="short_headline"><span>Related Documents</span></h4>
 	<ul class="navigation">
+		<?php if(!empty($related)): ?>
+			<?php foreach ($related as $row) {
+				echo '<li>'.anchor('elibrary/view/'.$row->id, $row->title).'</li>';
+			}?>
+		<?php else :?>
 		<li> <a href="#"> Lorem ipsum dolor sit amet </a> </li>
-		<li> <a href="#"> Nam sed orci massa quis placerat libero </a> </li>
-		<li> <a href="#"> Final Test Maybe </a> </li>
-		<li> <a href="#"> Sed venenatis laoreet ligula </a> </li>
+		<?php endif; ?>
 	</ul>
 </div>
 <div class="span4">

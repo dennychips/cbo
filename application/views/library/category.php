@@ -30,19 +30,8 @@
 					<?php endforeach?>
 				</select>
 			</td>
-		</tr>
-			<td>Document Type</td>
-			<td>
-				
-				<select id="doctype">
-					<option value="">-- Select --</option>
-					<?php foreach($doctype as $row) :?>
-					<option value="<?php echo $row['category_name'] ?>"><?php echo $row['category_name'] ?></option>
-					<?php endforeach?>
-				</select>
-			</td>
-		</tr>
 	</table>
+	<input type="hidden" value="<?php echo site_url('elibrary/library_by_category/'.$slug) ?>" id="category-name"/>
 	<h4 class="short_headline" style="margin-top:0px"><span>eLibrary Document</span></h4>
 		<table id="library-table" class="table table-hover">
 		  <thead>

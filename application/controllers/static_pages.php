@@ -48,11 +48,13 @@ class Static_pages extends MY_Controller {
 	 */
 	public function index()
 	{
-		$ip = $this->input->ip_address();
+		$this->load->model(array('library_model', 'cboprofile_model'));
+		$view_data['profile_count'] = $this->cboprofile_model->count_profile();
+		$view_data['library_count'] = $this->library_model->count_library();
 		$this->template = 'templates/main_template';
 		$data = array(
 			'title' => 'CBO eLibrary',
-			'content' => $this->load->view( 'static_pages/home', '', TRUE ),
+			'content' => $this->load->view( 'static_pages/home', $view_data, TRUE ),
 			
 		);	
 		$this->load->view( $this->template, $data );

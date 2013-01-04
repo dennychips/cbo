@@ -10,16 +10,16 @@
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ut tincidunt sem. Nulla facilisis eros at nisl semper pellentesque. Vivamus sed nisl at nibh dapibus tincidunt at eget nibh. Aliquam commodo arcu vel risus suscipit venenatis. Ut at nibh leo. Nullam at felis ut eros elementum porttitor. Maecenas sit amet congue libero. Quisque sollicitudin tempus rhoncus. Vivamus quis felis justo, non rhoncus tellus.
 	</p>
 	<?php if(!empty($profile['website'])):?>
-		<a href="http://<?php echo $profile['website']?>" class="btn btn-success btn-small btn-info">Website</a>
+		<a href="<?php echo $profile['website']?>" class="btn btn-success btn-small btn-info">Website</a>
 	<?php endif?>
 	<?php if(!empty($profile['blog'])):?>
-	<a href="http://<?php echo $profile['blog']?>" class="btn btn-success btn-info btn-small">Blog</a>
+	<a href="<?php echo $profile['blog']?>" class="btn btn-success btn-info btn-small">Blog</a>
 	<?php endif?>
 	<?php if(!empty($profile['facebook'])):?>
-	<a href="http://<?php echo $profile['facebook']?>" class="btn btn-success btn-info btn-small">Facebook</a>
+	<a href="<?php echo $profile['facebook']?>" class="btn btn-success btn-info btn-small">Facebook</a>
 	<?php endif?>
 	<?php if(!empty($profile['twitter'])):?>
-	<a href="http://<?php echo $profile['twitter']?>" class="btn btn-success btn-info btn-small">Twitter</a>
+	<a href="<?php echo $profile['twitter']?>" class="btn btn-success btn-info btn-small">Twitter</a>
 	<?php endif?>
 	<br /><br />
 	<?php if(!empty($documents)):  ?>

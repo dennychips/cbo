@@ -43,11 +43,21 @@ class Cboprofile_model extends CI_Model {
 		$this->db->where('user_id',$id)->update('customer_profile', $data);
 	}
 	public function dl_path($id) {
-		echo $id;
+		
 		$this->db->select('file_path, file_name')
 		->where('id', $id);
 		$q = $this->db->get('customer_profile_file');
 		echo $this->db->last_query();
 		return $q->row_array();
+	}
+	public function count_profile() {
+		$count = $this->db->count_all('customer_profile');
+		return $count;
+	}
+	public function get_province_by_country($name){
+		$this->db->select('province');
+		$q = $this->db->get_where('country_province', array('country' => $name));
+
+		return $q->result_array();
 	}
 }

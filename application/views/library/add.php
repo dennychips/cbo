@@ -79,6 +79,7 @@ elseif(isset($validation_passed)) {
 		<input type="hidden" id="upload_library_url" value="<?php echo secure_site_url('uploads_manager/bridge_filesystem/library_uploader'); ?>" />
 		<input type="submit" value="Publish Document" class="btn btn-block btn-primary btn-large pull-right" />
 		<input type="hidden" id="ci_csrf_token_name" value="<?php echo config_item('csrf_token_name'); ?>" />
+		<input type="hidden" id="delete_doc_url" value="<?php echo secure_site_url('elibrary/delete_document/'); ?>" />
 		<input type="hidden" id="delete_action" value="add">
 
 	</div>

@@ -95,7 +95,7 @@ elseif(isset($validation_passed)) {
 				<?php 
 					$input_data = array(
 					'name'		=> 'userfile',
-					// 'id' => 'upload-button',
+					'id' => 'upload-button-or',					
 					// 'class'		=> 'form_input span3',
 					'value'		=> set_value('user_name'),
 					);
@@ -157,6 +157,19 @@ elseif(isset($validation_passed)) {
 	</div>
 </div>
 
+</div>
+<div class="modal fade hide" id="myModal">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>Confirmation</h3>
+  </div>
+  <div class="modal-body">
+    <p>Are your sure want to delete this Library item ? <br /><small><i>this action cannot be undo.</i></small></p>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn btn-primary" data-dismiss="modal">Cancel</a>
+    <a href="javascript:void(0)" id="confirmation" class="btn btn-danger">Delete</a>
+  </div>
 </div>
 <?php //} ?>
 <?php echo form_close();?>

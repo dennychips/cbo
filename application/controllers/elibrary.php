@@ -42,6 +42,7 @@ class Elibrary extends MY_Controller {
 		$this->template = 'templates/single';
 		$view_data = array(
 				'document' => $this->lib->get_document($id),
+				'related' => $this->lib->related_document($id)
 			);
 		$data = array(
 				'title' 	=> 'CBO - eLibrary',
@@ -195,17 +196,90 @@ class Elibrary extends MY_Controller {
 		echo json_encode($decode);
 
 	}
-	public function delete_document($id){	
-		$del = $this->lib->delete_lib_file($this->input->post('libid'), $id);
-		if($del){
-		$response = array(
-				'success' => 'success',
-				'token' => $this->csrf->token
+
+	public function category($slug) {
+		$view_data = array(
+				'profiles' => $this->lib->get_all_lib_data(),
+				'author' => $this->lib->getdata('author', 'library_data'),
+				'format' => $this->lib->getdata('format', 'library_data'),
+				'doctype' => $this->lib->getdata('category_name', 'library_category'),
+				'slug' => $slug
 			);
+		$this->template = 'templates/library_template';
+		$data = array(
+				'title' 		=> 'CBO - eLibrary',
+				'content' 		=> $this->load->view('library/category', $view_data, TRUE),
+				'javascripts'	=> array(
+						'assets/js/jquery.dataTables.min.js',
+						'assets/js/bootstrap-DT-init.js',
+						'assets/js/category.js'
+					),
+				'style_sheets' => array(
+						'assets/css/jquery.dataTables.css' => 'screen',
+					),
+			);
+		$this->load->view($this->template, $data);
+	}
+	public function library_by_category($slug){
+		$this->load->library('datatables');
+		$this->datatables->select('library_data.id, title, author, created, type, format, library_category.category_name, library_category.slug');
+		$this->datatables->from('library_data');
+		$this->datatables->join('library_category', 'library_category.catID = library_data.type');
+		$this->datatables->where('library_category.slug', $slug);
+		$this->datatables->unset_column('library_data.id');
+		$this->datatables->unset_column('type');
+		$this->datatables->unset_column('library_category.slug');
+		$this->datatables->edit_column('title', '<a href="elibrary/view/$1">$2</a>', 'library_data.id, title');
+		$this->datatables->add_column('view', '<a href="elibrary/view/$1" class="btn btn-success btn-small"><i class="icon-share-alt icon-white"></i> Detail</a>', 'library_data.id');
+		if(isset($_POST['author']) && $_POST['author'] !== ''){
+    		$this->datatables->filter('author', $_POST['author']);
+	    }
+	    if(isset($_POST['format']) && $_POST['format'] !==''){
+	    	$this->datatables->where('format', $_POST['format']);
+	    }
+	    if(isset($_POST['doctype']) && $_POST['doctype'] !==''){
+	    	$this->datatables->where('library_category.category_name', $_POST['doctype']);
+	    }
+	    if(isset($_POST['title']) && $_POST['title'] !==''){
+	    	$this->datatables->where('title LIKE "%' . $_POST['title'] .'%"');
+
+	    }
+		$data = $this->datatables->generate();
+		// print_r($this->db->last_query());
+		$decode = json_decode($data);
+		// print_r($decode->aaData);
+		foreach($decode->aaData as $k => $v ){
+			$time = date('Y', $v[2]);
+			
+			$decode->aaData[$k][2] = $time;
+		}
+		echo json_encode($decode);	
+	}
+	public function delete_document($id = ''){	
+		
+		if($this->input->post('temp') == true){
+			
+			$del = $this->lib->delete_temp_lib_file($this->input->post('libid'), $id);
+			if($del){
+				$response = array(
+						'success' => 'success',
+						'token' => $this->csrf->token
+					);
+			} else {
+				$response['success'] = 'Error';
+			}
+
 		} else {
-			$response['success'] = 'Error';
+			$del = $this->lib->delete_lib_file($this->input->post('libid'), $id);
+			if($del){
+			$response = array(
+					'success' => 'success',
+					'token' => $this->csrf->token
+				);
+			} else {
+				$response['success'] = 'Error';
+			}
 		}
 		echo json_encode($response);
 	}
-
 }

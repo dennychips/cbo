@@ -13,7 +13,6 @@
 ?>
 
 <!-- begin #page - the container for everything but header -->
-
 <div id="page">
   <div class="hero-unit center no-border">
     <div class="container">
@@ -29,7 +28,7 @@
         <h3 class="short_headline"><span>CBO Directory</span></h3>
         <div>
           <img class="thumbnail" src="assets/images/directory.jpg" />
-          <p><strong>16 CBO Registered</strong></p>
+          <p><strong><?php echo $profile_count?> CBO Registered</strong></p>
           On this website you can see list of CBO in each country and the profile each CBO. Select a country to see a list of CBO <br />
           <select>
             <option>-- Select Country --</option>
@@ -46,7 +45,7 @@
       <div class="span4">
         <h3 class="short_headline"><span>CBO E-Library</span></h3>
         <img class="thumbnail" src="assets/images/iStock_Library.jpg" />
-        <p><strong>160 Files Uploaded</strong></p>
+        <p><strong><?php echo $library_count;?> Files Uploaded</strong></p>
           On this website you can see list of CBO in each country and the profile each CBO. Select a country to see a list of CBO 
           <br />
           <select>

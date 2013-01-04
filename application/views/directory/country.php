@@ -1,88 +1,106 @@
+<div class="row-fluid  sidebar-right">
+	<div class="span9 primary-column">
+		<h3 class="short_headline"><span>CBO Profile Directory</span></h3>
+		<!-- <p>
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec lorem libero. Nunc pharetra auctor purus sit amet elementum. Sed imperdiet nunc et tellus ultrices lacinia. Proin id turpis quis lectus interdum rutrum. Mauris sit amet urna felis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Cras accumsan nunc eget lorem vehicula tincidunt. Nunc tellus libero, scelerisque eu sollicitudin id, elementum ac justo.
+		</p> -->
 
-		<h3>CBO Directory</h3>
-		<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec lorem libero. Nunc pharetra auctor purus sit amet elementum. Sed imperdiet nunc et tellus ultrices lacinia. Proin id turpis quis lectus interdum rutrum. Mauris sit amet urna felis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Cras accumsan nunc eget lorem vehicula tincidunt. Nunc tellus libero, scelerisque eu sollicitudin id, elementum ac justo.
-		</p>
 
-<hr />
-<div class="row">
-	
-</div>
-<div class="row">
-	<div class="span6">
-		<h4>List CBO</h4>
-		<hr />
-		<table class="table table-hover" >
+		<h5 class="short_headline"><span>Filter</span></h5>
+		<div class="">
+			
+			<table>
+				<tr>
+					<td width="20%">Organization Name</td>
+					<td class="select">
+						<input type="text" id="organization" autocomplete="off" value="" />
+					</td>
+				</tr>
+				<tr>
+					<td width="20%">Province</td>
+					<td class="select">
+						<?php 
+							$country_province[''] = '-- Select --';
+							// Options from query
+							foreach( $provinces as $row ){
+								$country_province[$row['province']] = $row['province'];
+							}
+							echo form_dropdown('province', $country_province, '', 'id="province"');
+						?>
+					</td>
+					<?php echo form_close();?>
+				</tr>
+				<tr>
+					<td width="20%">Focus Area</td>
+					<td class="select">
+						<?php
+						$options = array(
+							'' => '-- Select Area --',
+							'MSM' => 'MSM',
+							'Transgender' => 'Transgender',
+							'HIV/AIDS' => 'HIV/AIDS',
+							'General Population' => 'General Population',
+							'IDU' => 'IDU',
+							'Sex Worker' => 'Sex Worker',
+							'Youth' => 'Youth',
+							'Other' => 'Other'
+							);
+							echo form_dropdown('focus_area', $options, '', 'id="focus_area"');
+						?>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<h5 class="short_headline"><span>CBO Profile Directory List</span></h5>
+		<table id="directory-table" class="table table-hovered" >
 		  <thead>
 		    <tr>
 		      <th style="width:20%">Name Of CBO</th>
+		      <th style="width:20%">Country</th>
 		      <th  style="width:15%">Province</th>
 		      <th style="width:25%">Focus Area</th>
 		      <th style="width:20%">Action</th>
 		    </tr>
 		  </thead>
 		  <tbody>
-		  	<tr>
-		  		<td><?php echo anchor('cbodirectory/view/1', 'Perhimpunan Abiasa'); ?></td>
-		  		<td>West Java</td>
-		  		<td>HIV / AIDS, MSM, Transgender</td>
-		  		<td><?php echo anchor('cbodirectory/view/1', 'View Profile', 'class="btn btn-mini btn-info"') ?></a></td>
+		  	<?php //foreach($profiles as $profile) :?>
+		  	<!-- <tr> -->
+		  		<!-- <td><?php echo anchor('cbodirectory/view/'. $profile->user_id, $profile->organization); ?></td>
+		  		<td><?php echo $profile->province; ?></td>
+		  		<td>
+		  			<?php 
+		  			
+		  				$focus = unserialize($profile->focus_area);
+		  				$last = end($focus);
+		  				foreach($focus as $row){
+		  					echo $row;	
+		  					if($row !== $last) {
+		  						echo  ', ';
+		  					}
+		  				}
+		  			?>
+		  		</td>
+		  		<td><?php echo anchor('cbodirectory/view/'. $profile->user_id, 'View Profile', 'class="btn btn-mini btn-info"') ?></a></td> -->
 		  		
-		  	</tr> 
-		  	<tr>
-		  		<td><?php echo anchor('cbodirectory/view/1', 'IGAMA'); ?></td>
-		  		<td>West Java</td>
-		  		<td>HIV / AIDS, MSM</td>
-		  		<td><?php echo anchor('cbodirectory/view/1', 'View Profile', 'class="btn btn-mini btn-info"') ?></a></td>
-		  		
-		  	</tr> 
-		  	<tr>
-		  		<td><?php echo anchor('cbodirectory/view/1', 'Gaya Dewata'); ?></td>
-		  		<td>West Java</td>
-		  		<td>HIV / AIDS, MSM, Transgender</td>
-		  		<td><?php echo anchor('cbodirectory/view/1', 'View Profile', 'class="btn btn-mini btn-info"') ?></a></td>
-		  		
-		  	</tr> 
+		  	<!-- </tr>  -->
+		  <?php //endforeach?>
 		  </tbody>
 		</table>
+		<input type="hidden" value="<?php echo site_url('cbodirectory/profile_by_country/'.$country_name) ?>" id="country-name"/>
 	</div>
-	<div class="span6">
-		<h4>Recent Uploads</h4>
-		<hr />
-		<table class="table table-hover" >
-		  <thead>
-		    <tr>
-		      <th style="width:30%">Title</th>
-		      <th  style="width:15%">Author</th>
-		      <th style="width:5%">Date</th>
-		      <th style="width:10%">Format</th>
-		      <th style="width:30%">Document Type</th>
-		    </tr>
-		  </thead>
-		  <tbody>
-		  	<tr>
-		  		<td><?php echo anchor('library/view/1', 'lorem Ipsum')?></td>
-		  		<td>Jonathan Doe</td>
-		  		<td>2011</td>
-		  		<td>PDF</td>
-		  		<td>Journal</td>
-		  	</tr> 
-		  	<tr>
-		  		<td><?php echo anchor('library/view/1', '#QLDFLOODS AND @QPSMEDIA: CRISIS COMMUNICATION ON TWITTER IN THE 2011 SOUTH EAST QUEENSLAND FLOODS')?></td>
-		  		<td>Jonathan Doe</td>
-		  		<td>2010</td>
-		  		<td>PDF</a></td>
-		  		<td>Reports</td>
-		  	</tr>
-		  	<tr>
-		  		<td><?php echo anchor('library/view/1', '#QLDFLOODS AND @QPSMEDIA: CRISIS COMMUNICATION ON TWITTER IN THE 2011 SOUTH EAST QUEENSLAND FLOODS')?></td>
-		  		<td>Jonathan Doe</td>
-		  		<td>2010</td>
-		  		<td>PDF</a></td>
-		  		<td>Reports</td>
-		  	</tr>
-		  </tbody>
-		</table>
-	</div>
-</div>	
+	<section class="span3 sidebar secondary-column" id="secondary-nav">
+		<aside class="widget">
+			<h5 class="short_headline"><span>Recent Uploads</span></h5>
+			<ul class="navigation">
+				<li><a href="#">Link</a></li>
+				<li><a href="#">Link</a></li>
+				<li><a href="#">Link</a></li>
+			</ul>
+		</aside>
+		<!--close aside widget-->
+		
+	</section>
+	<!--close section sidebar span3--> 
+
+</div>
 

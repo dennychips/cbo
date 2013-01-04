@@ -242,4 +242,30 @@ class Library_model extends MY_Model {
 		return false;
 
 	}
+	public function delete_temp_lib_file($id) {
+		$get_temp = $this->db->get_where('library_file_tmp', array('id' => $id));
+		$res = $get_temp->row_array();
+		if($get_temp->num_rows() == 1 ){
+			$uploaded_file = FCPATH . str_replace( base_url(), '', $res['file_path'] );
+			unlink($uploaded_file);
+			$del = $this->db->delete('library_file_tmp', array('id' => $id));
+		}
+		if($del) {
+			return true;
+		}
+		return false;
+	}
+	public function count_library() {
+		$count = $this->db->count_all('library_data');
+		return $count;
+	}
+	public function related_document($id) {
+		$type = $this->get_data_by_id($id);
+		$this->db->where('type', $type->catID);
+		$this->db->where('id !='.$id);
+		$q = $this->db->get_where('library_data');
+		
+		return $q->result();
+
+	}
 }

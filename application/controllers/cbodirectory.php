@@ -45,10 +45,23 @@ class Cbodirectory extends MY_Controller {
 		$this->load->view($this->template, $data);
 	}
 	public function country($name) {
+		$names = str_replace('-', ' ', $name);
 		$this->template = 'templates/library_template';
+		$view_data = array(
+				'provinces' => $this->profile->get_province_by_country($names),
+				'country_name' => $name
+			);
 		$data = array(
 				'title' => 'CBO - eLibrary',
-				'content' => $this->load->view('directory/country', '', TRUE)
+				'content' => $this->load->view('directory/country', $view_data, TRUE),
+				'javascripts' => array(
+						'assets/js/jquery.dataTables.min.js',
+						'assets/js/bootstrap-DT-init.js',
+						'assets/js/by-country.js',
+					),
+				'style_sheets' => array(
+						'assets/css/jquery.dataTables.css' => 'screen',
+					),
 			);
 		$this->load->view($this->template, $data);	
 	}
@@ -132,6 +145,45 @@ class Cbodirectory extends MY_Controller {
 		  	
     	}
 
+	}
+	public function profile_by_country($name) {
+		if($this->input->is_ajax_request()){
+			$name = str_replace('-', ' ', $name);
+			$this->load->library('datatables');
+	    	$this->datatables->select('organization, country, province , focus_area, user_id');
+	    	$this->datatables->where('country = "' . $name .'"');
+			$this->datatables->from('customer_profile');
+	    	$this->datatables->unset_column('user_id');
+	    	$org = $this->input->post('organization');
+	    	
+	    	if(isset($org) && $org !== ''){
+	    		// $this->datatables->where('organization', $_POST['organization']);
+	    		$this->datatables->filter('organization LIKE "%' . $_POST['organization'] .'%"');
+	    	}
+	    	if(isset($_POST['country']) && $_POST['country'] !== ''){
+	    		$this->datatables->filter('country', $_POST['country']);
+	    	}
+	    	if(isset($_POST['province']) && $_POST['province'] !==''){
+	    		$this->datatables->where('province', $_POST['province']);
+	    	}
+	    	if(isset($_POST['focus_area']) && $_POST['focus_area'] !=''){
+	    		$this->datatables->where('focus_area LIKE "%' . $_POST['focus_area'] .'%"');
+	    	}
+			$this->datatables->add_column('edit', '<a href="'.base_url().'cbodirectory/view/$1" class="btn btn-small btn-primary">View Profile</a>', 'user_id');
+
+		  	$data = $this->datatables->generate();
+		  	$a =  json_decode($data);
+		  	foreach($a->aaData as $k => $row){
+		  			$j = unserialize($row[3]);
+		  			$return = '';
+		  			foreach($j as $i => $m) {
+		  				$return .= ($i>0) ? ", " . $m : $m;
+		  			}
+		  			$a->aaData[$k][3] = $return;
+		  	}
+		  	// print_r($this->db->last_query());
+		  	echo json_encode($a);
+		}
 	}
 	public function profile_recent_uploads($id){
 		if($this->input->is_ajax_request()){
