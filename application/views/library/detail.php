@@ -1,6 +1,6 @@
-<div class="row-fluid">
-<div class="span8">
-	<h2 class="border-b"><?php echo $document->title?></h2>
+<div class="grid_8">
+<h2 class="border-b"><?php echo $document->title?></h2>
+<hr />
 	
 	<!-- <div class="entry-tags"> Tags:<br class="clear" />
 		<a href="#">people</a> <a href="#">open source</a> <a href="#">indie thought</a> <a href="#">goodness</a>
@@ -30,7 +30,8 @@
 		<?php endif; ?>
 	</ul>
 </div>
-<div class="span4">
+
+<aside class="grid_4 right-sidebar">
 	<div class="well">
 		<h5 class="short_headline"><span>Information</span></h5>
 		<table class="table infotable">
@@ -64,5 +65,4 @@
 			</tr>
 		</table>
 	</div>
-</div>
-</div>
+</aside>

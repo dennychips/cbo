@@ -1,11 +1,9 @@
 <?php if( ! defined('BASEPATH') ) exit('No direct script access allowed');
 
 ?>
-<div class="row-fluid">
-<div class="span8">
-	
+<div class="grid_8">
 	<h2 class="short_headline"><span><?php echo $profile['organization']?></span></h2>
-	<div class="clearfix"></div>
+	<hr />
 	<p>
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ut tincidunt sem. Nulla facilisis eros at nisl semper pellentesque. Vivamus sed nisl at nibh dapibus tincidunt at eget nibh. Aliquam commodo arcu vel risus suscipit venenatis. Ut at nibh leo. Nullam at felis ut eros elementum porttitor. Maecenas sit amet congue libero. Quisque sollicitudin tempus rhoncus. Vivamus quis felis justo, non rhoncus tellus.
 	</p>
@@ -63,7 +61,8 @@
 		</table>
 	<input type="hidden" id="profile-recent-uploads-url" name="profile-recent-uploads-url" value="<?php echo site_url('cbodirectory/profile_recent_uploads/'. $profile_id) ?>">
 </div>
-<div class="span4">
+
+<aside class="grid_4 right-sidebar">
 	<div class="well">
 		<h5 class="short_headline"><span>Profile Information</span></h5>
 		<table class="table">
@@ -111,5 +110,12 @@
 			</tr>
 		</table>
 	</div>
+</aside>
+<div class="row-fluid">
+<div class="span8">
+
+</div>
+<div class="span4">
+	
 </div>
 </div>

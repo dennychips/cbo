@@ -1,4 +1,4 @@
-<?php 
+<?php  
 if( isset( $auth_first_name ) ) {
   $_user_first_name = $auth_first_name;
   $_user_last_name = $auth_last_name;
@@ -15,17 +15,14 @@ if( isset( $auth_first_name ) ) {
 <div class="navbar navbar-fixed-top navbar-inverse">
     <div class="navbar-inner">
         <div class="container">
-            <ul class="nav">
+            <ul class="nav" style="padding:0px">
 
                 <li><?php echo secure_anchor('user', 'Dashboard')?></li>
                 <li><?php echo secure_anchor('elibrary/add', 'Share Document');?></li>
                 <li><?php echo secure_anchor('user/self_update', 'My Profile') ?></li> 
-            </ul>
-            <ul class="nav pull-right">
-              <li><?php echo secure_anchor('user', 'Welcome, '.$_user_first_name.' '. $_user_last_name )?></li>
-              <?php if( isset( $auth_level ) && $auth_level >= 6 ) : ?>
+                 <?php if( isset( $auth_level ) && $auth_level >= 6 ) : ?>
               
-              <li class="dropdown">
+                <li class="dropdown">
                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">Admin Menu <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li>
@@ -46,15 +43,62 @@ if( isset( $auth_first_name ) ) {
                     </li>
                     <?php endif?>
                 </ul>
-              </li>
-              
-            <?php endif;?>
-            <li><?php echo secure_anchor('user/logout','Logout') ?></li>
+                </li>
+                <?php endif;?>
+            </ul>
+            <ul class="nav pull-right">
+                <li><?php echo secure_anchor('user', 'Welcome, '.$_user_first_name.' '. $_user_last_name )?></li>
+                <li><?php echo secure_anchor('user/logout','Logout') ?></li>
             </ul>
         </div>
     </div>
 </div>
 <?php endif;?>
+<!-- header start -->
+    <header class="clearfix">
+        <div class="header_bottom">
+            <div class="header_top">
+                <div class="row">
+                    <div class="logo grid_6">
+
+                        <h1> 
+                            <a href="<?php echo base_url();?>">
+                                <img src="/survey/themes/default/images/logo-isean.png" alt="ISEAN">
+                                <span class="hidden">ISEAN</span>
+                            </a>
+                        </h1>
+                    </div>
+
+                    <div class="grid_6">
+                        <div class="loginlink pull-right">
+                            <?php if(!isset($_user_first_name)):?>
+                            <?php echo secure_anchor('register','<i class="icon-user"></i> Register', 'class="btn btn-small"')?>
+                            <?php echo secure_anchor('/user', '<i class="icon-user"></i> Login', 'class="btn btn-small"') ?>
+                        <?php endif;?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+<?php if($this->uri->segment(1)) : ?>
+ <section id="color_header" class="clearfix">
+
+            <div class="mainmenu ">
+            <div class="mainmenu_inner">
+                <div class="row clearfix">
+                    <div class="grid_12">
+                        <div class="sublogo">CBO e-Library</div>
+                        <?php $this->load->view('nav')?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p>&nbsp;</p>
+        <div class="clearfix"></div>
+    </section>
+<?php endif;?>
+<?php /*
 <!-- mobile navigation trigger-->
 <h5 class="mobile_nav"><a href="javascript:void(0)">&nbsp;<span></span></a></h5>
 <!--end mobile navigation trigger-->
@@ -96,3 +140,4 @@ if( isset( $auth_first_name ) ) {
 </header>
 <!-- close /.header --> 
 
+*/ ?>

@@ -11,20 +11,26 @@
  * @link        http://community-auth.com
  */
 ?><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
 <?php $this->load->view('head')?>
-</head>
-<body id="<?php echo $this->router->fetch_class() . '-' . $this->router->fetch_method(); ?>" class="<?php echo $this->router->fetch_class(); ?>-controller <?php echo $this->router->fetch_method(); ?>-method">
-<!-- NAVBAR
-    ================================================== -->
-<?php $this->load->view('header.php')?>
-<div id="page">	
-	<div class="container clearfix" id="main-content">
+<body id="<?php echo $this->router->fetch_class() . '-' . $this->router->fetch_method(); ?>" class="<?php echo $this->router->fetch_class(); ?>-controller <?php echo $this->router->fetch_method(); ?>-method apps layout_right_sidebar">
+<?php $this->load->view('header')?>
+    <section class="gray_line clearfix" id="title_sidebar">
+        <div class="row">
+            <div class="grid_12"></div>
+        </div>
+    </section>
+<!-- header end -->
+	
+<div role="main" id="main">
+	<div id="contentarea" class="row">
 		<?php echo ( isset( $content ) ) ? $content : ''; ?>
 	</div>
 </div>
-<?php $this->load->view('footer') ?>
+
+</div>
+<?php $this->load->view('footer')?>
 <?php
 
 /* End of file main_template.php */
