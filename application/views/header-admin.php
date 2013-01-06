@@ -9,7 +9,7 @@ if( isset( $auth_first_name ) ) {
     <div class="navbar-inner">
         <div class="container">
             <ul class="nav" style="padding:0px">
-
+                <li><?php echo anchor('/', 'Visit Website')?></li>
                 <li><?php echo secure_anchor('user', 'Dashboard')?></li>
                 <li><?php echo secure_anchor('elibrary/add', 'Share Document');?></li>
                 <li><?php echo secure_anchor('user/self_update', 'My Profile') ?></li> 

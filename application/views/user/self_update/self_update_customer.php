@@ -94,7 +94,7 @@
 			    			foreach ($country as $row) {
 			    				$countries[$row->country] = $row->country;	
 			    			}
-							echo form_dropdown('country', $countries, set_value('country'), 'id ="country" class="span12"');
+							echo form_dropdown('country', $countries, set_value('country', $user_data->country), 'id ="country" class="span12"');
 						?>
 					</div>
 				</div>
@@ -104,18 +104,17 @@
 					<div class="controls">
 						<?php 
 			    			//echo form_label('Province *','province',array('class'=>'form_label'));
-			    			if( isset( $provinces ) ){
+
+			    			if( isset( $province ) ){
 								// Default option
 								$country_province[''] = '-- Select --';
 								// Options from query
-								foreach( $provinces as $row ){
+								foreach( $province as $row ){
 									$country_province[$row['province']] = $row['province'];
 								}
-							} else {
-								// Default option if not POST request
-								$country_province[''] = '-- Select Country --';
 							}
-							echo form_dropdown('province', $country_province, set_value('province'), 'id="province" class="span12"');
+							
+							echo form_dropdown('province', $country_province, set_value('province', $user_data->province), 'id="province" class="span12"');
 						?>
 					</div>
 				</div>
@@ -289,7 +288,7 @@
 	</div>
 	<div class="accordion-group">
 		<div class="accordion-heading">
-			<a href="#collapseThree" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle"> Collapsible Group Item #3 </a>
+			<a href="#collapseThree" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle"> Change Profile Picture </a>
 		</div>
 		<div class="accordion-body collapse" id="collapseThree" style="height: 0px;">
 			<div class="accordion-inner">
@@ -345,14 +344,18 @@
 				<div class="form-row">
 					<div class="profile-upload-controls">
 						<div class="uploader-button">
+							<div id="profile_image_uploader" class="fileupload fileupload-new" data-provides="fileupload">
+								<span class="btn btn-file btn-info"><span class="fileupload-new">Select file</span><span class="fileupload-exists">Change</span><input type="file" name="userfile" /></span>
+							</div>
 							<?php
 								// PROFILE IMAGE UPLOAD BUTTON
 								$button_data = array(
-									'id'   => 'file-input',
+									// 'id'   => 'file-input',
+									'class' => 'btn btn-info',
 									'name' => 'userfile'
 								);
 
-								echo form_upload( $button_data );
+								//echo form_upload( $button_data );
 							?>
 						</div>
 						<div class="uploader-activity-container">

@@ -10,6 +10,7 @@
  * @license     BSD - http://http://www.opensource.org/licenses/BSD-3-Clause
  * @link        http://community-auth.com
  */
+
 ?>
 <div class="well">
 <div class="row-fluid">
@@ -46,9 +47,19 @@
 		
 		<h3 class="short_headline"><span>My Profile</span></h3>
 
-		<div class="well">
+		<div class="well clearfix">
+			<div class="profile_image pull-left" style="margin-right:20px;">
+				<?php
+					// PROFILE IMAGE
+					echo img(
+						( ! empty( $user_data->profile_image ) ) ? $user_data->profile_image : 'assets/images/Profile-Placeholder.png',
+						FALSE,
+						( $upload_destination == 'database' && ! empty( $user_data->profile_image ) ) ? TRUE : FALSE
+					);
+				?>
+			</div>
 			<h3>Welcome, <?php echo $user_data->user_name; ?></h3>
-			<ul class="std-list">
+			<ul class="std-list unstyled">
 				<li>
 					Registration Date: <?php echo date('F j, Y, g:i a',$user_data->user_date); ?>
 				</li>

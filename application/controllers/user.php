@@ -327,10 +327,13 @@ class User extends MY_Controller {
 			{
 				$user_row->license_number = $this->encrypt->decode( $user_row->license_number );
 			}
-
+			$this->load->model('registration_model');
+			$this->load->model( 'province_autopopulate_model', 'autopop' );
 			// Send user data to view
 			$view_data['user_data'] = $user_row;
 			$view_data['documents'] = $this->user_model->get_profile_document($this->auth_user_id);
+			$view_data ['country'] =  $this->registration_model->get_country();
+			$view_data['province'] = $this->autopop->get_province_in_country();
 
 			// Set destination for file storage.
 			$view_data['upload_destination'] = config_item('profile_image_destination');
