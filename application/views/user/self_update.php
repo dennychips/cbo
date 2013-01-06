@@ -11,9 +11,9 @@
  * @link        http://community-auth.com
  */
 ?>
-
+<div class="well">
 <div class="row-fluid">
-	<div class="span8">
+	<div class="span12">
 		<?php 
 			if( isset( $validation_errors ) )
 			{
@@ -43,7 +43,9 @@
 			if( $user_data !== FALSE )
 			{
 		?>
+		
 		<h3 class="short_headline"><span>My Profile</span></h3>
+
 		<div class="well">
 			<h3>Welcome, <?php echo $user_data->user_name; ?></h3>
 			<ul class="std-list">
@@ -73,9 +75,9 @@
 			}
 		?>
 	</div>
-	<div class="span4">
+	<!-- <div class="span4">
 		<h5 class="short_headline"><span>Profile Preview</span></h5>
-		<table style="font-size:11px">
+		<table style="font-size:11px" class="table-bordered table">
 			<tr>
 				<td colspan="2" align="center">
 					<div class="profile_image">
@@ -148,7 +150,8 @@
 			<?php endif?>
 		</table>
 	
-	</div>
+	</div> -->
+</div>
 </div>
 <?php 
 /* End of file self_update.php */

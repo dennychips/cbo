@@ -22,6 +22,7 @@ class User extends MY_Controller {
 
 		// Force encrypted connection
 		$this->force_ssl();
+		$this->template = 'templates/administration_template';
 		// $this->output->enable_profiler(TRUE);
 		
 	}

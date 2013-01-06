@@ -10,21 +10,26 @@
  * @license     BSD - http://http://www.opensource.org/licenses/BSD-3-Clause
  * @link        http://community-auth.com
  */
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html lang="en">
-<head>
 <?php $this->load->view('head')?>
-</head>
-<body id="<?php echo $this->router->fetch_class() . '-' . $this->router->fetch_method(); ?>" class="<?php echo $this->router->fetch_class(); ?>-controller <?php echo $this->router->fetch_method(); ?>-method">
-<!-- NAVBAR
-    ================================================== -->
+<body id="<?php echo $this->router->fetch_class() . '-' . $this->router->fetch_method(); ?>" class="<?php echo $this->router->fetch_class(); ?>-controller <?php echo $this->router->fetch_method(); ?>-method apps">
 <?php $this->load->view('header')?>
-<div id="page">
-	<div class="container clearfix" id="main-content">
+    <section class="gray_line clearfix" id="title_sidebar">
+        <div class="row">
+            <div class="grid_12"></div>
+        </div>
+    </section>
+<!-- header end -->
+	
+<div role="main" id="main">
+	<div id="contentarea" class="row">
 		<?php echo ( isset( $content ) ) ? $content : ''; ?>
 	</div>
 </div>
-	<!--close .container id="main-content" --> 
+
+</div>
 <?php $this->load->view('footer')?>
 <?php
 

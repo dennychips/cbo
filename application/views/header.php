@@ -63,7 +63,7 @@ if( isset( $auth_first_name ) ) {
 
                         <h1> 
                             <a href="<?php echo base_url();?>">
-                                <img src="/survey/themes/default/images/logo-isean.png" alt="ISEAN">
+                                <img src="<?php echo site_url('assets/images/logo-isean.png')?>" alt="ISEAN">
                                 <span class="hidden">ISEAN</span>
                             </a>
                         </h1>

@@ -1,9 +1,12 @@
-<div class="slide-to-top all-closed fancy">
-	<ul class="accordion-st-wrapper">
-		
-		<li class="st-content-wrapper"> <a class="trigger" href="#">Change Account Details <i class="icon-chevron-up"></i></a>
-			<div class="st-content" style="display: none;">
+<div id="accordion2" class="accordion">
+	<div class="accordion-group">
+		<div class="accordion-heading">
+			<a href="#collapseOne" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle"> Change Account Details </a>
+		</div>
+		<div class="accordion-body collapse" id="collapseOne" style="height: 0px;">
+			<div class="accordion-inner">
 				<h4 class="short_headline"><span>Contact Information</span></h4>
+				<hr />
 				<fieldset>
 					<div class="control-group">
 					<?php echo form_label('Description *','description',array('class'=>'required control-label form_label')); ?>
@@ -233,48 +236,63 @@
 				</div>
 				</fieldset>
 			</div>
-		</li>
-		<li class="st-content-wrapper"> <a class="trigger" href="#">Change Password<i class="icon-chevron-up"></i></a>
-			<div class="st-content" style="display: none;">
+		</div>
+	</div>
+	<div class="accordion-group">
+		<div class="accordion-heading">
+			<a href="#collapseTwo" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle"> Change Password </a>
+		</div>
+		<div class="accordion-body collapse" id="collapseTwo" style="height: 0px;">
+			<div class="accordion-inner">
 				<h3 class="short_headline"><span>Leave Blank To Keep Current Password:</span></h3>
+				<hr />
+				<fieldset>
+					<div class="control-group">
+						<?php echo form_label('Change Password','user_pass',array('class'=>'form_label')); ?>
+						<div class="controls">
+							<?php
+								// PASSWORD LABEL AND INPUT ********************************
+								$input_data = array(
+									'name'       => 'user_pass',
+									'id'         => 'user_pass',
+									'class'      => 'form_input password',
+									'max_length' => MAX_CHARS_4_PASSWORD
+								);
 
-				<?php
-					// PASSWORD LABEL AND INPUT ********************************
-					echo form_label('Change Password','user_pass',array('class'=>'form_label'));
-					$input_data = array(
-						'name'       => 'user_pass',
-						'id'         => 'user_pass',
-						'class'      => 'form_input password span4',
-						'max_length' => MAX_CHARS_4_PASSWORD
-					);
+								echo form_password($input_data);
+							?>
+						</div>
+					</div>
 
-					echo form_password($input_data);
-				?>
+					<div class="control-group">
+						<?php echo form_label('Confirm New Password','user_pass_confirm',array('class'=>'form_label')); ?>
+						<div class="controls">
+							<?php
+								// PASSWORD LABEL AND INPUT ********************************
+								$input_data = array(
+									'name'       => 'user_pass',
+									'id'         => 'user_pass',
+									'class'      => 'form_input password',
+									'max_length' => MAX_CHARS_4_PASSWORD
+								);
 
-			
-			
-
-				<?php
-					// CONFIRM PASSWORD LABEL AND INPUT ******************************
-					echo form_label('Confirm New Password','user_pass_confirm',array('class'=>'form_label'));
-					$input_data = array(
-						'name'       => 'user_pass_confirm',
-						'id'         => 'user_pass_confirm',
-						'class'      => 'form_input password span4',
-						'max_length' => MAX_CHARS_4_PASSWORD
-					);
-
-					echo form_password($input_data);
-				?>
-
-			
-				<label class="form_label checkbox">
-					<input type="checkbox" id="show-password" /> Show Password
-				</label>
+								echo form_password($input_data);
+							?>
+						</div>
+						<label class="form_label checkbox">
+							<input type="checkbox" id="show-password" /> Show Password
+						</label>
+					</div>
+				</fieldset>
 			</div>
-		</li>
-		<li class="st-content-wrapper"> <a class="trigger" href="#">Change Profile Picture<i class="icon-chevron-up"></i></a>
-			<div class="st-content" style="display: none;">
+		</div>
+	</div>
+	<div class="accordion-group">
+		<div class="accordion-heading">
+			<a href="#collapseThree" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle"> Collapsible Group Item #3 </a>
+		</div>
+		<div class="accordion-body collapse" id="collapseThree" style="height: 0px;">
+			<div class="accordion-inner">
 				<fieldset>
 				<legend>Profile Image</legend>
 				<div class="profile_image">
@@ -302,7 +320,7 @@
 					?>
 				</div>
 				<div id="upload_details">
-					<table class="simple_table">
+					<table class="simple_table table">
 						<caption>Upload Requirements</caption>
 						<tbody>
 							<tr>
@@ -344,19 +362,22 @@
 				</div>
 			</fieldset>
 			</div>
-		</li>
-	</ul>
-	<br />
-	<h5 class="short_headline">
+		</div>
+	</div>
+</div>
+
+
+	<h3 class="short_headline">
 		<span>Upload Document</span>
-	</h5>
+	</h3>
+	<hr />
 	<div class="upload-wrapper clearfix">
-		<span id="upload-doc-button" class="btn btn-primary fileinput-button"> 
-		<span><i class="icon-plus icon-white"></i> Upload Document...</span>
+		<!-- <span id="upload-doc-button" class="btn btn-primary fileinput-button">  -->
+		<!-- <span><i class="icon-plus icon-white"></i> Upload Document...</span> -->
 		<?php 
 			$input_data = array(
 			'name'		=> 'userfile',
-			// 'id' => 'upload-button',
+			'id' => 'upload-doc-button',
 			// 'class'		=> 'form_input span3',
 			// 'value'		=> set_value('user_name'),
 			);
@@ -404,12 +425,12 @@
 	<input type="hidden" id="upload_doc_profile_url" value="<?php echo secure_site_url('uploads_manager/bridge_filesystem/doc_profile'); ?>" />
 	<input type="hidden" id="delete_doc_profile" value="<?php echo secure_site_url('user/delete_doc_profile'); ?>" />
 	<input type="hidden" id="delete_url" value="<?php echo secure_site_url('user/delete_profile_image'); ?>" />
-</div>
+
 <?php
 	// SUBMIT BUTTON ***********************
 	$input_data = array(
 		'name'		=> 'submit',
-		'class'		=> 'btn btn-primary',
+		'class'		=> 'btn btn-primary ',
 		'id'		=> 'submit_button',
 		'value'		=> 'Update'
 	);

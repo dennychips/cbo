@@ -14,7 +14,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php $this->load->view('head')?>
-<body id="<?php echo $this->router->fetch_class() . '-' . $this->router->fetch_method(); ?>" class="<?php echo $this->router->fetch_class(); ?>-controller <?php echo $this->router->fetch_method(); ?>-method apps layout_right_sidebar">
+<body id="<?php echo $this->router->fetch_class() . '-' . $this->router->fetch_method(); ?>" class="<?php echo $this->router->fetch_class(); ?>-controller <?php echo $this->router->fetch_method(); ?>-method apps">
 <?php $this->load->view('header')?>
     <section class="gray_line clearfix" id="title_sidebar">
         <div class="row">

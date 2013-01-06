@@ -10,7 +10,7 @@
  * @license     BSD - http://http://www.opensource.org/licenses/BSD-3-Clause
  * @link        http://community-auth.com
  */
-?><!DOCTYPE html>
+?>
 <!DOCTYPE html>
 <html lang="en">
 <?php $this->load->view('head')?>

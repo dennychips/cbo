@@ -129,7 +129,7 @@ elseif(isset($validation_passed)) {
 		$input_data = array(
 			'name'		=> 'author',
 			'id'		=> 'author',
-			'class'		=> 'form_input span12',
+			'class'		=> 'form_input ',
 			'value'		=> set_value('author'),
 			'maxlength'	=> 255
 		);
@@ -138,7 +138,7 @@ elseif(isset($validation_passed)) {
 				$input_data = array(
 					'name'		=> 'link',
 					'id'		=> 'link',
-					'class'		=> 'form_input span12',
+					'class'		=> 'form_input ',
 					'value'		=> set_value('link'),
 					'maxlength'	=> 255
 				);

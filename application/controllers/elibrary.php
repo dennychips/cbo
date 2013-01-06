@@ -61,13 +61,14 @@ class Elibrary extends MY_Controller {
 					redirect('user');
 				}
 			}
+
 			$view_data['uploader_settings'] = config_item('upload_configuration_library_uploader');
 
 			// Create a more human friendly version of the allowed_types
 			$view_data['file_types'] = str_replace( '|', ' &bull; ', $view_data['uploader_settings']['allowed_types'] );
 			// $view_data['images'] = $this->lib->get_library_document( $this->auth_user_id );
 			$view_data['doc_type'] = $this->lib->get_type();
-			$this->template = 'templates/single';
+			// $this->template = 'templates/single';
 			$data = array(
 					'title' 	=> 'CBO - eLibrary',
 					'content' 	=> $this->load->view('library/add', $view_data, TRUE),
@@ -81,6 +82,7 @@ class Elibrary extends MY_Controller {
 						),
 					
 				);
+			$this->template = 'templates/administration_template';
 			$this->load->view($this->template, $data);	
 			
 		}
@@ -109,6 +111,7 @@ class Elibrary extends MY_Controller {
 							'assets/js/document-uploader-controls.js',
 						),
 				);
+			$this->template = 'templates/administration_template';
 			$this->load->view($this->template, $data);
 		}
 	}

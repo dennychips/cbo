@@ -1,38 +1,47 @@
-<div class="row-fluid  sidebar-right">
-	<div class="span9 primary-column">
-		<h4 class="short_headline" style="margin-top:0px"><span>Filter</span></h4>
-
-		<table class="filterTableElibrary">
-		<tr>
-			<td width="25%">
-				Title
-				
-			</td>
-			<td><input type="text" name="title" id="title" ></td>
-		</tr>
-		<tr>
-			<td>Author</td>
-			<td>
-				<select id="author">
-					<option value="">-- Select --</option>
-					<?php foreach($author as $row) :?>
-					<option value="<?php echo $row['author'] ?>"><?php echo $row['author'] ?></option>
-					<?php endforeach?>
-				</select>
-			</td>
-		<tr>
-			<td>Format</td>
-			<td>
-				<select id="format">
-					<option value="">-- Select --</option>
-					<?php foreach($format as $row) :?>
-					<option value="<?php echo $row['format'] ?>"><?php echo $row['format'] ?></option>
-					<?php endforeach?>
-				</select>
-			</td>
-	</table>
+<div class="grid_12">
+<a class="btn btn-info pull-right btn-small" id="filter" href="javascript:void(0);"><i class="icon-filter icon-white"></i> Filter</a>
+<div class="filter" style="display:none">
+<h4 class="short_headline" style="margin-top:0px"><span>Filter</span></h4>
+<hr />
+<div class="row">
+	
+	<div class="span2">
+		<label for="title">Organization Name</label>
+		<input type="text" name="title" id="title" class="span2">
+	</div>
+	<div class="span2">
+		<label for="author">Author</label>
+		<select id="author" class="span2">
+			<option value="">-- Select --</option>
+			<?php foreach($author as $row) :?>
+			<option value="<?php echo $row['author'] ?>"><?php echo $row['author'] ?></option>
+			<?php endforeach?>
+		</select>
+	</div>
+	<div class="span2">
+		<label for="format">Author</label>
+		<select id="format" class="span2">
+			<option value="">-- Select --</option>
+			<?php foreach($format as $row) :?>
+			<option value="<?php echo $row['format'] ?>"><?php echo $row['format'] ?></option>
+			<?php endforeach?>
+		</select>
+	</div>
+	<div class="span2">
+		<label for="doctype">Type</label>
+		<select id="doctype" class="span2">
+			<option value="">-- Select --</option>
+			<?php foreach($doctype as $row) :?>
+			<option value="<?php echo $row['category_name'] ?>"><?php echo $row['category_name'] ?></option>
+			<?php endforeach?>
+		</select>
+	</div>
+	</div>
+	<hr />
+</div>
 	<input type="hidden" value="<?php echo site_url('elibrary/library_by_category/'.$slug) ?>" id="category-name"/>
 	<h4 class="short_headline" style="margin-top:0px"><span>eLibrary Document</span></h4>
+	<hr />
 		<table id="library-table" class="table table-hover">
 		  <thead>
 		    <tr>
@@ -47,52 +56,5 @@
 		  <tbody>
 		  </tbody>
 		</table>
-	</div>
-	<section class="span3 sidebar secondary-column" id="secondary-nav">
-		<aside class="widget">
-			<h5 class="short_headline"><span>Document Type</span></h5>
-			<ul class="navigation">
-				<li><a href="#">Report</a></li>
-				<li><a href="#">Research</a></li>
-				<li><a href="#">Journal</a></li>
-				<li><a href="#">Guideline</a></li>
-			</ul>
-		</aside>
-		<!--close aside widget-->
-		
-	</section>
-	<!--close section sidebar span3--> 
 </div>
-<!-- <div class="row-fluid">
-	<div class="span3">
-		<form class="">
-			<label>Subject</label>
-			<input type="text" placeholder="subject"   />
-		</form>
-	</div>
-	<div class="span3">
-		<label>Author</label>
-		<input type="text" placeholder="Author" />	
-	</div>
-	<div class="span3">
-		<label>Document Type</label>
-			<select >
-				<option>Report</option>
-				<option>Research</option>
-				<option>Guideline</option>
-				<option>Best Practice</option>
-				<option>Journal</option>
-			</select>
-	</div>
-
-</div>
- -->
- <div class="row-fluid">
- 	<div class="span3">
-	
- 	</div>
-	<div class="span9">
-		
-	</div>
-</div>	
 
