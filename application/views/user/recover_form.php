@@ -11,10 +11,10 @@
  * @link        http://community-auth.com
  */
 ?>
-
-<h1 class="short_headline"><span>Account Recovery</span></h1>
-
-<?php
+<div class="row">
+	<div class="span8 offset2 well">
+		<h1 class="short_headline"><span>Account Recovery</span></h1>
+		<?php
 if( isset( $disabled ) )
 {
 	echo '
@@ -103,7 +103,7 @@ if( isset( $show_form ) )
 							$input_data = array(
 								'name'		=> 'user_email',
 								'id'		=> 'user_email',
-								'class'		=> 'form_input',
+								'class'		=> 'form_input span8',
 								'maxlength' => 255
 							);
 							echo form_input($input_data);
@@ -118,7 +118,7 @@ if( isset( $show_form ) )
 							// SUBMIT BUTTON **************************************************************
 							$input_data = array(
 								'name'  => 'submit',
-								'class' => 'btn btn-primary',
+								'class' => 'btn btn-info btn-small',
 								'id'    => 'submit_button',
 								'value' => 'Send Email'
 							);
@@ -131,6 +131,10 @@ if( isset( $show_form ) )
 		</form>
 
 	<?php
-}
+} ?>
+	</div>
+</div>
+
+<?php 
 /* End of file recover_form.php */
 /* Location: /application/views/recover_form.php */

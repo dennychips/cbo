@@ -11,7 +11,8 @@
  * @link        http://community-auth.com
  */
 ?>
-
+<div class="row">
+	<div class="span8 offset2 well">
 <h1>Account Recovery - Stage 2</h1>
 
 <?php
@@ -143,20 +144,11 @@ if( $showform == 1 )
 							?>
 
 						</div>
-						<div class="form-row">
-
-							<?php
-								// SHOW PASSWORD CHECKBOX
-								echo form_label('Show Passwords','show-password',array('class'=>'form_label'));
-
-								$checkbox_data = array(
-									'id' => 'show-password'
-								);
-								echo form_checkbox( $checkbox_data );
-							?>
-
-						</div>
+						<label class="checkbox inline" for="show-password">
+						  <input type="checkbox" id="show-password"> Show Password
+						</label>
 					</fieldset>
+					<br />
 					<div class="form-row">
 						<div id="submit_box">
 
@@ -174,6 +166,7 @@ if( $showform == 1 )
 								$input_data = array(
 									'name'  => 'form_submit',
 									'id'    => 'submit_button',
+									'class' => 'btn btn-info btn-small',
 									'value' => 'Change Password'
 								);
 								echo form_submit($input_data);
@@ -185,6 +178,9 @@ if( $showform == 1 )
 			</div>
 		<?php
 	}
-}
+}?>
+</div>
+</div>
+<?php
 /* End of file choose_password_form.php */
 /* Location: /application/views/choose_password_form.php */

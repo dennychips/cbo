@@ -88,33 +88,16 @@ elseif(isset($validation_passed)) {
 <div class="span4">
 	<div class="well">
 		<h5 class="short_headline"><span>Upload File</span></h5>
-		<div class="control-group">
-			<?php echo form_label('Upload File *','upload',array('class'=>'control-label form_label')); ?>
-			<div class="controls" > 
-				<!-- The fileinput-button span is used to style the file input field as button --> 
-				<span id="upload-button" class="btn-block btn btn-primary fileinput-button"> <span><i class="icon-plus icon-white"></i> Upload Document...</span>
-				<?php 
-					$input_data = array(
-					'name'		=> 'userfile',
-					// 'id' => 'upload-button',
-					// 'class'		=> 'form_input span3',
-					'value'		=> set_value('user_name'),
-					);
-					echo form_upload($input_data);
-				?>	
-				<!-- <input type="file" name="files[]"> -->
-			</div>
-			<div class="progress progress-striped active" style="display:none">
-		    	<div class="bar" style="width: 100%;"></div>
-   			</div>
-			<br />
-			<br />
-			
-				<ul class="unstyled doc-placeholder">
-				</ul>
-			
+		<div id="upload-button" class="fileupload fileupload-new" data-provides="fileupload">
+		<span class="btn btn-file btn-info" style="width:90%"><span class="fileupload-new">Select file</span><span class="fileupload-exists">Change</span><input type="file" /></span>
+		<span class="fileupload-preview"></span>
+		<a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
 		</div>
-		<div class="clearfix"></div>
+		<div class="progress progress-striped active" style="display:none">
+		    	<div class="bar" style="width: 100%;"></div>
+		</div>
+		<ul class="unstyled doc-placeholder">
+		</ul>
 		<?php 
 		echo form_label('Document Type *','type',array('class'=>'form_label'));
 		
@@ -124,7 +107,7 @@ elseif(isset($validation_passed)) {
 		}
 		
 		
-		echo form_dropdown('type', $type , set_value('type'), 'id="type" class="span12"');
+		echo form_dropdown('type', $type , set_value('type'), 'id="type"');
 		echo form_label('Author *','author',array('class'=>'form_label'));
 		$input_data = array(
 			'name'		=> 'author',

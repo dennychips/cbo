@@ -171,6 +171,7 @@ class User extends MY_Controller {
 		$data = array(
 			'content' => $this->load->view( 'user/recover_form', ( isset( $view_data ) ) ? $view_data : '', TRUE )
 		);
+		$this->template = 'templates/login_template';
 
 		$this->load->view( $this->template, $data );
 	}
@@ -273,7 +274,7 @@ class User extends MY_Controller {
 			',
 			'content' => $this->load->view( 'user/choose_password_form', $view_data, TRUE )
 		);
-
+		$this->template = 'templates/login_template';
 		$this->load->view( $this->template, $data );
 	}
 
@@ -413,6 +414,9 @@ class User extends MY_Controller {
 				exit;
 			}
 		}
+	}
+	public function delete_doc_profile($id){
+
 	}
 
 	// --------------------------------------------------------------

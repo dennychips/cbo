@@ -372,17 +372,12 @@
 	</h3>
 	<hr />
 	<div class="upload-wrapper clearfix">
-		<!-- <span id="upload-doc-button" class="btn btn-primary fileinput-button">  -->
-		<!-- <span><i class="icon-plus icon-white"></i> Upload Document...</span> -->
-		<?php 
-			$input_data = array(
-			'name'		=> 'userfile',
-			'id' => 'upload-doc-button',
-			// 'class'		=> 'form_input span3',
-			// 'value'		=> set_value('user_name'),
-			);
-			echo form_upload($input_data);
-		?>
+
+		<div id="upload-doc-button" class="fileupload fileupload-new" data-provides="fileupload">
+			<span class="btn btn-file btn-info"><span class="fileupload-new">Select file</span><span class="fileupload-exists">Change</span><input type="file" /></span>
+			<span class="fileupload-preview"></span>
+			<a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
+		</div>
 		</span>
 			<div class="progress progress-striped active" style="display:none">
 				<div class="bar" style="width: 100%;"></div>

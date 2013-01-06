@@ -14,7 +14,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php $this->load->view('head-admin')?>
-<body>
+<body id="<?php echo $this->router->fetch_class() . '-' . $this->router->fetch_method(); ?>" class="<?php echo $this->router->fetch_class(); ?>-controller <?php echo $this->router->fetch_method(); ?>-method">
 <?php $this->load->view('header-admin')?>
 
 <div class="container">

@@ -21,8 +21,7 @@
 	echo link_tag( array( 'href' => 'assets/css/admin/bootstrap.min.css', 'media' => 'screen', 'rel' => 'stylesheet' ) ) . "\n";
 	echo link_tag( array( 'href' => 'assets/css/admin/bootstrap-responsive.min.css', 'media' => 'screen', 'rel' => 'stylesheet' ) ) . "\n";
 	echo link_tag( array( 'href' => 'assets/css/admin/style-admin.css', 'media' => 'screen', 'rel' => 'stylesheet' ) ) . "\n";
-	
-	
+	echo link_tag( array( 'href' => 'assets/css/jasny-bootstrap.min.css', 'media' => 'screen', 'rel' => 'stylesheet' ) ) . "\n";
 	if( isset( $style_sheets ) )
 	{
 		foreach( $style_sheets as $href => $media )
@@ -34,6 +33,8 @@
 	// jQuery is always loaded
 	echo script_tag( 'assets/js/jquery.min.js' ) . "\n";
 	echo script_tag( 'assets/js/modernizr.custom.87724.js' ) . "\n";
+	echo script_tag( 'assets/js/jasny-bootstrap.min.js' ) . "\n";
+	
 	// Add any additional javascript
 	if( isset( $javascripts ) )
 	{
