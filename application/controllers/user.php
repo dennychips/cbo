@@ -418,8 +418,22 @@ class User extends MY_Controller {
 			}
 		}
 	}
-	public function delete_doc_profile($id){
-
+	public function delete_doc_profile(){
+		$this->load->library('csrf');
+		if($this->csrf->token_match){
+			if($this->input->is_ajax_request()){
+				$this->load->model('user_model');
+				if($delete_doc = $this->user_model->delete_profile_doc($this->input->post('id'))){
+					$response['status'] = 'success';
+					$response['token'] = $this->csrf->token;
+				} else {
+					$response['status'] = 'Model return = FALSE';
+				}
+			}
+		} else {
+			$response['status'] = 'Error: No Token Match - ' . $this->csrf->posted_token . ' != ' . $this->csrf->current_token;
+		}
+		echo json_encode($response);
 	}
 
 	// --------------------------------------------------------------

@@ -727,4 +727,7 @@ $(document).ready(function(){
 	$('#filter').click(function(){
 		$('.filter').slideToggle();
 	});
+	// $('.inputmask').inputmask()
+	// $('select').selectpicker();
+
 });

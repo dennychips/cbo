@@ -41,7 +41,7 @@ class Uploads_manager extends MY_Controller {
 	 */
 	public function bridge_filesystem( $type )
 	{
-
+		// echo $_FILES['userfile']['type'];die();
 		$this->bridge_type = 'filesystem';
 
 		$this->_facilitate_upload( $type );

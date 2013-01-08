@@ -403,7 +403,8 @@
 					foreach($documents as $row ){
 						echo '<tr>';
 						echo '<td>'.$row->file_name.'</td>';
-						echo '<td><a href="user/delete_doc_profile/'.$row->id.'"">delete</a></td>';
+						// echo '<td><a href="user/delete_doc_profile/'.$row->id.'"">delete</a></td>';
+						echo '<td><a href="javascript:void(0)" onclick="deleteDoc('.$row->id.')" class="btn btn-danger btn-small"><i class="icon-white icon-trash"></i> Delete</a></td>';
 						echo '</tr>';
 					}
 					
@@ -411,6 +412,7 @@
 			?>
 		</tbody>
 	</table>
+
 	<?php 
 		$upload_config_profile_doc = config_item('upload_configuration_doc_profile');
 	?>
@@ -423,6 +425,20 @@
 	<input type="hidden" id="upload_doc_profile_url" value="<?php echo secure_site_url('uploads_manager/bridge_filesystem/doc_profile'); ?>" />
 	<input type="hidden" id="delete_doc_profile" value="<?php echo secure_site_url('user/delete_doc_profile'); ?>" />
 	<input type="hidden" id="delete_url" value="<?php echo secure_site_url('user/delete_profile_image'); ?>" />
+	<div class="modal fade hide" id="myModal">
+    	<div class="modal-header">
+	    <a class="close" data-dismiss="modal">×</a>
+	      <h3>Confirmation</h3>
+	    </div>
+	    <div class="modal-body">
+	      <p>Are your sure want to delete this document ? <br /><small><i>this action cannot be undo.</i></small></p>
+	    </div>
+	    <div class="modal-footer">
+	      <a href="#" class="btn btn-primary" data-dismiss="modal">Cancel</a>
+	      <a href="javascript:void(0)" id="confirmation" class="btn btn-danger">Delete</a>
+	    </div>
+  	</div>
+	
 
 <?php
 	// SUBMIT BUTTON ***********************

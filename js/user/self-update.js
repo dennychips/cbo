@@ -121,3 +121,26 @@
 		});
 	});
 });
+
+function deleteDoc(id){
+	$('#myModal').modal();
+	var post_data = {
+		'id' : id,
+		'token' : $('input[name="token"]').val()
+	}
+	$('#confirmation').click(function(){
+		$.ajax({
+			type: 'post',
+			url: $('#delete_doc_profile').val(),
+			data: post_data,
+			dataType: 'json',
+			success: function(response){
+				if(response.status == 'success'){
+					
+				}
+				$('input[name="token"]').val(response.token);
+				$('input[name="' + ci_csrf_token_name + '"]').val( response.ci_csrf_token );
+			}
+		});
+	});
+}

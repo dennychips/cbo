@@ -22,6 +22,7 @@
 	echo link_tag( array( 'href' => 'assets/css/main.css', 'media' => 'screen', 'rel' => 'stylesheet' ) ) . "\n";
 	echo link_tag( array( 'href' => 'assets/css/media.queires.css', 'media' => 'screen', 'rel' => 'stylesheet' ) ) . "\n";
 	echo link_tag( array( 'href' => 'assets/css/skin.css', 'media' => 'screen', 'rel' => 'stylesheet' ) ) . "\n";
+	echo link_tag( array( 'href' => 'assets/css/bootstrap-select.min.css', 'media' => 'screen', 'rel' => 'stylesheet' ) ) . "\n";
 	if( isset( $style_sheets ) )
 	{
 		foreach( $style_sheets as $href => $media )
@@ -41,9 +42,11 @@
 			echo script_tag( $javascripts["$x"] ) . "\n";
 		}
 	}
+
 	echo script_tag('assets/js/bootstrap.min.js') . "\n";
 	echo script_tag('assets/js/superfish/superfish.js') . "\n";
 	echo script_tag('assets/js/swipe.js') . "\n";
+	echo script_tag('assets/js/bootstrap-select.min.js') . "\n";
 	echo script_tag('assets/js/script.js') . "\n";
 	// echo script_tag('assets/js/prettyphoto/js/jquery.prettyPhoto.js') . "\n";
 	echo script_tag('assets/js/jquery.cycle.all.js') . "\n";

@@ -7,11 +7,11 @@
 	
 	<div class="span2">
 		<label for="title">Organization Name</label>
-		<input type="text" name="title" id="title" class="span2">
+		<input type="text" name="title" id="title" class="span3">
 	</div>
 	<div class="span2">
 		<label for="author">Author</label>
-		<select id="author" class="span2">
+		<select data-style="span2" id="author" class="span2">
 			<option value="">-- Select --</option>
 			<?php foreach($author as $row) :?>
 			<option value="<?php echo $row['author'] ?>"><?php echo $row['author'] ?></option>
@@ -20,7 +20,7 @@
 	</div>
 	<div class="span2">
 		<label for="format">Author</label>
-		<select id="format" class="span2">
+		<select data-style="span2" id="format" class="span2">
 			<option value="">-- Select --</option>
 			<?php foreach($format as $row) :?>
 			<option value="<?php echo $row['format'] ?>"><?php echo $row['format'] ?></option>
@@ -29,7 +29,7 @@
 	</div>
 	<div class="span2">
 		<label for="doctype">Type</label>
-		<select id="doctype" class="span2">
+		<select data-style="span2" id="doctype" class="span2">
 			<option value="">-- Select --</option>
 			<?php foreach($doctype as $row) :?>
 			<option value="<?php echo $row['category_name'] ?>"><?php echo $row['category_name'] ?></option>

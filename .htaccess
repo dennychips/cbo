@@ -21,3 +21,5 @@ RewriteRule .* index.php/$0 [PT,L]
 
 # SPECIAL GODADDY LINE ( UNCOMMENT IF GODADDY )
 #RewriteRule ^(.*)$ /index.php?/$1 [L]
+
+AddType application/vnd.openxmlformats .ppt .pptx .xlsx

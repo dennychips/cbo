@@ -17,8 +17,10 @@
 </div> -->
 <div class="well">
   <h4 class="short_headline">
-  	<span>Recent Document</span>
+  	<span class="pull-left">Recent Document</span>
   </h4>
+  <div class="pull-right">tes</div>
+  
   <hr />
   <?php if($this->session->flashdata('message')):?>
   <div class="alert alert-success"><?php echo $this->session->flashdata('message')?></div>

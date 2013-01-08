@@ -47,6 +47,8 @@ $config['upload_configuration_profile_image'] = array(
 	'max_size'      => '1024',
 	'max_width'     => '200',
 	'max_height'    => '200',
+	'min_height'    => '200',
+	'min_width'     => '200',
 
 	// FILESYSTEM specific settings
 	'primary_dir'   => 'dir_name',     // <- POST key of primary directory
@@ -107,7 +109,7 @@ $config['authentication_doc_profile'] = 'admin,manager,customer';
 $config['upload_configuration_doc_profile'] = array(
 
 	// Settings for any destination
-	'allowed_types' => 'doc|docx|ppt|pdf',
+	'allowed_types' => 'doc|docx|ppt|pdf|pptx',
 	'max_size'      => '10240',
 	'max_width'     => '200',
 	'max_height'    => '200',
