@@ -60,4 +60,11 @@ class Cboprofile_model extends CI_Model {
 
 		return $q->result_array();
 	}
+	public function get_recent_item($table, $limit = '') {
+		$this->db->join('users', 'users.user_id = customer_profile.user_id', 'left');
+		$this->db->where('users.user_level', 1);
+		$this->db->order_by('user_date', 'desc');
+		$q = $this->db->get($table, $limit);
+		return $q->result();
+	}
 }

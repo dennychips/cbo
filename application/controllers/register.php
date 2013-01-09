@@ -178,6 +178,7 @@ class Register extends MY_Controller {
 			$view_data['reg_setting'] = $this->registration_model->get_reg_mode();
 
 			$data['content'] = $this->load->view( 'register/settings', $view_data, TRUE );
+			$this->template = 'templates/administration_template';
 
 			$this->load->view( $this->template, $data );
 		}
@@ -279,7 +280,7 @@ class Register extends MY_Controller {
 				),
 				'content' => $this->load->view( 'register/show_pending', $view_data, TRUE )
 			);
-
+			$this->template = 'templates/administration_template';
 			$this->load->view( $this->template, $data );
 		}
 

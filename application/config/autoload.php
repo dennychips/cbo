@@ -64,7 +64,7 @@ $autoload['libraries'] = array('fb','database','session','Authentication');
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('html','url','form','cookie');
+$autoload['helper'] = array('html','url','form','cookie', 'recents');
 
 
 /*

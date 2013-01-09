@@ -11,8 +11,9 @@
  * @link        http://community-auth.com
  */
 ?>
-
+<div class="well">
 <h1>Registration Settings</h1>
+<hr />
 
 <?php
 	$reg_mode = array(
@@ -28,7 +29,7 @@
 				<p class="feedback_header">
 					The registration setting has been updated. Setting is now:
 				</p>
-				<p style="margin:.6em 0 0 0;">
+				<p class="alert alert-success">
 					<b>' . $reg_mode["$reg_setting"] . '</b>
 				</p>
 			</div>';
@@ -41,54 +42,38 @@
 			<legend>Registration Mode:</legend>
 			<div class="form-row">
 				<div class="radio-header">Modes:</div>
-				<div class="radio_set">
-					<div class="form-row">
-						<div class="form_radio_container">
 
-							<?php
-								// FIRST RADIO
-								$radio_data = array(
+							<label class="radio inline" for="setting-off">
+								<?php 
+									$radio_data = array(
 									'name'		=> 'reg_setting',
 									'id'		=> 'setting-off',
 									'value'		=> '0',
 									'checked'	=> (isset($reg_setting) && $reg_setting == '0')? 'checked' : '',
-									'class'		=> 'form_radio'
-								);
-								echo form_radio($radio_data);
-							?>
+									'class'		=> 'form_radio radio'
+									);
+									echo form_radio($radio_data);
+								?>
+								Off
+							</label>
+							<label class="radio inline" for="setting-instant"> 
+									<?php
+										// SECOND RADIO
+										$radio_data = array(
+											'name'		=> 'reg_setting',
+											'id'		=> 'setting-instant',
+											'value'		=> '1',
+											'checked'	=> (isset($reg_setting) && $reg_setting == '1')? 'checked' : '',
+											'class'		=> 'form_radio'
+										);
 
-						</div>
+										echo form_radio($radio_data);
+									?>
+								Instant
+							</label>
 
-						<?php
-							echo form_label('Off', 'setting-off', array('class'=>'radio_label'));
-						?>
-
-					</div>
-					<div class="form-row">
-						<div class="form_radio_container">
-
-							<?php
-								// SECOND RADIO
-								$radio_data = array(
-									'name'		=> 'reg_setting',
-									'id'		=> 'setting-instant',
-									'value'		=> '1',
-									'checked'	=> (isset($reg_setting) && $reg_setting == '1')? 'checked' : '',
-									'class'		=> 'form_radio'
-								);
-
-								echo form_radio($radio_data);
-							?>
-
-						</div>
-
-						<?php
-							echo form_label('Instant', 'setting-instant', array('class'=>'radio_label'));
-						?>
-
-					</div>
-					<div class="form-row">
-						<div class="form_radio_container">
+						
+							<label class="radio inline" for="setting-email">
 
 							<?php
 								// THIRD RADIO
@@ -102,17 +87,10 @@
 
 								echo form_radio($radio_data);
 							?>
+								Email Verification
+							</label>
 
-						</div>
-
-						<?php
-							echo form_label('Email Verification', 'setting-email', array('class'=>'radio_label'));
-						?>
-
-					</div>
-					<div class="form-row">
-						<div class="form_radio_container">
-
+							<label for="setting-admin" class="radio inline">
 							<?php
 								// THIRD RADIO
 								$radio_data = array(
@@ -125,17 +103,13 @@
 
 								echo form_radio($radio_data);
 							?>
-
-						</div>
-
-						<?php
-							echo form_label('Admin Approval', 'setting-admin', array('class'=>'radio_label'));
-						?>
-
-					</div>
-				</div>
+							Admin Approval
+							</label>
+					
+				
 			</div>
 		</fieldset>
+		<hr />
 		<div class="form-row">
 			<div id="submit_box">
 
@@ -144,7 +118,8 @@
 					$input_data = array(
 						'name'		=> 'reg_submit',
 						'id'		=> 'submit_button',
-						'value'		=> 'Save'
+						'value'		=> 'Save',
+						'class' 	=> 'btn btn-info btn-small'
 					);
 					echo form_submit($input_data);
 				?>
@@ -153,7 +128,7 @@
 		</div>
 	</div>
 </form>
-
+</div>
 <?php
 /* End of file settings.php */
 /* Location: .system/application/views/register/settings.php */

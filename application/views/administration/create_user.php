@@ -10,8 +10,12 @@
  * @license     BSD - http://http://www.opensource.org/licenses/BSD-3-Clause
  * @link        http://community-auth.com
  */
+?>
+<div class="well">
+<?php 
 echo '<h1 class="short_headline"><span>' . ( isset( $type ) ? ucfirst( $type ) . ' Creation' : 'User Creation' ) . '</span></h1>';
 ?>
+<hr />
 	<div class="row-fluid">
 		<div class="span7">
 		<?php
@@ -66,7 +70,7 @@ echo '<h1 class="short_headline"><span>' . ( isset( $type ) ? ucfirst( $type ) .
 		?>
 		</div>
 	</div>
-
+</div>
 <?php
 
 /* End of file create_user.php */

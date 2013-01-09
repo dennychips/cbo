@@ -428,11 +428,13 @@ class User extends MY_Controller {
 					$response['token'] = $this->csrf->token;
 				} else {
 					$response['status'] = 'Model return = FALSE';
+					$response['token'] = $this->csrf->token;
 				}
 			}
 		} else {
 			$response['status'] = 'Error: No Token Match - ' . $this->csrf->posted_token . ' != ' . $this->csrf->current_token;
 		}
+		
 		echo json_encode($response);
 	}
 

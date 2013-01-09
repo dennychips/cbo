@@ -12,8 +12,9 @@
  */
  ?>
 
+<div class="well">
 <h1>Pending Registrations</h1>
-
+<hr />
 <?php
 
 if( isset( $admin_mode ) )
@@ -23,7 +24,7 @@ if( isset( $admin_mode ) )
 	?>
 
 	<div id="table-wrapper">
-		<table id="myTable" class="tablesorter">
+		<table id="myTable" class="tablesorter table table-bordered">
 			<thead>
 				<tr>
 					<th></th>
@@ -70,8 +71,8 @@ if( isset( $admin_mode ) )
 		</table>
 	</div>
 	<div id="decision_buttons">
-		<input type="submit" name="approve" value="Approve Selected" /><br />
-		<input type="submit" name="delete" value="Delete Selected" />
+		<input class="btn btn-info" type="submit" name="approve" value="Approve Selected" />
+		<input class="btn btn-danger" type="submit" name="delete" value="Delete Selected" />
 	</div>
 </form>
 
@@ -81,6 +82,8 @@ else
 {
 	echo $reg_mode_mismatch;
 }
-
+?>
+</div>
+<?php 
 /* End of file show_pending.php */
 /* Location: /application/views/register/show_pending.php */

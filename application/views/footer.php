@@ -16,30 +16,30 @@
             <aside class="grid_3">
                 <div id="nav_menu-3" class="widget widget_nav_menu">
                     <h4 class="widget-title">Recent Registered CBO</h4>
+                    <div class="menu-main-container">
+                        <?php $recent_profile = recent_item('cboprofile', 'customer_profile', 5);?>
 
-    <div class="menu-main-container">
-        <ul id="menu-main-2" class="menu">
-                    </ul>
-    </div>                </div>
-                <!--
-                <div id="churchope-social-links-2" class="widget widget_social_links">
-                    <h4 class="widget-title">Follow us</h4>
-                    <ul>
-                        <li><a href="http://twitter.com/isean_asia" target="_blank" class="twitter_account">Twitter</a></li>
-                        <li><a href="http://facebook.com/isean.asia" target="_blank" class="facebook_account">Facebook</a></li>
-                    </ul>
+                        <ul id="menu-main-2" class="menu">
+                             <?php foreach ($recent_profile as $item) {
+                                echo '<li><a href="'.site_url('cbodirectory/view/'.$item->user_id).'">'.$item->organization.'</a></li>';
+                            }?>
+                        </ul>
+                    </div>
                 </div>
-                -->
             </aside>
 
             <aside class="grid_3">
                 <div id="nav_menu-3" class="widget widget_nav_menu">
                     <h4 class="widget-title">Recent Uploads</h4>
 
-    <div class="menu-main-container">
-        <ul id="menu-main-2" class="menu">
-        </ul>
-    </div>
+                    <div class="menu-main-container">
+                        <?php $recent_lib = recent_item('library', 'library_data',5)?>
+                        <ul id="menu-main-2" class="menu">
+                            <?php foreach ($recent_lib as $item) {
+                                echo '<li><a href="'.site_url('elibrary/view/'.$item->id).'">'.$item->title.'</a></li>';
+                            }?>
+                        </ul>
+                    </div>
 </div>
             </aside>
 

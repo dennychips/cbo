@@ -136,7 +136,9 @@ function deleteDoc(id){
 			dataType: 'json',
 			success: function(response){
 				if(response.status == 'success'){
-					
+					$('input[name="token"]').val(response.token);
+					$('#myModal').modal('hide')
+					location.reload();
 				}
 				$('input[name="token"]').val(response.token);
 				$('input[name="' + ci_csrf_token_name + '"]').val( response.ci_csrf_token );

@@ -41,7 +41,7 @@
         <div class="jcyclemain right" data-slidesize="300">
     <div class="bgimage ">
         <div class="row">
-            <div class="cycle_content cycle_col grid_12 " >
+            <div class="cycle_content cycle_col grid_12">
                 <div class="">
                     <!-- <h4 class="entry-title">Create Survey</h4> -->
                     <div class="entry-content">

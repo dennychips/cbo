@@ -769,6 +769,20 @@ class User_model extends MY_Model {
 		return $q->result();
 	}
 	// --------------------------------------------------------------
+	public function delete_profile_doc($id) {
+		// $user_dir = $this->auth_user_id . '-' . md5( config_item('encryption_key') . $this->auth_user_id );
+		$this->db->where('id', $id);
+		$q = $this->db->get('customer_profile_file');
+		$file = $q->row_array();
+		$uploaded_file = FCPATH . str_replace( base_url(), '', $file['file_path'] );
+		unlink($uploaded_file);
+		$this->db->where('id', $id);
+		$q = $this->db->delete('customer_profile_file'); 
+		if($q) {
+			return true;
+		} 
+		return false;
+	}
 
 }
 

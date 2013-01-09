@@ -22,6 +22,7 @@ class Administration extends MY_Controller {
 
 		// Force encrypted connection
 		$this->force_ssl();
+		$this->template = 'templates/administration_template';
 	}
 
 	// --------------------------------------------------------------

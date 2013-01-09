@@ -191,8 +191,14 @@ class Library_model extends MY_Model {
 		return $q->result_array();
 	}
 	public function get_recent_uploads($user_id) {
+
 		$q = $this->db->get_where('library_data', array('user_id' => $user_id));
 
+		return $q->result();
+	}
+	public function get_recent_item($table, $limit = '') {
+		$this->db->order_by("modified", "desc"); 
+		$q = $this->db->get($table, $limit);
 		return $q->result();
 	}
 	public function get_data_by_id($data_id) {

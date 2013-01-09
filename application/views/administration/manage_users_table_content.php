@@ -34,20 +34,6 @@ if( $users_data !== FALSE )
 
 		echo '
 			<tr id="' . $user->user_id . '" class="' . $class . '">
-				<td class="delete-column">
-					' . secure_anchor( 
-							'administration/delete_user/' . $user->user_id . $current_page , 
-							img( array( 'src' => 'img/tablesorter/delete.png' ) ),
-							array( 'class' => 'delete-img' )
-						 ) . '
-				</td>
-				<td>
-					' . secure_anchor( 
-							'administration/update_user/' . $user->user_id, 
-							img( array( 'src' => 'img/tablesorter/edit.png' ) ),
-							array( 'class' => 'edit-img' )
-						 ) . '
-				</td>
 				<td>' 
 					. $user->user_name . 
 				'</td>
@@ -57,6 +43,18 @@ if( $users_data !== FALSE )
 				<td>' 
 					. $roles[$user->user_level] . 
 				'</td>
+				<td class="delete-column">
+					' . secure_anchor( 
+							'administration/delete_user/' . $user->user_id . $current_page , 
+							'<i class="icon-trash icon-white"></i>',
+							array( 'class' => 'delete-img btn btn-danger btn-small' )
+						 ) . '
+					' . secure_anchor( 
+							'administration/update_user/' . $user->user_id, 
+							'<i class="icon-pencil icon-white"></i>',
+							array( 'class' => 'edit-img btn btn-info btn-small' )
+						 ) . '
+				</td>
 			</tr>
 		';
 

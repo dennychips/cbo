@@ -11,7 +11,7 @@
  * @link        http://community-auth.com
  */
  ?>
-
+<div class="well">
 <h1>Deny Access</h1>
 
 <?php
@@ -63,9 +63,8 @@ if( config_item('deny_access') > 0 )
 
 				<?php
 					// IP ADDRESS ***********************************
-					echo form_label('IP Address','ip_address',array('class'=>'form_label'));
+					echo form_label('IP Address *','ip_address',array('class'=>'form_label'));
 
-					echo input_requirement('*');
 
 					$input_data = array(
 						'name'		=> 'ip_address',
@@ -86,8 +85,6 @@ if( config_item('deny_access') > 0 )
 					// DENIAL REASON SELECTION ***************************************
 					echo form_label('Denial Reason','reason_code',array('class'=>'form_label'));
 
-					echo input_requirement();
-
 					foreach( config_item('denied_access_reason') as $num => $text)
 					{
 						$options[$num] = $text;
@@ -105,7 +102,8 @@ if( config_item('deny_access') > 0 )
 						$input_data = array(
 							'name'		=> 'add_denial',
 							'id'		=> 'submit_button',
-							'value'		=> 'Deny'
+							'value'		=> 'Deny IP Address',
+							'class'		=> 'btn btn-info'
 						);
 						echo form_submit( $input_data );
 					?>
@@ -114,10 +112,12 @@ if( config_item('deny_access') > 0 )
 			</div>
 		</fieldset>
 	</div>
+	<br />
 	<div id="table-wrapper">
 		<h2>Deny List</h2>
+		<hr />
 		<div id="table-wrapper">
-			<table id="myTable" class="tablesorter">
+			<table id="myTable" class="tablesorter table table-bordered">
 				<thead>
 					<tr>
 						<th></th>
@@ -161,7 +161,7 @@ if( config_item('deny_access') > 0 )
 				</table>
 			</div>
 			<div id="decision_buttons">
-				<input type="submit" class="form_button" name="remove_selected" value="Remove Selected"  style="margin-top:10px;"/>
+				<input type="submit" class="form_button btn btn-danger" name="remove_selected" value="Remove Selected"  style="margin-top:10px;"/>
 			</div>
 		</div>
 	</form>
@@ -177,6 +177,8 @@ else
 		</p>
 	';
 }
-
+?>
+</div>
+<?php
 /* End of file deny_access.php */
 /* Location: /application/views/administration/deny_access.php */
