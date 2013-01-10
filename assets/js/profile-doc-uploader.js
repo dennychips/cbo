@@ -78,7 +78,7 @@ $(document).ready(function(){
 						$('input[name="' + ci_csrf_token_name + '"]').val( response.ci_csrf_token );
 						// check if image list already exists
 						if($("table#doc_table tbody tr").length > 0){
-							$("table#doc_table tbody").append('<tr><td>'+ response.file_name +'</td><td><a href="user/delete_profile_doc/'+ response.id +'">delete</a></td>/tr>');
+							$("table#doc_table tbody").append('<tr id="'+ response.id +'"><td>'+ response.file_name +'</td><td><a onclick="deleteDoc('+ response.id +')" href="javascript:void(0);" class="btn btn-danger btn-small"><i class="icon-white icon-trash"></i> Delete</a></td>/tr>');
 						// if image list doesn't exist, create it
 						}else{
 							$('table#doc_table tbody').replaceWith(

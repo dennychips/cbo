@@ -39,7 +39,7 @@
 				<?php $input_data = array(
 					'name'		=> 'user_pass',
 					'id'		=> 'user_pass',
-					'class'		=> 'form_input password span12',
+					'class'		=> 'form_input password',
 					'value'		=> set_value('user_pass'),
 					'maxlength'	=> MAX_CHARS_4_PASSWORD
 				);?>

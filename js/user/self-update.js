@@ -35,7 +35,7 @@
 		value : 'upload'
 	});
 
-	$('#file-input').replaceWith( new_button );
+	//$('#file-input').replaceWith( new_button );
 
 	// Get the profile image upload URL (changes if index.php is present or removed in site URLs)
 	var upload_url = $('#upload_url').val();
@@ -138,7 +138,7 @@ function deleteDoc(id){
 				if(response.status == 'success'){
 					$('input[name="token"]').val(response.token);
 					$('#myModal').modal('hide')
-					location.reload();
+					$('tr#'+ id).remove();
 				}
 				$('input[name="token"]').val(response.token);
 				$('input[name="' + ci_csrf_token_name + '"]').val( response.ci_csrf_token );

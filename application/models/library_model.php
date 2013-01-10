@@ -272,6 +272,11 @@ class Library_model extends MY_Model {
 		$q = $this->db->get_where('library_data');
 		
 		return $q->result();
-
+	}
+	public function get_manager_country($uid) {
+		$this->db->select('country')->where('user_id', $uid);
+		$q = $this->db->get('manager_profiles');
+		$country = $q->row_array();
+		return $country;
 	}
 }

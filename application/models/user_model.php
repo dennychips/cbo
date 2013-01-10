@@ -654,6 +654,8 @@ class User_model extends MY_Model {
 	 */
 	public function manage_user_records_data( $params = FALSE, $count = FALSE )
 	{
+		
+		$country = $this->get_manager_country();
 		// Set params if this is the first call
 		if( $params !== FALSE )
 		{
@@ -666,11 +668,17 @@ class User_model extends MY_Model {
 		// If this is the actual data query, we want to add a SELECT to our query
 		if( ! $count )
 		{
-			$this->db->select('u.*');
+			$this->db->select('*');
 		}
 
-		$this->db->from( config_item('user_table') . ' u');
-		$this->db->where('u.user_level <', $this->query_params['user_level'] );
+		$this->db->from( config_item('user_table'));
+		
+		if($this->auth_role == 'manager'){
+
+			$this->db->join('customer_profile', 'customer_profile.user_id = users.user_id');
+			$this->db->where('customer_profile.country', $country['country']);
+		}
+		$this->db->where('user_level <', $this->query_params['user_level'] );
 
 		// If this is a search, it may change the number of results
 		if( ! empty( $this->query_params['search_in'] ) && ! empty( $this->query_params['search_for'] ) )
@@ -694,7 +702,7 @@ class User_model extends MY_Model {
 			$this->db->order_by( 'user_date', 'desc' );
 
 			$query = $this->db->get();
-
+			
 			// Return data if there is any
 			if( $query->num_rows() > 0 )
 			{
@@ -783,7 +791,12 @@ class User_model extends MY_Model {
 		} 
 		return false;
 	}
-
+	public function get_manager_country() {
+		$this->db->select('country')->where('user_id', $this->auth_user_id);
+		$q = $this->db->get('manager_profiles');
+		$country = $q->row_array();
+		return $country;
+	}
 }
 
 /* End of file user_model.php */

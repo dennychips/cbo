@@ -11,7 +11,12 @@ if( isset( $auth_first_name ) ) {
             <ul class="nav" style="padding:0px">
                 <li><?php echo anchor('/', 'Visit Website')?></li>
                 <li><?php echo secure_anchor('user', 'Dashboard')?></li>
+                <?php if(isset($auth_level) && $auth_level == 1) : ?>
                 <li><?php echo secure_anchor('elibrary/add', 'Share Document');?></li>
+                <?php endif;?>
+                <?php if(isset($auth_level) && $auth_level == 6) : ?>
+                <li><?php echo secure_anchor('elibrary/manage', 'Manage Document');?></li>
+                <?php endif;?>
                 <li><?php echo secure_anchor('user/self_update', 'My Profile') ?></li> 
                  <?php if( isset( $auth_level ) && $auth_level >= 6 ) : ?>
               

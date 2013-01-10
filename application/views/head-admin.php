@@ -33,8 +33,8 @@
 	// jQuery is always loaded
 	echo script_tag( 'assets/js/jquery.min.js' ) . "\n";
 	echo script_tag( 'assets/js/modernizr.custom.87724.js' ) . "\n";
-	echo script_tag( 'assets/js/jasny-bootstrap.min.js' ) . "\n";
-	
+	echo script_tag( 'assets/js/jquery.min.js' ) . "\n";
+	echo script_tag('assets/js/bootstrap.min.js') . "\n";
 	// Add any additional javascript
 	if( isset( $javascripts ) )
 	{
@@ -43,7 +43,6 @@
 			echo script_tag( $javascripts["$x"] ) . "\n";
 		}
 	}
-	echo script_tag('assets/js/bootstrap.min.js') . "\n";
 		
 	// Add any javascript before the closing body tag
 	if( isset( $dynamic_extras ) )

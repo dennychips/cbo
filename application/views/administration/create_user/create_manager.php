@@ -8,8 +8,6 @@
 					// USERNAME LABEL AND INPUT ***********************************
 					echo form_label('Username','user_name',array('class'=>'form_label'));
 
-					echo input_requirement('*');
-
 					$input_data = array(
 						'name'		=> 'user_name',
 						'id'		=> 'user_name',
@@ -29,7 +27,6 @@
 					// PASSWORD LABEL AND INPUT ***********************************
 					echo form_label('Password','user_pass',array('class'=>'form_label'));
 
-					echo input_requirement('*');
 
 					$input_data = array(
 						'name'		=> 'user_pass',
@@ -43,28 +40,24 @@
 
 			</div>
 			<div class="form-row">
-
+				<label class="checkbox">
 				<?php
 					// SHOW PASSWORD CHECKBOX
-					echo form_label('Show Password','show-password',array('class'=>'form_label'));
-
-					echo input_requirement();
 
 					$checkbox_data = array(
-						'id' => 'show-password'
+						'id' => 'show-password',
+						'class' => 'checkbox'
 					);
-
 					echo form_checkbox( $checkbox_data );
+					echo 'Show Password'
 				?>
-
+				</label>
 			</div>
 			<div class="form-row">
 
 				<?php
 					// EMAIL ADDRESS LABEL AND INPUT ******************************
 					echo form_label('Email Address','user_email',array('class'=>'form_label'));
-
-					echo input_requirement('*');
 
 					$input_data = array(
 						'name'		=> 'user_email',
@@ -83,8 +76,6 @@
 				<?php
 					// FIRST NAME LABEL AND INPUT ***********************************
 					echo form_label('First Name','first_name',array('class'=>'form_label'));
-
-					echo input_requirement('*');
 
 					$input_data = array(
 						'name'		=> 'first_name',
@@ -105,8 +96,6 @@
 					// LAST NAME LABEL AND INPUT ***********************************
 					echo form_label('Last Name','last_name',array('class'=>'form_label'));
 
-					echo input_requirement('*');
-
 					$input_data = array(
 						'name'		=> 'last_name',
 						'id'		=> 'last_name',
@@ -124,19 +113,14 @@
 
 				<?php
 					// LICENSE NUMBER LABEL AND INPUT ***********************************
-					echo form_label('License Number','license_number',array('class'=>'form_label'));
+					echo form_label('Country *','license_number',array('class'=>'form_label'));
 
-					echo input_requirement('*');
+	    			$countries[''] = '-- Select Country --';
+	    			foreach ($country as $row) {
+	    				$countries[$row->country] = $row->country;	
+	    			}
+					echo form_dropdown('country', $countries, set_value('country'), 'id ="country" class=""');
 
-					$input_data = array(
-						'name'		=> 'license_number',
-						'id'		=> 'license_number',
-						'class'		=> 'form_input alpha_numeric',
-						'value'		=> set_value('license_number'),
-						'maxlength'	=> '8',
-					);
-
-					echo form_input($input_data);
 
 				?>
 
@@ -146,8 +130,6 @@
 				<?php
 					// PHONE NUMBER LABEL AND INPUT ***********************************
 					echo form_label('Phone Number','phone_number',array('class'=>'form_label'));
-
-					echo input_requirement('*');
 
 					$input_data = array(
 						'name'		=> 'phone_number',
@@ -171,6 +153,7 @@
 					$input_data = array(
 						'name'		=> 'form_submit',
 						'id'		=> 'submit_button',
+						'class'		=> 'btn btn-info',
 						'value'		=> 'Create User'
 					);
 					echo form_submit($input_data);

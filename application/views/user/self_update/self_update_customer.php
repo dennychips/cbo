@@ -401,7 +401,7 @@
 			<?php 
 				if(!empty($documents)){
 					foreach($documents as $row ){
-						echo '<tr>';
+						echo '<tr id="'.$row->id.'">';
 						echo '<td>'.$row->file_name.'</td>';
 						// echo '<td><a href="user/delete_doc_profile/'.$row->id.'"">delete</a></td>';
 						echo '<td><a href="javascript:void(0)" onclick="deleteDoc('.$row->id.')" class="btn btn-danger btn-small"><i class="icon-white icon-trash"></i> Delete</a></td>';

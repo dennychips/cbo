@@ -32,7 +32,24 @@ class Elibrary extends MY_Controller {
 			);
 		$this->load->view($this->template, $data);
 	}
-
+	public function manage() {
+		if( $this->require_role('admin,manager')){
+			$data = array(
+				'title' 		=> 'Manage Document',
+				'content'		=> $this->load->view('library/manage', '', TRUE),
+				'javascripts'	=> array(
+						'assets/js/jquery.dataTables.min.js',
+						'assets/js/bootstrap-DT-init.js',
+						'assets/js/manage-doc.js'
+					),
+				'style_sheets' => array(
+						'assets/css/jquery.dataTables.css' => 'screen',
+					),
+			);
+			$this->template = 'templates/administration_template';
+			$this->load->view($this->template, $data);	
+		}		
+	}
 	function view($id) {
 		$count = $this->lib->getdocumentcounter($id);
 		$counter= $count['view_counter'] + 1;
@@ -224,39 +241,41 @@ class Elibrary extends MY_Controller {
 		$this->load->view($this->template, $data);
 	}
 	public function library_by_category($slug){
-		$this->load->library('datatables');
-		$this->datatables->select('library_data.id, title, author, created, type, format, library_category.category_name, library_category.slug');
-		$this->datatables->from('library_data');
-		$this->datatables->join('library_category', 'library_category.catID = library_data.type');
-		$this->datatables->where('library_category.slug', $slug);
-		$this->datatables->unset_column('library_data.id');
-		$this->datatables->unset_column('type');
-		$this->datatables->unset_column('library_category.slug');
-		$this->datatables->edit_column('title', '<a href="elibrary/view/$1">$2</a>', 'library_data.id, title');
-		$this->datatables->add_column('view', '<a href="elibrary/view/$1" class="btn btn-success btn-small"><i class="icon-share-alt icon-white"></i> Detail</a>', 'library_data.id');
-		if(isset($_POST['author']) && $_POST['author'] !== ''){
-    		$this->datatables->filter('author', $_POST['author']);
-	    }
-	    if(isset($_POST['format']) && $_POST['format'] !==''){
-	    	$this->datatables->where('format', $_POST['format']);
-	    }
-	    if(isset($_POST['doctype']) && $_POST['doctype'] !==''){
-	    	$this->datatables->where('library_category.category_name', $_POST['doctype']);
-	    }
-	    if(isset($_POST['title']) && $_POST['title'] !==''){
-	    	$this->datatables->where('title LIKE "%' . $_POST['title'] .'%"');
+		if($this->input->is_ajax_request()){
+			$this->load->library('datatables');
+			$this->datatables->select('library_data.id, title, author, created, type, format, library_category.category_name, library_category.slug');
+			$this->datatables->from('library_data');
+			$this->datatables->join('library_category', 'library_category.catID = library_data.type');
+			$this->datatables->where('library_category.slug', $slug);
+			$this->datatables->unset_column('library_data.id');
+			$this->datatables->unset_column('type');
+			$this->datatables->unset_column('library_category.slug');
+			$this->datatables->edit_column('title', '<a href="elibrary/view/$1">$2</a>', 'library_data.id, title');
+			$this->datatables->add_column('view', '<a href="elibrary/view/$1" class="btn btn-success btn-small"><i class="icon-share-alt icon-white"></i> Detail</a>', 'library_data.id');
+			if(isset($_POST['author']) && $_POST['author'] !== ''){
+	    		$this->datatables->filter('author', $_POST['author']);
+		    }
+		    if(isset($_POST['format']) && $_POST['format'] !==''){
+		    	$this->datatables->where('format', $_POST['format']);
+		    }
+		    if(isset($_POST['doctype']) && $_POST['doctype'] !==''){
+		    	$this->datatables->where('library_category.category_name', $_POST['doctype']);
+		    }
+		    if(isset($_POST['title']) && $_POST['title'] !==''){
+		    	$this->datatables->where('title LIKE "%' . $_POST['title'] .'%"');
 
-	    }
-		$data = $this->datatables->generate();
-		// print_r($this->db->last_query());
-		$decode = json_decode($data);
-		// print_r($decode->aaData);
-		foreach($decode->aaData as $k => $v ){
-			$time = date('Y', $v[2]);
-			
-			$decode->aaData[$k][2] = $time;
+		    }
+			$data = $this->datatables->generate();
+			// print_r($this->db->last_query());
+			$decode = json_decode($data);
+			// print_r($decode->aaData);
+			foreach($decode->aaData as $k => $v ){
+				$time = date('Y', $v[2]);
+				
+				$decode->aaData[$k][2] = $time;
+			}
+			echo json_encode($decode);	
 		}
-		echo json_encode($decode);	
 	}
 	public function delete_document($id = ''){	
 		
@@ -284,5 +303,24 @@ class Elibrary extends MY_Controller {
 			}
 		}
 		echo json_encode($response);
+	}
+	public function getdocument() {
+		if($this->input->is_ajax_request()){
+			$country = $this->lib->get_manager_country($this->auth_user_id);
+			// print_r($country);
+			$this->load->library('datatables');
+			$this->datatables->select('library_data.id, title, type, format, library_category.category_name, modified, created');
+			$this->datatables->from('library_data');
+			$this->datatables->join('library_category', 'library_category.catID = library_data.type');
+			$this->datatables->join('customer_profile', 'customer_profile.user_id = library_data.user_id');
+			$this->datatables->where('country = "'. $country['country'] .'"');
+			$this->datatables->unset_column('library_data.id');
+			$this->datatables->unset_column('type');
+			$this->datatables->edit_column('title', '<a href="elibrary/view/$1">$2</a>', 'library_data.id, title');
+			$this->datatables->add_column('view', '<a href="elibrary/view/$1" class="btn btn-success btn-small"><i class="icon-share-alt icon-white"></i> Detail</a>', 'library_data.id');
+			$data = $this->datatables->generate();
+			// echo $this->db->last_query();
+			echo $data;
+		}
 	}
 }

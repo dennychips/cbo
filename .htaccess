@@ -1,9 +1,5 @@
 # MAKE SURE TO LEAVE THE NEXT TWO LINES HERE.
 # BEGIN DENY LIST --
-<Limit GET POST>
-order deny,allow
-deny from 111.111.111.111
-</Limit>
 # END DENY LIST --
 
 Options -Indexes

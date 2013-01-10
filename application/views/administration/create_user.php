@@ -32,7 +32,7 @@ echo '<h1 class="short_headline"><span>' . ( isset( $type ) ? ucfirst( $type ) .
 		else if( isset( $validation_errors ) )
 		{
 			echo '
-				<div class="feedback error_message">
+				<div class="feedback error_message alert alert-danger">
 					<p class="feedback_header">
 						' . ucfirst( $type ) . ' Creation Contained The Following Errors:
 					</p>
