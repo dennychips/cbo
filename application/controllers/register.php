@@ -143,7 +143,7 @@ class Register extends MY_Controller {
 				<script>
 					$(document).ready(function(){
 						$("#show-password").passwordToggle({target:"#user_pass"});
-						$("#phone_number").mask("999-9999999");
+						$("#phone_number").mask("999-99999999");
 					});
 				</script>
 			'

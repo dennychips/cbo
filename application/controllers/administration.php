@@ -113,7 +113,7 @@ class Administration extends MY_Controller {
 					<script>
 						$(document).ready(function(){
 							$("#show-password").passwordToggle({target:"#user_pass"});
-							$("#phone_number").mask("999-9999999");
+							$("#phone_number").mask("999-99999999");
 						});
 					</script>
 				'
@@ -369,6 +369,18 @@ class Administration extends MY_Controller {
 
 			// Send user data to view
 			$view_data['user_data'] = $user_row;
+			$this->load->model('registration_model');
+			$this->load->model( 'province_autopopulate_model', 'autopop' );
+			$view_data ['country'] =  $this->registration_model->get_country();
+
+			if( $this->csrf->token_match )
+			{
+				if( $this->input->post('type') )
+				{
+					$view_data['province'] = $this->autopop->get_province_in_country();
+
+				}
+			}
 
 			$data = array(
 

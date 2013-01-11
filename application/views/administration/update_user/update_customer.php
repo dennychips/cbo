@@ -11,24 +11,24 @@
  * @link        http://community-auth.com
  */
 ?>
-
-<h1>Update Customer Profile</h1>
-
+<div class="well">
+<h1>Update CBO Profile</h1>
+<hr />
 <?php
 if( isset( $validation_passed ) )
 {
 	echo '
-		<div class="feedback confirmation" style="margin-bottom:10px;">
-			<p class="feedback_header">
+		<div class="feedback alert alert-success confirmation" style="margin-bottom:10px;">
+			
 				The customer profile was successfully updated.
-			</p>
+			
 		</div>
 	';
 }
 else if( isset( $validation_errors ) )
 {
 	echo '
-		<div class="feedback error_message" style="margin-bottom:10px;">
+		<div class="feedback alert alert-danger error_message" style="margin-bottom:10px;">
 			<p class="feedback_header">
 				Customer Profile Update Contained The Following Errors:
 			</p>
@@ -42,177 +42,287 @@ else if( isset( $validation_errors ) )
 	';
 }
 ?>
-<div class="profile_image">
-	<?php
-		// PROFILE IMAGE
-		$upload_destination = config_item('profile_image_destination');
+<div class="well clearfix">
+	<div class="profile_image pull-left" style="margin-right:20px;">
+		<?php
+			// PROFILE IMAGE
+			$upload_destination = config_item('profile_image_destination');
 
-		echo img(
-			( ! empty( $user_data->profile_image ) ) ? $user_data->profile_image : 'img/default-profile-image.jpg',
-			FALSE,
-			( $upload_destination == 'database' && ! empty( $user_data->profile_image ) ) ? TRUE : FALSE
-		);
-	?>
+			echo img(
+				( ! empty( $user_data->profile_image ) ) ? $user_data->profile_image : 'assets/images/Profile-Placeholder.png',
+				FALSE,
+				( $upload_destination == 'database' && ! empty( $user_data->profile_image ) ) ? TRUE : FALSE
+			);
+		?>
+	</div>
+	<div id="user_info">
+		<h3><?php echo $user_data->user_name; ?></h3>
+		<ul class="std-list unstyled">
+			<li>Registration Date: <?php echo date('F j, Y, g:i a',$user_data->user_date); ?></li>
+			<li>Last Modified: <?php echo date('F j, Y, g:i a',$user_data->user_modified); ?></li>
+			<li>Last Login: <?php echo ($user_data->user_last_login != FALSE)? date('F j, Y, g:i a',$user_data->user_last_login) : '<span class="redfield">NEVER LOGGED IN</span>'; ?></li>
+		</ul>
+	</div>
 </div>
-<div id="user_info">
-	<h3><?php echo $user_data->user_name; ?></h3>
-	<ul class="std-list">
-		<li>Registration Date: <?php echo date('F j, Y, g:i a',$user_data->user_date); ?></li>
-		<li>Last Modified: <?php echo date('F j, Y, g:i a',$user_data->user_modified); ?></li>
-		<li>Last Login: <?php echo ($user_data->user_last_login != FALSE)? date('F j, Y, g:i a',$user_data->user_last_login) : '<span class="redfield">NEVER LOGGED IN</span>'; ?></li>
-	</ul>
-</div>
-
 <?php echo form_open( 'administration/update_user/' . $user_data->user_id, array( 'class' => 'std-form' ) ); ?>
 	<div class="form-column-left">
 		<fieldset>
-			<legend>Account Details:</legend>
-			<div class="form-row">
-
-				<?php
-					// FIRST NAME LABEL AND INPUT ***********************************
-					echo form_label('First Name','first_name',array('class'=>'form_label'));
-
-					echo input_requirement('*');
-
+		<h5 class="short_headline"><span>Contact Information</span></h5>
+		<hr />
+		<div class="control-group">
+			<?php echo form_label('First Name *','first_name',array('class'=>'required control-label form_label')); ?>
+			<div class="controls">
+				<?php 
 					$input_data = array(
 						'name'		=> 'first_name',
 						'id'		=> 'first_name',
-						'class'		=> 'form_input first_name',
+						'class'		=> 'form_input first_name span12',
 						'value'		=> set_value('first_name', $user_data->first_name),
 						'maxlength'	=> '20',
 					);
 					echo form_input($input_data);
-
 				?>
-
 			</div>
-			<div class="form-row">
-
-				<?php
-					// LAST NAME LABEL AND INPUT ***********************************
-					echo form_label('Last Name','last_name',array('class'=>'form_label'));
-
-					echo input_requirement('*');
-
+		</div>
+		<div class="control-group">
+			<?php echo form_label('Last Name *','last_name',array('class'=>'required control-label form_label'));?>
+			<!-- <label for="LastNameRegister" class="required control-label">Last Name <span class="required">*</span></label> -->
+			<div class="controls">
+				<?php 
 					$input_data = array(
 						'name'		=> 'last_name',
 						'id'		=> 'last_name',
-						'class'		=> 'form_input last_name',
+						'class'		=> 'form_input last_name span12',
 						'value'		=> set_value('last_name', $user_data->last_name),
 						'maxlength'	=> '20',
 					);
+
+
 					echo form_input($input_data);
-
 				?>
-
 			</div>
-			<div class="form-row">
-
-				<?php
-					// EMAIL ADDRESS LABEL AND INPUT **********************************************
-					echo form_label('Email Address','user_email',array('class'=>'form_label'));
-
-					echo input_requirement('*');
-
+		</div>
+		<div class="control-group">
+		<?php echo form_label('Email Address *','user_email',array('class'=>'required control-label form_label'));?>
+		<div class="controls">
+			<?php 	
+			    $input_data = array(
+					'name'		=> 'user_email',
+					'id'		=> 'user_email',
+					'class'		=> 'form_input max_chars span12',
+					'value'		=> set_value('user_email', $user_data->user_email),
+					'maxlength'	=> '255',
+				);
+				echo form_input($input_data);
+			?>
+		</div>
+		</div>
+		<div class="control-group">
+			<?php echo form_label('Organization Name *','organization',array('class'=>'required control-label form_label'));?>
+			<div class="controls">
+				<?php 
 					$input_data = array(
-						'name'		=> 'user_email',
-						'id'		=> 'user_email',
-						'class'		=> 'form_input max_chars',
-						'value'		=> set_value('user_email', $user_data->user_email),
-						'maxlength'	=> '255',
+						'name'		=> 'organization',
+						'id'		=> 'organization',
+						'class'		=> 'form_input span12',
+						'value'		=> set_value('organization', $user_data->organization),
 					);
+
 					echo form_input($input_data);
 				?>
-
-
 			</div>
-			<div class="form-row">
-
-				<?php
-					// STREET ADDRESS LABEL AND INPUT ***********************************
-					echo form_label('Street Address','street_address',array('class'=>'form_label'));
-
-					echo input_requirement('*');
-
+		</div>
+		<div class="control-group">
+			<?php echo form_label('Organization Email *','organization_email',array('class'=>'required control-label form_label'));?>
+			<div class="controls">
+				<?php 
 					$input_data = array(
-						'name'		=> 'street_address',
-						'id'		=> 'street_address',
-						'class'		=> 'form_input max_chars',
-						'value'		=> set_value('street_address', $user_data->street_address),
-						'maxlength'	=> '60',
+						'name'		=> 'organization_email',
+						'id'		=> 'organization_email',
+						'class'		=> 'form_input span12',
+						'value'		=> set_value('organization_email', $user_data->organization_email),
 					);
+
 					echo form_input($input_data);
-
 				?>
-
 			</div>
-			<div class="form-row">
+		</div>
+		<div class="control-group">
+			<?php echo form_label('Country *','country',array('class'=>'required control-label form_label')); ?>
+			<div class="controls">
+				<?php 
+	    			$countries[''] = '-- Select Country --';
+	    			foreach ($country as $row) {
+	    				$countries[$row->country] = $row->country;	
+	    			}
+					echo form_dropdown('country', $countries, set_value('country', $user_data->country), 'id ="country" class="span12"');
+				?>
+			</div>
+		</div>
+		<div class="control-group">
+			<?php echo form_label('Province *','province',array('class'=>'required control-label form_label'));?>
+			
+			<div class="controls">
+				<?php 
+	    			//echo form_label('Province *','province',array('class'=>'form_label'));
+	    			if( isset( $provinces ) ){
+						// Default option
+						$country_province[''] = '-- Select --';
+						// Options from query
+						foreach( $provinces as $row ){
+							$country_province[$row['province']] = $row['province'];
+						}
+					} else {
+						// Default option if not POST request
+						$country_province[''] = '-- Select Country --';
+					}
+					echo form_dropdown('province', $country_province, set_value('province', $user_data->province), 'id="province" class="span12"');
+				?>
+			</div>
+		</div>
+		<div class="control-group">
+			<?php echo form_label('City *','city',array('class'=>'required control-label form_label')); ?>
 
-				<?php
-					// CITY LABEL AND INPUT ***********************************
-					echo form_label('City','city',array('class'=>'form_label'));
-
-					echo input_requirement('*');
+			<div class="controls">
+				<?php 
 
 					$input_data = array(
 						'name'		=> 'city',
 						'id'		=> 'city',
-						'class'		=> 'form_input max_chars',
+						'class'		=> 'form_input span12',
 						'value'		=> set_value('city', $user_data->city),
+					);
+
+					echo form_input($input_data);
+				?>
+			</div>
+		</div>
+		<div class="control-group">
+			<?php echo form_label('Street Address *','street_address',array('class'=>'required control-label form_label')); ?>
+
+			<div class="controls">
+				<?php 
+
+					$input_data = array(
+						'name'		=> 'street_address',
+						'id'		=> 'street_address',
+						'class'		=> 'form_input max_chars span12',
+						'value'		=> set_value('street_address', $user_data->street_address),
+						'maxlength'	=> '60',
+					);
+
+					echo form_input($input_data);
+				?>
+			</div>
+		</div>
+		<div class="control-group">
+			<?php echo form_label('Phone Number *','phone_number', array('class'=>'control-label required form_label'));?>
+			<div class="controls">
+				<?php 
+					$input_data = array(
+						'name'		=> 'phone_number',
+						'id'		=> 'phone_number',
+						'class'		=> 'form_input max_chars span12',
+						'value'		=> set_value('phone_number', $user_data->phone_number),
 						'maxlength'	=> '60',
 					);
 					echo form_input($input_data);
-
 				?>
-
 			</div>
-			<div class="form-row">
-
-				<?php
-					// STATE LABEL AND INPUT ***********************************
-					echo form_label('State','state',array('class'=>'form_label'));
-
-					echo input_requirement('*');
-
+		</div>
+		<div class="control-group">
+			<?php echo form_label('Focus Area *','focus_area',array('class'=>'required control-label form_label'));?>
+			<div class="controls">
+				<?php 
+					$options = array(
+	                  'MSM'  => 'MSM',
+	                  'Transgender'    => 'Transgender',
+	                  'HIV/AIDS'   => 'HIV/AIDS',
+	                  'General Population' => 'General Population',
+	                  'IDU' => 'IDU',
+	                  'Sex Worker' => 'Sex Worker',
+	                  'Youth' => 'Youth',
+	                  'Other' => 'Other'
+	                );
+					echo form_dropdown('focus_area[]', $options, set_value('focus_area', unserialize($user_data->focus_area)), 'class="span12" multiple="multiple"');
+				?>
+			</div>
+		</div>
+		<div class="control-group">
+			
+		</div>
+		<div class="control-group">
+			<?php echo form_label('Official Website URL','website',array('class'=>'control-label required form_label'));?>
+			<div class="controls">
+				<?php 
 					$input_data = array(
-						'name'		=> 'state',
-						'id'		=> 'state',
-						'class'		=> 'form_input max_chars',
-						'value'		=> set_value('state', $user_data->state),
-						'maxlength'	=> '50',
+						'name'		=> 'website',
+						'id'		=> 'website',
+						'class'		=> 'form_input max_chars span12',
+						'value'		=> set_value('website', $user_data->website),
+						
 					);
+
 					echo form_input($input_data);
-
 				?>
-
 			</div>
-			<div class="form-row">
-
-				<?php
-					// STATE LABEL AND INPUT ***********************************
-					echo form_label('Zip','zip',array('class'=>'form_label'));
-
-					echo input_requirement('*');
-
+		</div>
+		<div class="control-group">
+			<?php echo form_label('Blog URL','blog',array('class'=>'control-label required form_label'));?>
+			<div class="controls">
+				<?php 
 					$input_data = array(
-						'name'		=> 'zip',
-						'id'		=> 'zip',
-						'class'		=> 'form_input max_chars',
-						'value'		=> set_value('zip', $user_data->zip),
-						'maxlength'	=> '10',
+						'name'		=> 'blog',
+						'id'		=> 'blog',
+						'class'		=> 'form_input max_chars span12',
+						'value'		=> set_value('blog', $user_data->blog),
 					);
+
 					echo form_input($input_data);
-
 				?>
-
 			</div>
+		</div>
+		<div class="control-group">
+			<?php echo form_label('Facebook URL','facebook',array('class'=>'control-label required form_label'));?>
+			<div class="controls">
+				<?php 
+					$input_data = array(
+						'name'		=> 'facebook',
+						'id'		=> 'facebook',
+						'class'		=> 'form_input max_chars span12',
+						'value'		=> set_value('facebook', $user_data->facebook),
+					);
+
+					echo form_input($input_data);
+				?>
+			</div>
+		</div>
+		<div class="control-group">
+			<?php echo form_label('Twitter URL','twitter',array('class'=>'control-label required form_label'));?>
+			<div class="controls">
+				<?php 
+					$input_data = array(
+						'name'		=> 'twitter',
+						'id'		=> 'twitter',
+						'class'		=> 'form_input max_chars span12',
+						'value'		=> set_value('twitter', $user_data->twitter),
+					);
+
+					echo form_input($input_data);
+				?>
+			</div>
+		</div>
+		<div class="">
+			<input type="hidden" id="ci_csrf_token_name" value="<?php echo config_item('csrf_token_name'); ?>" />
+			<input type="hidden" id="ajax_url" value="<?php echo if_secure_site_url('autopopulate_country/process_request/country'); ?>" />
+			<!-- <input class="btn btn-primary btn-large" type="submit" name="register" value="Register"> -->
+		</div>
+	</fieldset>
+		<fieldset>
 			<div class="form-row">
 				<div class="radio-header">Banned:</div>
 
 				<?php
-					echo input_requirement();
-
 					// BANNED LABELS AND BUTTONS **************************
 					/*
 					* GET VALUE OF RADIOS GROUP AND APPLY CHECKED = CHECKED
@@ -230,7 +340,7 @@ else if( isset( $validation_errors ) )
 				<div class="radio_set">
 					<div class="form-row">
 						<div class="form_radio_container">
-
+							<label class="radio inline" for="no-banned">
 							<?php
 								// FIRST RADIO
 								$radio_data = array(
@@ -238,22 +348,19 @@ else if( isset( $validation_errors ) )
 									'id'		=> 'no-banned',
 									'value'		=> '0',
 									'checked'	=> $radio_checked['0'],
-									'class'		=> 'form_radio'
+									'class'		=> 'form_radio radio inline'
 								);
 
 								echo form_radio($radio_data);
 							?>
-
-						</div>
+							No
+							</label>
 
 						<?php
-							echo form_label('No', 'no-banned', array('class'=>'radio_label'));
+							//echo form_label('No', 'no-banned', array('class'=>'radio_label radio'));
 						?>
 
-					</div>
-					<div class="form-row">
-						<div class="form_radio_container">
-
+							<label class="radio inline">
 							<?php
 								// SECOND RADIO
 								$radio_data = array(
@@ -261,22 +368,25 @@ else if( isset( $validation_errors ) )
 									'id'		=> 'yes-banned',
 									'value'		=> '1',
 									'checked'	=> $radio_checked['1'],
-									'class'		=> 'form_radio'
+									'class'		=> 'form_radio radio inline'
 								);
 
 								echo form_radio($radio_data);
 							?>
-
+							Yes
+							</label>
 						</div>
 
 						<?php
-							echo form_label('Yes', 'yes-banned', array('class'=>'radio_label'));
+							//echo form_label('Yes', 'yes-banned', array('class'=>'radio_label'));
 						?>
 
 					</div>
 				</div>
 			</div>
-			<h3 style="margin:1em 0;color:#bf1e2e;">Leave Blank To Keep Current Password:</h3>
+			<br />
+			<h3>Leave Blank To Keep Current Password:</h3>
+			<hr />
 			<div class="form-row">
 
 				<?php
@@ -317,22 +427,21 @@ else if( isset( $validation_errors ) )
 
 			</div>
 			<div class="form-row">
-
+				<label class="checkbox inline" for="show-password">
 				<?php
 					// SHOW PASSWORD CHECKBOX
-					echo form_label('Show Passwords','show-password',array('class'=>'form_label'));
-
-					echo input_requirement();
-
 					$checkbox_data = array(
-						'id' => 'show-password'
+						'id' => 'show-password',
+						'class' => 'checkbox inline'
 					);
 
 					echo form_checkbox( $checkbox_data );
 				?>
-
+				Show Password
+				</label>
 			</div>
 		</fieldset>
+		<br />
 		<div class="form-row">
 			<div id="submit_box">
 
@@ -341,7 +450,8 @@ else if( isset( $validation_errors ) )
 				$input_data = array(
 					'name'		=> 'form_submit',
 					'id'		=> 'submit_button',
-					'value'		=> 'Submit'
+					'value'		=> 'Submit',
+					'class'		=> 'btn btn-primary'
 				);
 				
 				echo form_submit($input_data);
@@ -351,7 +461,7 @@ else if( isset( $validation_errors ) )
 		</div>
 	</div>
 </form>
-
+</div>
 <?php
 
 /* End of file update_customer.php */

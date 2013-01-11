@@ -53,6 +53,11 @@ $config['customer_update_rules'] = array(
 		'label' => 'Organization',
 		'rules' => 'trim|required|xss_clean'
 	),
+	array(
+		'field' => 'city',
+		'label' => 'City',
+		'rules' => 'trim|required|xss_clean'
+	),
 	// array(
 	// 	'field' => 'country',
 	// 	'label' => 'Country',
@@ -66,7 +71,7 @@ $config['customer_update_rules'] = array(
 	array(
 		'field' => 'phone_number',
 		'label' => 'Phone Number',
-		'rules' => 'trim|required|numeric|xss_clean'
+		'rules' => 'trim|alpha_dash|xss_clean'
 	),
 	array(
 		'field' => 'focus_area',
