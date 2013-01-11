@@ -45,11 +45,12 @@ class Cbodirectory extends MY_Controller {
 		$this->load->view($this->template, $data);
 	}
 	public function country($name) {
-		$names = str_replace('-', ' ', $name);
+		$names = ucwords(str_replace('-', ' ', $name));
 		$this->template = 'templates/library_template';
 		$view_data = array(
 				'provinces' => $this->profile->get_province_by_country($names),
-				'country_name' => $name
+				'country_name' => $name,
+				'cities' => $this->profile->get_city($names)
 			);
 		$data = array(
 				'title' => 'CBO - eLibrary',
@@ -150,7 +151,7 @@ class Cbodirectory extends MY_Controller {
 		if($this->input->is_ajax_request()){
 			$name = str_replace('-', ' ', $name);
 			$this->load->library('datatables');
-	    	$this->datatables->select('organization, country, province , focus_area, user_id');
+	    	$this->datatables->select('organization, province, city , focus_area, user_id');
 	    	$this->datatables->where('country = "' . $name .'"');
 			$this->datatables->from('customer_profile');
 	    	$this->datatables->unset_column('user_id');
@@ -160,8 +161,8 @@ class Cbodirectory extends MY_Controller {
 	    		// $this->datatables->where('organization', $_POST['organization']);
 	    		$this->datatables->filter('organization LIKE "%' . $_POST['organization'] .'%"');
 	    	}
-	    	if(isset($_POST['country']) && $_POST['country'] !== ''){
-	    		$this->datatables->filter('country', $_POST['country']);
+	    	if(isset($_POST['city']) && $_POST['city'] !== ''){
+	    		$this->datatables->filter('city', $_POST['city']);
 	    	}
 	    	if(isset($_POST['province']) && $_POST['province'] !==''){
 	    		$this->datatables->where('province', $_POST['province']);

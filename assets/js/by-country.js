@@ -18,7 +18,7 @@ $(document).ready(function() {
 	      	 	aoData.push( 
 		      	 		{ "name": "organization", "value": $( "#organization" ).val() },
 		      	 		{ "name": "province", "value": $( "#province" ).val() },
-		      	 		{ "name": "country", "value": $( "#country" ).val() },
+		      	 		{ "name": "city", "value": $( "#city" ).val() },
 		      	 		{ "name": "focus_area", "value": $( "#focus_area" ).val() }
 					);
 		        $.ajax
@@ -35,9 +35,9 @@ $(document).ready(function() {
       /* Filter on the column (the index) of this element */
       oTable.fnFilter( this.value, $("#province"));
     });
-    $("#country").change( function () {
+    $("#city").change( function () {
       /* Filter on the column (the index) of this element */
-      oTable.fnFilter( this.value, $("#country"));
+      oTable.fnFilter( this.value, $("#city"));
     });
 
 	$("#focus_area").change( function () {

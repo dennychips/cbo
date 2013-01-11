@@ -69,6 +69,7 @@ class Elibrary extends MY_Controller {
 		$this->load->view($this->template, $data);	
 	}
 	public function add() {
+
 		if( $this->require_min_level(1))
 		{			
 			if($this->csrf->token_match){
@@ -85,6 +86,7 @@ class Elibrary extends MY_Controller {
 			$view_data['file_types'] = str_replace( '|', ' &bull; ', $view_data['uploader_settings']['allowed_types'] );
 			// $view_data['images'] = $this->lib->get_library_document( $this->auth_user_id );
 			$view_data['doc_type'] = $this->lib->get_type();
+			$view_data['user_list'] = $this->lib->get_user($this->auth_user_id, $this->auth_role);
 			// $this->template = 'templates/single';
 			$data = array(
 					'title' 	=> 'CBO - eLibrary',
@@ -313,7 +315,9 @@ class Elibrary extends MY_Controller {
 			$this->datatables->from('library_data');
 			$this->datatables->join('library_category', 'library_category.catID = library_data.type');
 			$this->datatables->join('customer_profile', 'customer_profile.user_id = library_data.user_id');
-			$this->datatables->where('country = "'. $country['country'] .'"');
+			if($this->auth_role == 'manager'){
+				$this->datatables->where('country = "'. $country['country'] .'"');
+			}
 			$this->datatables->unset_column('library_data.id');
 			$this->datatables->unset_column('type');
 			$this->datatables->edit_column('title', '<a href="elibrary/view/$1">$2</a>', 'library_data.id, title');

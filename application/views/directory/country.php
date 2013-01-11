@@ -1,5 +1,5 @@
-<script type="text/javascript">
-</script>
+
+
 <div class="grid_12">
 	<a class="btn btn-info pull-right btn-small" id="filter" href="javascript:void(0);"><i class="icon-filter icon-white"></i> Filter</a>
 	<div class="filter" style="display:none">
@@ -20,6 +20,20 @@
 						$country_province[$row['province']] = $row['province'];
 					}
 					echo form_dropdown('province', $country_province, '', 'id="province" class="span2"');
+				?>
+			</div>
+			<div class="span2">
+				<label for="city">City</label>
+				<?php 
+
+					
+
+					// Options from query
+					foreach( $cities as $row ){
+						$city[''] = '-- Select --';
+						$city[$row['city']] = ucwords($row['city']);
+					}
+					echo form_dropdown('city', $city, '', 'id="city" class="span2"');
 				?>
 			</div>
 			<div class="span2">
@@ -48,8 +62,8 @@
 		  <thead>
 		    <tr>
 		      <th style="width:20%">Name Of CBO</th>
-		      <th style="width:20%">Country</th>
-		      <th  style="width:15%">Province</th>
+		      <th style="width:20%">Province</th>
+		      <th  style="width:15%">City</th>
 		      <th style="width:25%">Focus Area</th>
 		      <th style="width:20%">Action</th>
 		    </tr>

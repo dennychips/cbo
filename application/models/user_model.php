@@ -89,7 +89,7 @@ class User_model extends MY_Model {
 				unset( $insert_array['user_name'] );
 				unset( $insert_array['user_pass'] );
 				unset( $insert_array['user_email'] );
-				unset( $insert_array['website'] );
+				
 
 				// Profile data is insert array
 				$profile_data = $insert_array;
@@ -102,16 +102,18 @@ class User_model extends MY_Model {
 				$profile_data['license_number'] = $this->encrypt->encode( $profile_data['license_number'] );
 			}
 
+
 			$this->load->model('registration_model');
 			$reg_mode = $this->registration_model->get_reg_mode();
 
-			if(isset($profile_data['focus_area'])){
-				if($reg_mode == 1){
-					$profile_data['focus_area'] = serialize($profile_data['focus_area']);
-				} else if ($reg_mode == 2 || $reg_mode == 3) {
-					$profile_data['focus_area'] = $profile_data['focus_area'];
-				}
+			if($reg_mode == 2 || $reg_mode == 3){
+				$profile_data['focus_area'] = $profile_data['focus_area'];
+			} 
+			if($this->uri->segment(2) == 'create_user'){
+				$profile_data['focus_area'] = serialize($profile_data['focus_area']);
 			}
+			
+			
 			if($role == 'customer'){
 				if($profile_data['website'] == NULL){
 					$profile_data['website'] = '';
@@ -143,12 +145,14 @@ class User_model extends MY_Model {
 			$user_data['user_date']     = time();
 			$user_data['user_modified'] = time();
 
-
+			// print_r($profile_data);die();
+			
 			// Insert data in user table
 			$this->db->set($user_data)
 						->insert( config_item('user_table'));
 			$profile_data['user_id'] = $random_unique_int;
-
+			
+			
 			// Insert data in profile table
 			$this->db->set($profile_data)
 						->insert( config_item( $role . '_profiles_table'));

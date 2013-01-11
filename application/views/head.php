@@ -47,9 +47,9 @@
 	echo script_tag('assets/js/superfish/superfish.js') . "\n";
 	echo script_tag('assets/js/swipe.js') . "\n";
 	echo script_tag('assets/js/bootstrap-select.min.js') . "\n";
+	echo script_tag('assets/js/jquery.cycle.all.js') . "\n";
 	echo script_tag('assets/js/script.js') . "\n";
 	// echo script_tag('assets/js/prettyphoto/js/jquery.prettyPhoto.js') . "\n";
-	echo script_tag('assets/js/jquery.cycle.all.js') . "\n";
 
 	// echo script_tag('assets/js/jquery.dcjqaccordion.2.7.min.js') . "\n";
 	// echo script_tag('assets/js/jquery.easytabs.min.js') . "\n";

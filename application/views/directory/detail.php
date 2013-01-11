@@ -36,7 +36,7 @@
 			<?php foreach($documents as $row ): ?>
 			<tr>
 				<td><?php echo $row->file_name ?></td>
-				<td><?php echo anchor('cbodirectory/download/'.$row->id, 'Download')?></td>
+				<td><?php echo anchor('cbodirectory/download/'.$row->id, '<i class="icon-download-alt icon-white"></i> Download', 'class="btn btn-primary btn-small"')?></td>
 			</tr>
 			<?php endforeach;?>
 		</tbody>	
@@ -79,6 +79,12 @@
 				<td><strong>Organization Name</strong></td>
 				<td><?php echo $profile['organization']?></td>
 			</tr>
+			<?php if(!empty($profile['organization_email'])) :?>
+			<tr>
+				<td><strong>Email</strong></td>
+				<td><?php echo $profile['organization_email']?></td>
+			</tr>
+			<?php endif;?>
 			<tr>
 				<td><strong>Country</strong></td>
 				<td><?php echo $profile['country']?></td>
@@ -88,9 +94,19 @@
 				<td><?php echo $profile['province']?></td>
 			</tr>
 			<tr>
+				<td><strong>City</strong></td>
+				<td><?php echo $profile['city']?></td>
+			</tr>
+			<!-- <tr>
 				<td><strong>Street Address</strong></td>
 				<td><?php echo $profile['street_address']?></td>
+			</tr> -->
+			<?php if(!empty($profile['phone_number'])) :?>
+			<tr>
+				<td><strong>Phone Number</strong></td>
+				<td><?php echo $profile['phone_number']?></td>
 			</tr>
+			<?php endif;?>
 			<tr>
 				<td><strong>Focus Area</strong></td>
 				<td>

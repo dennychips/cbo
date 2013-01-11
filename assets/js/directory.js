@@ -3,6 +3,7 @@ $(document).ready(function() {
 	var oTable = $('#directory-table').dataTable( {
 		"bProcessing": true,
         "bServerSide": true,
+        "aaSorting": [[ 0, "desc" ]],
         "sAjaxSource": "cbodirectory/process_request",
 		"sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
 		"sPaginationType": "bootstrap",

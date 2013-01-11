@@ -1,7 +1,7 @@
-<?php echo form_open( '', array( 'class' => 'std-form', 'style' => 'margin-top:24px;' ) ); ?>
+<?php echo form_open( '', array( 'class' => 'std-form' ) ); ?>
 	<fieldset>
 		<h5 class="short_headline"><span>Login Information</span></h5>
-		
+		<hr />
 		<div class="control-group">
 			<?php echo form_label('Username *','user_name',array('class'=>'required control-label form_label')); ?>
 			
@@ -39,7 +39,7 @@
 				<?php $input_data = array(
 					'name'		=> 'user_pass',
 					'id'		=> 'user_pass',
-					'class'		=> 'form_input password',
+					'class'		=> 'form_input password span12',
 					'value'		=> set_value('user_pass'),
 					'maxlength'	=> MAX_CHARS_4_PASSWORD
 				);?>
@@ -47,6 +47,7 @@
 				<?php echo form_password($input_data); ?>
 			</div>
 		</div>
+		<div class="clearfix"></div>
 		<div class="controls"><!--watch the white space in IOS!-->
 			<label class="checkbox form_label">
                   <input type="checkbox" id="show-password"> Show Password
@@ -54,6 +55,7 @@
 		</div>
 		<br />
 		<h5 class="short_headline"><span>Contact Information</span></h5>
+		<hr />
 		<div class="control-group">
 			<?php echo form_label('First Name *','first_name',array('class'=>'required control-label form_label')); ?>
 			<div class="controls">
@@ -103,6 +105,21 @@
 			</div>
 		</div>
 		<div class="control-group">
+			<?php echo form_label('Organization Email *','organization_email',array('class'=>'required control-label form_label'));?>
+			<div class="controls">
+				<?php 
+					$input_data = array(
+						'name'		=> 'organization_email',
+						'id'		=> 'organization_email',
+						'class'		=> 'form_input span12',
+						'value'		=> set_value('organization_email'),
+					);
+
+					echo form_input($input_data);
+				?>
+			</div>
+		</div>
+		<div class="control-group">
 			<?php echo form_label('Country *','country',array('class'=>'required control-label form_label')); ?>
 			<div class="controls">
 				<?php 
@@ -132,6 +149,23 @@
 						$country_province[''] = '-- Select Country --';
 					}
 					echo form_dropdown('province', $country_province, set_value('province'), 'id="province" class="span12"');
+				?>
+			</div>
+		</div>
+		<div class="control-group">
+			<?php echo form_label('City *','city',array('class'=>'required control-label form_label')); ?>
+
+			<div class="controls">
+				<?php 
+
+					$input_data = array(
+						'name'		=> 'city',
+						'id'		=> 'city',
+						'class'		=> 'form_input span12',
+						'value'		=> set_value('city'),
+					);
+
+					echo form_input($input_data);
 				?>
 			</div>
 		</div>

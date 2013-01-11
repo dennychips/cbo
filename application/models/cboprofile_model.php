@@ -60,6 +60,15 @@ class Cboprofile_model extends CI_Model {
 
 		return $q->result_array();
 	}
+	public function get_city($name){
+		$this->db->distinct();
+		$this->db->select('city');
+		$this->db->where('country', $name);
+		$q = $this->db->get('customer_profile');
+		
+		return $q->result_array();
+
+	}
 	public function get_recent_item($table, $limit = '') {
 		$this->db->join('users', 'users.user_id = customer_profile.user_id', 'left');
 		$this->db->where('users.user_level', 1);

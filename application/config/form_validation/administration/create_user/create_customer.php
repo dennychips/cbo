@@ -12,51 +12,6 @@
  */
 
 $config['customer_creation_rules'] = array(
-	// array(
-	// 	'field' => 'user_name',
-	// 	'label' => 'USERNAME',
-	// 	'rules' => 'trim|required|alpha_numeric|max_length['. MAX_CHARS_4_USERNAME .']|min_length['. MIN_CHARS_4_USERNAME .']|external_callbacks[model,formval_callbacks,_username_check]'
-	// ),
-	// array(
-	// 	'field' => 'user_pass',
-	// 	'label' => 'PASSWORD',
-	// 	'rules' => 'trim|required|external_callbacks[model,formval_callbacks,_check_password_strength,TRUE]'
-	// ),
-	// array(
-	// 	'field' => 'user_email',
-	// 	'label' => 'EMAIL ADDRESS',
-	// 	'rules' => 'trim|required|max_length[255]|valid_email|external_callbacks[model,formval_callbacks,_email_exists_check]'
-	// ),
-	// array(
-	// 	'field' => 'last_name',
-	// 	'label' => 'LAST NAME',
-	// 	'rules' => 'trim|required|xss_clean'
-	// ),
-	// array(
-	// 	'field' => 'first_name',
-	// 	'label' => 'FIRST NAME',
-	// 	'rules' => 'trim|required|xss_clean'
-	// ),
-	// array(
-	// 	'field' => 'street_address',
-	// 	'label' => 'STREET ADDRESS',
-	// 	'rules' => 'trim|required|xss_clean|max_length[60]'
-	// ),
-	// array(
-	// 	'field' => 'city',
-	// 	'label' => 'CITY',
-	// 	'rules' => 'trim|required|xss_clean|max_length[60]'
-	// ),
-	// array(
-	// 	'field' => 'state',
-	// 	'label' => 'STATE or PROVINCE',
-	// 	'rules' => 'trim|required|alpha|max_length[50]'
-	// ),
-	// array(
-	// 	'field' => 'zip',
-	// 	'label' => 'ZIP or POSTAL CODE',
-	// 	'rules' => 'trim|required|xss_clean|max_length[10]'
-	// )
 	array(
 		'field' => 'user_name',
 		'label' => 'Username',
@@ -93,6 +48,16 @@ $config['customer_creation_rules'] = array(
 		'rules' => 'trim|required|xss_clean'
 	),
 	array(
+		'field' => 'organization_email',
+		'label' => 'Organization Email Address',
+		'rules' => 'trim|required|max_length[255]|valid_email'
+	),
+	array(
+		'field' => 'city',
+		'label' => 'City',
+		'rules' => 'trim|required|xss_clean'
+	),
+	array(
 		'field' => 'country',
 		'label' => 'Country',
 		'rules' => 'trim|required|xss_clean'
@@ -105,7 +70,7 @@ $config['customer_creation_rules'] = array(
 	array(
 		'field' => 'phone_number',
 		'label' => 'Phone Number',
-		'rules' => 'trim|required|numeric|xss_clean'
+		'rules' => 'trim|required|alpha_dash|xss_clean'
 	),
 	array(
 		'field' => 'focus_area',

@@ -55,15 +55,17 @@ echo '<h1 class="short_headline"><span>' . ( isset( $type ) ? ucfirst( $type ) .
 			echo '
 				<p>Please choose a user type to create:</p>
 				<ul class="std-list">
+					<li>'.secure_anchor('administration/create_user/customer', 'CBO').'</li>
+					<li>'.secure_anchor('administration/create_user/manager', 'Manager').'</li>
 			';
 
-			foreach( $roles as $k => $v )
-			{
-				if( $k < $auth_level )
-				{
-					echo '<li>' . secure_anchor( 'administration/create_user/' . $v, $v ) . '</li>';
-				}
-			}
+			// foreach( $roles as $k => $v )
+			// {
+			// 	if( $k < $auth_level )
+			// 	{
+			// 		echo '<li>' . secure_anchor( 'administration/create_user/' . $v, $v ) . '</li>';
+			// 	}
+			// }
 
 			echo '</ul>';
 		}

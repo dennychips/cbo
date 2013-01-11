@@ -62,7 +62,7 @@
 					echo form_open( '', array( 'class' => 'reg-form' ) ); ?>
 					<fieldset>
 						<h5 class="short_headline"><span>Login Information</span></h5>
-						
+						<hr />
 						<div class="control-group">
 							<?php echo form_label('Username *','user_name',array('class'=>'required control-label form_label')); ?>
 							
@@ -85,7 +85,7 @@
 							    $input_data = array(
 									'name'		=> 'user_email',
 									'id'		=> 'user_email',
-									'class'		=> 'form_input max_chars span6',
+									'class'		=> 'form_input span6',
 									'value'		=> set_value('user_email'),
 									'maxlength'	=> '255',
 								);
@@ -115,6 +115,7 @@
 						</div>
 						<br />
 						<h5 class="short_headline"><span>Contact Information</span></h5>
+						<hr />
 						<div class="control-group">
 							<?php echo form_label('First Name *','first_name',array('class'=>'required control-label form_label')); ?>
 							<div class="controls">
@@ -164,6 +165,21 @@
 							</div>
 						</div>
 						<div class="control-group">
+							<?php echo form_label('Organization Email *','organization_email',array('class'=>'required control-label form_label'));?>
+							<div class="controls">
+								<?php 
+									$input_data = array(
+										'name'		=> 'organization_email',
+										'id'		=> 'organization_email',
+										'class'		=> 'form_input span6',
+										'value'		=> set_value('organization_email'),
+									);
+
+									echo form_input($input_data);
+								?>
+							</div>
+						</div>
+						<div class="control-group">
 							<?php echo form_label('Country *','country',array('class'=>'required control-label form_label')); ?>
 							<div class="controls">
 								<?php 
@@ -197,6 +213,23 @@
 							</div>
 						</div>
 						<div class="control-group">
+							<?php echo form_label('City *','city',array('class'=>'required control-label form_label')); ?>
+
+							<div class="controls">
+								<?php 
+
+									$input_data = array(
+										'name'		=> 'city',
+										'id'		=> 'city',
+										'class'		=> 'form_input span6',
+										'value'		=> set_value('city'),
+									);
+
+									echo form_input($input_data);
+								?>
+							</div>
+						</div>
+						<div class="control-group">
 							<?php echo form_label('Street Address *','street_address',array('class'=>'required control-label form_label')); ?>
 
 							<div class="controls">
@@ -205,9 +238,8 @@
 									$input_data = array(
 										'name'		=> 'street_address',
 										'id'		=> 'street_address',
-										'class'		=> 'form_input max_chars span6',
+										'class'		=> 'form_input span6',
 										'value'		=> set_value('street_address'),
-										'maxlength'	=> '60',
 									);
 
 									echo form_input($input_data);
@@ -215,15 +247,14 @@
 							</div>
 						</div>
 						<div class="control-group">
-							<?php echo form_label('Phone Number *','phone_number', array('class'=>'control-label required form_label'));?>
+							<?php echo form_label('Phone Number','phone_number', array('class'=>'control-label required form_label'));?>
 							<div class="controls">
 								<?php 
 									$input_data = array(
 										'name'		=> 'phone_number',
 										'id'		=> 'phone_number',
-										'class'		=> 'form_input max_chars span6',
+										'class'		=> 'form_input span6',
 										'value'		=> set_value('phone_number'),
-										'maxlength'	=> '60',
 									);
 									echo form_input($input_data);
 								?>
@@ -262,7 +293,7 @@
 									$input_data = array(
 										'name'		=> 'website',
 										'id'		=> 'website',
-										'class'		=> 'form_input max_chars span6',
+										'class'		=> 'form_input span6',
 										'value'		=> set_value('website'),
 										
 									);
@@ -278,7 +309,7 @@
 									$input_data = array(
 										'name'		=> 'blog',
 										'id'		=> 'blog',
-										'class'		=> 'form_input max_chars span6',
+										'class'		=> 'form_input span6',
 										'value'		=> set_value('blog'),
 									);
 
@@ -293,7 +324,7 @@
 									$input_data = array(
 										'name'		=> 'facebook',
 										'id'		=> 'facebook',
-										'class'		=> 'form_input max_chars span6',
+										'class'		=> 'form_input span6',
 										'value'		=> set_value('facebook'),
 									);
 
@@ -308,7 +339,7 @@
 									$input_data = array(
 										'name'		=> 'twitter',
 										'id'		=> 'twitter',
-										'class'		=> 'form_input max_chars span6',
+										'class'		=> 'form_input span6',
 										'value'		=> set_value('twitter'),
 									);
 
@@ -320,7 +351,7 @@
 							<input type="hidden" id="ci_csrf_token_name" value="<?php echo config_item('csrf_token_name'); ?>" />
 		    				<input type="hidden" id="ajax_url" value="<?php echo if_secure_site_url('autopopulate_country/process_request/country'); ?>" />
 							<!-- <input class="btn btn-primary btn-large" type="submit" name="register" value="Register"> -->
-							<input type="submit" value="Register" name="submit" class="btn btn-primary btn-large pull-left">
+							<input type="submit" value="Register" name="submit" class="btn btn-primary pull-left">
 						</div>
 					</fieldset>
 				<?php form_close()?>

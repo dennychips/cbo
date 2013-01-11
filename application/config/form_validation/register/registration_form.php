@@ -28,6 +28,11 @@ $config['registration_form'] = array(
 		'rules' => 'trim|required|max_length[255]|valid_email|external_callbacks[model,formval_callbacks,_email_exists_check]'
 	),
 	array(
+		'field' => 'organization_email',
+		'label' => 'Organization Email Address',
+		'rules' => 'trim|required|max_length[255]|valid_email'
+	),
+	array(
 		'field' => 'first_name',
 		'label' => 'FIRST NAME',
 		'rules' => 'trim|required|max_length[20]|xss_clean'
@@ -40,6 +45,11 @@ $config['registration_form'] = array(
 	array(
 		'field' => 'street_address',
 		'label' => 'Street Address',
+		'rules' => 'trim|required|xss_clean'
+	),
+	array(
+		'field' => 'city',
+		'label' => 'City',
 		'rules' => 'trim|required|xss_clean'
 	),
 	array(
@@ -60,7 +70,7 @@ $config['registration_form'] = array(
 	array(
 		'field' => 'phone_number',
 		'label' => 'Phone Number',
-		'rules' => 'trim|required|numeric|xss_clean'
+		'rules' => 'trim|alpha_dash|xss_clean'
 	),
 	array(
 		'field' => 'focus_area',
