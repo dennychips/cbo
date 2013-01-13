@@ -71,8 +71,7 @@ $(document).ready(function(){
 					data: post_data,
 					dataType: 'json',
 					success: function( response ){
-
-					// console.log(response);
+					
 					// Renew tokens
 					$('input[name="token"]').val( response.token );
 					$('input[name="' + ci_csrf_token_name + '"]').val( response.ci_csrf_token );
@@ -140,6 +139,7 @@ $(document).ready(function(){
 				$('#ci_csrf_token_name').val( response.ci_csrf_token );
 
  				if(response.success === 'success'){
+ 					$('.progress').hide();
  					$(' ul.doc-placeholder li').remove();
  				}
  			}
@@ -160,13 +160,16 @@ function confirmDel(){
  			type: 'POST',
  			dataType: 'json',
  			success: function(response){
+ 				
  				$('input[name="token"]').val( response.token );
 				$('#ci_csrf_token_name').val( response.ci_csrf_token );
 
  				if(response.success === 'success'){
+
  					$('ul.doc-placeholder li').remove();
  					$('#libid').remove();
  					$('#format').remove();
+
  					$('#upload-button').removeClass('disabled');
  				}
  			}

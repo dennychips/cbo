@@ -14,14 +14,13 @@
 $config['manage_users_pagination_settings'] = array(
 
 	'base_url' => secure_site_url( 'administration/manage_users' ),
-	'per_page' => 8,
+	'per_page' => 3,
 	'use_page_numbers' => TRUE,
-	'anchor_class' => 'class="std-link" ',
-	'cur_tag_open' => '&nbsp;<span id="active-set">',
-	'cur_tag_close' => '</span>',
-	'first_link' => FALSE,
-	'last_link' => FALSE,
-	'num_links' => 3
+	'cur_tag_open' => '<li class="active"><a href="#">',
+	'cur_tag_close' => '</a></li>',
+	'num_links' => 3,
+	'num_tag_open' => '<li>',
+	'num_tag_close' => '</li>'
 );
 
 $config['manage_users_search_options'] = array(

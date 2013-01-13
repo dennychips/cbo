@@ -105,6 +105,7 @@ class Administration extends MY_Controller {
 					'js/jquery.char-limiter-3.0.0.js',
 					'js/default-char-limiters.js',
 					'assets/js/jquery.maskedinput-1.3.min.js',
+					'assets/js/ckeditor/ckeditor.js',
 					'js/autopopulate_country.js'
 				),
 
@@ -113,7 +114,7 @@ class Administration extends MY_Controller {
 					<script>
 						$(document).ready(function(){
 							$("#show-password").passwordToggle({target:"#user_pass"});
-							$("#phone_number").mask("999-99999999");
+							$("#phone_number").mask("999?9-9999999?-99");
 						});
 					</script>
 				'
@@ -388,6 +389,7 @@ class Administration extends MY_Controller {
 				'javascripts' => array(
 					'js/jquery.passwordToggle-1.1.js',
 					'js/jquery.char-limiter-3.0.0.js',
+					'assets/js/ckeditor/ckeditor.js',
 					'js/default-char-limiters.js'
 				),
 

@@ -134,7 +134,7 @@
 					$input_data = array(
 						'name'		=> 'phone_number',
 						'id'		=> 'phone_number',
-						'class'		=> 'form_input max_chars',
+						'class'		=> 'form_input',
 						'value'		=> set_value('phone_number'),
 						'maxlength'	=> '20',
 					);

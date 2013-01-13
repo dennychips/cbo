@@ -8,7 +8,7 @@
 				<h4 class="short_headline"><span>Contact Information</span></h4>
 				<hr />
 				<fieldset>
-					<div class="control-group">
+				<div class="control-group">
 					<?php echo form_label('Description *','description',array('class'=>'required control-label form_label')); ?>
 					<div class="controls">
 						<?php 

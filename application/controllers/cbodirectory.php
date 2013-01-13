@@ -10,6 +10,8 @@ class Cbodirectory extends MY_Controller {
 	}
 
 	public function index() {
+		$this->breadcrumb->append_crumb('Home', base_url());
+		$this->breadcrumb->append_crumb('CBO Directory', base_url().'elibrary');
 		$this->load->model('registration_model');
 		$this->load->model( 'province_autopopulate_model', 'autopop' );
 		$view_data = array(
@@ -47,6 +49,9 @@ class Cbodirectory extends MY_Controller {
 	public function country($name) {
 		$names = ucwords(str_replace('-', ' ', $name));
 		$this->template = 'templates/library_template';
+		$this->breadcrumb->append_crumb('Home', base_url());
+		$this->breadcrumb->append_crumb('CBO Directory', base_url().'cbodirectory');
+		$this->breadcrumb->append_crumb($names, base_url().'cbodirectory/'.$name);
 		$view_data = array(
 				'provinces' => $this->profile->get_province_by_country($names),
 				'country_name' => $name,
@@ -79,18 +84,24 @@ class Cbodirectory extends MY_Controller {
 	}
 	public function view($id) {
 		//$ip = $this->input->ip_address();
+
 		$this->load->model('user_model');
 		$this->load->model('library_model');
 		$count = $this->profile->getprofilecounter($id);
 		$counter= $count['counter'] + 1;
 		$this->profile->updatecounter($id, $counter);
+		$profile = $this->profile->getprofile($id);
+		
 		$view_data = array(
-				'profile' => $this->profile->getprofile($id),
+				'profile' => $profile,
 				'counter' => $this->profile->get_counter($id),
 				'documents' => $this->user_model->get_profile_document($id),
 				'recents' => $this->library_model->get_recent_uploads($id),
 				'profile_id' => $id
 			);
+		$this->breadcrumb->append_crumb('Home', base_url());
+		$this->breadcrumb->append_crumb('CBO Directory', base_url().'cbodirectory');
+		$this->breadcrumb->append_crumb($profile['organization'], base_url().'cbodirectory/view/'.$id);
 		$this->template = 'templates/single';
 		$data = array(
 				'title' 	=> 'CBO - eLibrary',

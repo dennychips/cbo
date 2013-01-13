@@ -25,12 +25,9 @@
 			<div class="span2">
 				<label for="city">City</label>
 				<?php 
-
-					
-
+					$city[''] = '-- Select --';
 					// Options from query
 					foreach( $cities as $row ){
-						$city[''] = '-- Select --';
 						$city[$row['city']] = ucwords($row['city']);
 					}
 					echo form_dropdown('city', $city, '', 'id="city" class="span2"');

@@ -18,7 +18,9 @@ $(document).ready(function() {
 	      	 		{ "name": "title", "value": $( "#title" ).val() },
 	      	 		{ "name": "author", "value": $( "#author" ).val() },
 	      	 		{ "name": "format", "value": $( "#format" ).val() },
-	      	 		{ "name": "doctype", "value": $( "#doctype" ).val() }
+	      	 		{ "name": "doctype", "value": $( "#doctype" ).val() },
+	      	 		{ "name": "country", "value": $( "#country" ).val() },
+	      	 		{ "name": "publisher", "value": $( "#publisher" ).val() }
 				);
 	        $.ajax
 	        ({
@@ -45,5 +47,13 @@ $(document).ready(function() {
     $("#title").keyup( function () {
       /* Filter on the column (the index) of this element */
       oTable.fnFilter( this.value, $("#title"));
+    });
+    $("#country").change( function () {
+      /* Filter on the column (the index) of this element */
+      oTable.fnFilter( this.value, $("#country"));
+    });
+    $("#publisher").change( function () {
+      /* Filter on the column (the index) of this element */
+      oTable.fnFilter( this.value, $("#publisher"));
     });
 });

@@ -11,15 +11,16 @@
 	<div class="clearfix"></div>
 	<!--close entry-tags-->
 	<?php if($document->link !== '') :?>
-	<a href="<?php echo $document->link?>" class="btn btn-success btn-small">Visit</a>
+	<a href="<?php echo $document->link?>" target="_blank" class="btn btn-info btn-small">Visit <i class="icon-share icon-white"></i></a>
 	<?php endif?>
 	<?php if($document->doctype !== NULL) :?>
 	<!-- <a href="<?php echo $document->file_path ?>" class="btn btn-success btn-info btn-small">Download</a> -->
-	<?php echo anchor('elibrary/download/'. $document->lib_id, 'Download', 'class="btn btn-small btn-info"' )?>
+	<?php echo anchor('elibrary/download/'. $document->lib_id, 'Download <i class="icon-download-alt icon-white"></i>', 'class="btn btn-small btn-info"' )?>
 	<?php endif?>
+	<a href="<?php echo site_url('elibrary/publisher/'. $document->user_id)?>" class="btn btn-info btn-small"><i class="icon-chevron-right icon-white"></i> View All Shared Document</a>
 	<br /><br />
 
-	<h4 class="short_headline"><span>Related Documents</span></h4>
+	<?php /*<h4 class="short_headline"><span>Related Documents</span></h4>
 	<ul class="navigation">
 		<?php if(!empty($related)): ?>
 			<?php foreach ($related as $row) {
@@ -29,6 +30,7 @@
 		<li> <a href="#"> Lorem ipsum dolor sit amet </a> </li>
 		<?php endif; ?>
 	</ul>
+	*/?>
 </div>
 
 <aside class="grid_4 right-sidebar">
@@ -38,6 +40,10 @@
 			<tr>
 				<td><strong>Author</strong></td>
 				<td><?php echo $document->author ?></td>
+			</tr>
+			<tr>
+				<td><strong>Uploader</strong></td>
+				<td><a href="<?php echo site_url('cbodirectory/view/'.$document->user_id)?>"><?php echo $document->organization ?></a></td>
 			</tr>
 			<?php if($document->doctype !== NULL) :?>
 			<tr>

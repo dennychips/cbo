@@ -28,6 +28,7 @@ class Library_model extends MY_Model {
 		$this->validation_rules = config_item( 'add_library' );
 		if($this->validate())
 		{
+
 			$lib =  array(
 					'id' => $this->_generate_lib_id(),
 					'title' => $this->input->post('title'),
@@ -39,6 +40,7 @@ class Library_model extends MY_Model {
 					'created'	=> time(),
 					'modified' => time(),
 				);
+
 			if($this->auth_role != 'customer') {
 				$lib['user_id'] = $this->input->post('user');
 			} else {
@@ -79,6 +81,11 @@ class Library_model extends MY_Model {
 					'modified' => time(),
 					'libfile_id' => $this->input->post('libid')
 				);
+			if($this->auth_role != 'customer') {
+				$insert_data['user_id'] = $this->input->post('user');
+			} else {
+				$insert_data['user_id'] = $this->input->post('user_id');
+			}
 
 			if($this->input->post('link')!== '' && $this->input->post('format') == ''){
 				$insert_data['format'] = 'Link';
@@ -155,9 +162,13 @@ class Library_model extends MY_Model {
 	public function get_document($id) {
 		$this->db->join('library_category', 'library_data.type = library_category.catID', 'right');
 		$this->db->join('library_file', 'library_data.libfile_id = library_file.lib_id', 'left');
+		$this->db->join('customer_profile', 'customer_profile.user_id = library_data.user_id', 'left');
 		$q = $this->db->get_where('library_data', array('library_data.id' => $id));
-		// echo $this->db->last_query();
-		return $q->row();
+		
+		if($q->num_rows() != 0 ){
+			return $q->row();
+		}
+		return false;
 	}
 	public function dl_path($id){
 		$this->db->select('file_path, file_name')
@@ -283,6 +294,55 @@ class Library_model extends MY_Model {
 		$country = $q->row_array();
 		return $country;
 	}
+	public function get_publisher_country() {
+		$this->db->distinct();
+		$this->db->select('country');
+		$this->db->join('library_data', 'library_data.user_id = customer_profile.user_id');
+		$q = $this->db->get('customer_profile');
+		// echo $this->db->last_query();
+		$country = $q->result_array();
+		return $country;
+	}
+	public function get_publisher() {
+		$this->db->distinct();
+		$this->db->select('organization');
+		$this->db->join('library_data', 'library_data.user_id = customer_profile.user_id');
+		$q = $this->db->get('customer_profile');
+		$publisher = $q->result_array();
+		return $publisher;
+	}
+	public function get_author($slug) {
+		$this->db->distinct();
+		$this->db->select('author');
+		$this->db->join('library_data', 'library_data.user_id = customer_profile.user_id');
+		$this->db->join('library_category', 'library_category.catID = library_data.type');
+		$this->db->where('library_category.slug', $slug);
+		$q = $this->db->get('customer_profile');
+		$author = $q->result_array();
+		return $author;	
+	}
+	public function get_type_lib($slug) {
+		$this->db->distinct();
+		$this->db->select('category_name');
+		$this->db->join('library_data', 'library_data.user_id = customer_profile.user_id');
+		$this->db->join('library_category', 'library_category.catID = library_data.type');
+		$this->db->where('library_category.slug', $slug);
+		$q = $this->db->get('customer_profile');
+		$type = $q->result_array();
+		return $type;	
+	}
+	public function get_format_lib($slug) {
+
+		$this->db->distinct();
+		$this->db->select('format');
+		$this->db->join('library_data', 'library_data.user_id = customer_profile.user_id');
+		$this->db->join('library_category', 'library_category.catID = library_data.type');
+		$this->db->where('library_category.slug', $slug);
+		$q = $this->db->get('customer_profile');
+		$format = $q->result_array();
+		
+		return $format;	
+	}
 	public function get_user($uid, $role) {
 		if($role == 'admin') {
 			$this->db->select('organization, users.user_id, customer_profile.country');
@@ -291,11 +351,11 @@ class Library_model extends MY_Model {
 			$q = $u->result();
 		} elseif($role == 'manager') {
 			$country = $this->get_manager_country($uid);
-			$this->db->select('organization, users.user_id');
-			$this->db->join('users', 'users.user_id = customer_profile.user_id');
+			$this->db->select('organization, user_id');
 			$this->db->where('customer_profile.country = "'.$country['country'].'"');
 			$u = $this->db->get('customer_profile');
 			$q = $u->result();
+			
 		} else {
 			$q = false;
 		}

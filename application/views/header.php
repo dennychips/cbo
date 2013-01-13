@@ -21,7 +21,7 @@ if( isset( $auth_first_name ) ) {
                 <?php if(isset($auth_level) && $auth_level == 1) : ?>
                 <li><?php echo secure_anchor('elibrary/add', 'Share Document');?></li>
                 <?php endif;?>
-                <?php if(isset($auth_level) && $auth_level == 6) : ?>
+                <?php if(isset($auth_level) && $auth_level > 1) : ?>
                 <li><?php echo secure_anchor('elibrary/manage', 'Manage Document');?></li>
                 <?php endif;?>
                 <li><?php echo secure_anchor('user/self_update', 'My Profile') ?></li> 
@@ -99,9 +99,22 @@ if( isset( $auth_first_name ) ) {
                 </div>
             </div>
         </div>
+
         <p>&nbsp;</p>
+        <div id="breadcrumbs" class="clearfix">
+            <div class="row">
+                <div class="grid_12">
+                    <span xmlns:v="http://rdf.data-vocabulary.org/#">
+                        <span typeof="v:Breadcrumb">
+                            <?php echo $this->breadcrumb->output();?>
+                        </span>
+                    </span></span>
+                </div>
+            </div>
+        </div>
         <div class="clearfix"></div>
     </section>
+
 <?php endif;?>
 <?php /*
 <!-- mobile navigation trigger-->

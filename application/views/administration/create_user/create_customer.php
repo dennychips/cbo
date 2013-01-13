@@ -120,6 +120,23 @@
 			</div>
 		</div>
 		<div class="control-group">
+			<?php echo form_label('Description *','description',array('class'=>'required control-label form_label')); ?>
+			<div class="controls">
+				<?php 
+					$input_data = array(
+						'name'		=> 'description',
+						'id'		=> 'description',
+						'class'		=> 'form_input first_name span12 ckeditor',
+						'value'		=> set_value('description'),
+						'rows'	=> '10',
+					);
+
+					echo form_textarea($input_data);
+				?>
+			</div>
+		</div>
+		
+		<div class="control-group">
 			<?php echo form_label('Country *','country',array('class'=>'required control-label form_label')); ?>
 			<div class="controls">
 				<?php 
@@ -178,9 +195,9 @@
 					$input_data = array(
 						'name'		=> 'street_address',
 						'id'		=> 'street_address',
-						'class'		=> 'form_input max_chars span12',
+						'class'		=> 'form_input span12',
 						'value'		=> set_value('street_address'),
-						'maxlength'	=> '60',
+						'rows'		=> 8
 					);
 
 					echo form_input($input_data);
@@ -194,9 +211,8 @@
 					$input_data = array(
 						'name'		=> 'phone_number',
 						'id'		=> 'phone_number',
-						'class'		=> 'form_input max_chars span12',
+						'class'		=> 'form_input span12',
 						'value'		=> set_value('phone_number'),
-						'maxlength'	=> '60',
 					);
 					echo form_input($input_data);
 				?>

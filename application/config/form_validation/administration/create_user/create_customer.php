@@ -58,6 +58,11 @@ $config['customer_creation_rules'] = array(
 		'rules' => 'trim|required|xss_clean'
 	),
 	array(
+		'field' => 'description',
+		'label' => 'Description',
+		'rules' => 'trim|xss_clean'
+	),
+	array(
 		'field' => 'country',
 		'label' => 'Country',
 		'rules' => 'trim|required|xss_clean'
@@ -70,7 +75,7 @@ $config['customer_creation_rules'] = array(
 	array(
 		'field' => 'phone_number',
 		'label' => 'Phone Number',
-		'rules' => 'trim|required|alpha_dash|xss_clean'
+		'rules' => 'trim|alpha_dash|xss_clean'
 	),
 	array(
 		'field' => 'focus_area',

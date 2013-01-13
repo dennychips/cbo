@@ -134,6 +134,14 @@ elseif(isset($validation_passed)) {
 					'maxlength'	=> 255
 				);
 		echo form_input($input_data);
+		if( $auth_role == 'admin' || $auth_role == 'manager'){
+			echo form_label('Publish As *', 'user');
+			$user[''] = '-- Select User --';
+			foreach($user_list as $row){
+				$user[$row->user_id] = $row->organization;
+			}
+			echo form_dropdown('user', $user , set_value('user', $lib_data->user_id), 'id="user"');
+		}
 		?>
 
 	</div>

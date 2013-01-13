@@ -16,13 +16,12 @@
 echo '<h1 class="short_headline"><span>' . ( isset( $type ) ? ucfirst( $type ) . ' Creation' : 'User Creation' ) . '</span></h1>';
 ?>
 <hr />
-	<div class="row-fluid">
-		<div class="span7">
+	
 		<?php
 		if( isset( $validation_passed, $user_created ) )
 		{
 			echo '
-				<div class="feedback confirmation">
+				<div class="feedback alert alert-success confirmation">
 					<p class="feedback_header">
 						The new ' . $type . ' has been successfully created.
 					</p>
@@ -70,8 +69,7 @@ echo '<h1 class="short_headline"><span>' . ( isset( $type ) ? ucfirst( $type ) .
 			echo '</ul>';
 		}
 		?>
-		</div>
-	</div>
+	
 </div>
 <?php
 

@@ -47,9 +47,13 @@
 				<button id="search-button">Search</button>
 				<button id="reset-button">Reset</button>
 			</div>
+			<?php if($pagination_links):?>
 			<div id="pagination" class="pagination">
-				<p><?php echo $pagination_links; ?></p>
+				<ul>
+					<?php echo $pagination_links; ?>
+				</ul>
 			</div>
+			<?php endif;?>
 		</div>
 	</form>
 </div>

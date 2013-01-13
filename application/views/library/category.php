@@ -19,7 +19,7 @@
 		</select>
 	</div>
 	<div class="span2">
-		<label for="format">Author</label>
+		<label for="format">Format</label>
 		<select id="format" class="span2">
 			<option value="">-- Select --</option>
 			<?php foreach($format as $row) :?>
@@ -36,6 +36,26 @@
 			<?php endforeach?>
 		</select>
 	</div>
+	<div class="span2">
+
+		<label for="doctype">Shared By</label>
+		<select data-style="span2" id="publisher" class="span2">
+			<option value="">-- Select --</option>
+			<?php print_r($publisher)?>
+			<?php foreach($publisher as $row) :?>
+			<option value="<?php echo $row['organization'] ?>"><?php echo $row['organization'] ?></option>
+			<?php endforeach?>
+		</select>
+	</div>
+	<div class="span2">
+		<label for="doctype">Country</label>
+		<select data-style="span2" id="country" class="span2">
+			<option value="">-- Select --</option>
+			<?php foreach($country as $row) :?>
+			<option value="<?php echo $row['country'] ?>"><?php echo $row['country'] ?></option>
+			<?php endforeach?>
+		</select>
+	</div>
 	</div>
 	<hr />
 </div>
@@ -45,12 +65,14 @@
 		<table id="library-table" class="table table-hover">
 		  <thead>
 		    <tr>
-		      <th style="width:35%">Title</th>
-		      <th style="width:15%">Author</th>
-		      <th style="width:10%">Date</th>
-		      <th style="width:10%">Format</th>
-		      <th style="width:15%">Document Type</th>
-		      <th style="width:20%">Action</th>
+				<th style="width:20%">Title</th>
+				<th style="width:13%">Shared By</th>
+				<th style="width:15%">Country</th>
+				<th style="width:10%">Author</th>
+				<th style="width:10%">Date</th>
+				<th style="width:6%">Format</th>
+				<th style="width:15%">Type</th>
+				<th style="width:10%">Action</th>
 		    </tr>
 		  </thead>
 		  <tbody>

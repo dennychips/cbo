@@ -11,11 +11,16 @@ class Elibrary extends MY_Controller {
 	}
 
 	public function index() {
+		$this->breadcrumb->append_crumb('Home', base_url());
+		$this->breadcrumb->append_crumb('elibrary', base_url().'elibrary');
+
 		$view_data = array(
 				'profiles' => $this->lib->get_all_lib_data(),
 				'author' => $this->lib->getdata('author', 'library_data'),
+				'publisher' => $this->lib->get_publisher(),
 				'format' => $this->lib->getdata('format', 'library_data'),
 				'doctype' => $this->lib->getdata('category_name', 'library_category'),
+				'country' => $this->lib->get_publisher_country()
 			);
 		$this->template = 'templates/library_template';
 		$data = array(
@@ -50,23 +55,30 @@ class Elibrary extends MY_Controller {
 			$this->load->view($this->template, $data);	
 		}		
 	}
-	function view($id) {
-		$count = $this->lib->getdocumentcounter($id);
-		$counter= $count['view_counter'] + 1;
-		$this->lib->update_doc_counter($id, $counter);
+	function view($id ='') {
+		$doc_data = $this->lib->get_document($id);
+		if($doc_data && $id != ''){
+			$count = $this->lib->getdocumentcounter($id);
+			$counter= $count['view_counter'] + 1;
+			$this->lib->update_doc_counter($id, $counter);
+			$this->breadcrumb->append_crumb('Home', base_url());
+			$this->breadcrumb->append_crumb('elibrary', base_url().'elibrary');		
+			$this->breadcrumb->append_crumb($doc_data->title, base_url().'tutorials/spring-tutorials');	
 
-		$this->load->helper('bytes_helper');
-		$this->template = 'templates/single';
-		$view_data = array(
-				'document' => $this->lib->get_document($id),
-				'related' => $this->lib->related_document($id)
-			);
-		$data = array(
-				'title' 	=> 'CBO - eLibrary',
-				
-				'content' 	=> $this->load->view('library/detail', $view_data, TRUE)
-			);
-		$this->load->view($this->template, $data);	
+			$this->load->helper('bytes_helper');
+			$this->template = 'templates/single';
+			$view_data = array(
+					'document' => $doc_data,
+					'related' => $this->lib->related_document($id)
+				);
+			$data = array(
+					'title' 	=> 'CBO - eLibrary',
+					'content' 	=> $this->load->view('library/detail', $view_data, TRUE)
+				);
+			$this->load->view($this->template, $data);
+		} else {
+			show_404();
+		}
 	}
 	public function add() {
 
@@ -121,6 +133,7 @@ class Elibrary extends MY_Controller {
 			// $view_data['file'] = $this->lib->get_lib_file();
 			$view_data['doc_id'] = $view_data['lib_data']->lib_id;
 			$view_data['lib_id'] = $id;
+			$view_data['user_list'] = $this->lib->get_user($this->auth_user_id, $this->auth_role);
 			$data = array(
 					'title' 	=> 'CBO - Edit eLibrary',
 					'content' 	=> $this->load->view('library/edit', $view_data, TRUE),
@@ -164,12 +177,14 @@ class Elibrary extends MY_Controller {
 		 	if( $this->input->is_ajax_request())
 		 	{
 			 	$data = $this->input->post();
+
+			 	$doc_type = (str_replace('.', '', $data['doc_data']['file_ext']));
 			 	
 			 	$insert_data = array(
 			 			'file_name' => $data['doc_data']['file_name'],
 			 			'file_path' => $data['doc_data']['file_url'],
 			 			'file_size' => $data['doc_data']['file_size'],
-			 			'file_type' => $data['doc_data']['file_type']
+			 			'file_type' => $doc_type
 			 		);
 			 	if($res = $this->lib->insert_lib_doc($insert_data)) {
 			 		
@@ -186,13 +201,14 @@ class Elibrary extends MY_Controller {
 	}
 	public function process_request() {
 		$this->load->library('Datatables');
-		$this->datatables->select('library_data.id, title, author, created, type, format, library_category.category_name');
+		$this->datatables->select('library_data.id, title, customer_profile.organization, country, author, created, type, format, library_category.category_name');
 		$this->datatables->from('library_data');
 		$this->datatables->join('library_category', 'library_category.catID = library_data.type');
+		$this->datatables->join('customer_profile', 'customer_profile.user_id = library_data.user_id');
 		$this->datatables->unset_column('library_data.id');
 		$this->datatables->unset_column('type');
 		$this->datatables->edit_column('title', '<a href="elibrary/view/$1">$2</a>', 'library_data.id, title');
-		$this->datatables->add_column('view', '<a href="elibrary/view/$1" class="btn btn-success btn-small"><i class="icon-share-alt icon-white"></i> Detail</a>', 'library_data.id');
+		$this->datatables->add_column('view', '<a href="elibrary/view/$1" class="btn btn-success btn-mini"><i class="icon-share-alt icon-white"></i></a>', 'library_data.id');
 		if(isset($_POST['author']) && $_POST['author'] !== ''){
     		$this->datatables->filter('author', $_POST['author']);
 	    }
@@ -204,27 +220,39 @@ class Elibrary extends MY_Controller {
 	    }
 	    if(isset($_POST['title']) && $_POST['title'] !==''){
 	    	$this->datatables->where('title LIKE "%' . $_POST['title'] .'%"');
-
+	    }
+	    if(isset($_POST['country']) && $_POST['country'] !==''){
+	    	$this->datatables->where('country LIKE "%' . $_POST['country'] .'%"');
+	    }
+	    if(isset($_POST['publisher']) && $_POST['publisher'] !==''){
+	    	$this->datatables->where('organization LIKE "%' . $_POST['publisher'] .'%"');
 	    }
 		$data = $this->datatables->generate();
-		// print_r($this->db->last_query());
+		// echo $this->db->last_query();
 		$decode = json_decode($data);
 		// print_r($decode->aaData);
 		foreach($decode->aaData as $k => $v ){
-			$time = date('Y', $v[2]);
+			$time = date('Y', $v[4]);
 			
-			$decode->aaData[$k][2] = $time;
+			$decode->aaData[$k][4] = $time;
 		}
+
 		echo json_encode($decode);
 
 	}
 
 	public function category($slug) {
+		$category_name = str_replace('-', ' ', $slug);
+		$this->breadcrumb->append_crumb('Home', base_url());
+		$this->breadcrumb->append_crumb('elibrary', base_url().'elibrary');
+		$this->breadcrumb->append_crumb(ucwords($category_name), base_url().'category/'.$slug);
 		$view_data = array(
 				'profiles' => $this->lib->get_all_lib_data(),
-				'author' => $this->lib->getdata('author', 'library_data'),
-				'format' => $this->lib->getdata('format', 'library_data'),
-				'doctype' => $this->lib->getdata('category_name', 'library_category'),
+				'author' => $this->lib->get_author($slug),
+				'format' => $this->lib->get_format_lib($slug),
+				'doctype' => $this->lib->get_type_lib($slug),
+				'publisher' => $this->lib->get_publisher(),
+				'country' => $this->lib->get_publisher_country(),
 				'slug' => $slug
 			);
 		$this->template = 'templates/library_template';
@@ -245,10 +273,11 @@ class Elibrary extends MY_Controller {
 	public function library_by_category($slug){
 		if($this->input->is_ajax_request()){
 			$this->load->library('datatables');
-			$this->datatables->select('library_data.id, title, author, created, type, format, library_category.category_name, library_category.slug');
+			$this->datatables->select('library_data.id, title, organization, country, author, created, type, format, library_category.category_name, library_category.slug');
 			$this->datatables->from('library_data');
 			$this->datatables->join('library_category', 'library_category.catID = library_data.type');
 			$this->datatables->where('library_category.slug', $slug);
+			$this->datatables->join('customer_profile', 'customer_profile.user_id = library_data.user_id');
 			$this->datatables->unset_column('library_data.id');
 			$this->datatables->unset_column('type');
 			$this->datatables->unset_column('library_category.slug');
@@ -272,9 +301,8 @@ class Elibrary extends MY_Controller {
 			$decode = json_decode($data);
 			// print_r($decode->aaData);
 			foreach($decode->aaData as $k => $v ){
-				$time = date('Y', $v[2]);
-				
-				$decode->aaData[$k][2] = $time;
+				$time = date('Y', $v[4]);
+				$decode->aaData[$k][4] = $time;
 			}
 			echo json_encode($decode);	
 		}
@@ -306,6 +334,29 @@ class Elibrary extends MY_Controller {
 		}
 		echo json_encode($response);
 	}
+	public function publisher() {
+		$uid = $this->uri->uri_to_assoc(2);
+		$this->breadcrumb->append_crumb('Home', base_url());
+		$this->breadcrumb->append_crumb('elibrary', base_url().'elibrary');
+		$this->breadcrumb->append_crumb('Publisher', '#');
+		$this->breadcrumb->append_crumb('name', base_url().'elibrary');
+		$view_data = array();
+		$this->template = 'templates/library_template';
+		$data = array(
+				'title' 		=> 'CBO - eLibrary',
+				'content' 		=> $this->load->view('library/publisher', $view_data, TRUE),
+				'javascripts'	=> array(
+						'assets/js/jquery.dataTables.min.js',
+						'assets/js/bootstrap-DT-init.js',
+						'assets/js/category.js'
+					),
+				'style_sheets' => array(
+						'assets/css/jquery.dataTables.css' => 'screen',
+					),
+			);
+		$this->load->view($this->template, $data);
+		
+	}
 	public function getdocument() {
 		if($this->input->is_ajax_request()){
 			$country = $this->lib->get_manager_country($this->auth_user_id);
@@ -321,10 +372,20 @@ class Elibrary extends MY_Controller {
 			$this->datatables->unset_column('library_data.id');
 			$this->datatables->unset_column('type');
 			$this->datatables->edit_column('title', '<a href="elibrary/view/$1">$2</a>', 'library_data.id, title');
-			$this->datatables->add_column('view', '<a href="elibrary/view/$1" class="btn btn-success btn-small"><i class="icon-share-alt icon-white"></i> Detail</a>', 'library_data.id');
+			$this->datatables->add_column('view', '<a href="elibrary/edit/$1" class="btn btn-info btn-small"><i class="icon-pencil icon-white"></i></a> <a href="elibrary/view/$1" class="btn btn-danger btn-small"><i class="icon-trash icon-white"></i></a>', 'library_data.id');
 			$data = $this->datatables->generate();
 			// echo $this->db->last_query();
-			echo $data;
+			$decode = json_decode($data);
+			
+			foreach($decode->aaData as $k => $v ){
+				$created = date('F j, Y, g:i a', $v[3]);
+				$modified = date('F j, Y, g:i a', $v[4]);
+				$decode->aaData[$k][3] = $created;
+				$decode->aaData[$k][4] = $modified;
+			}
+			echo json_encode($decode);
+			
 		}
+		
 	}
 }
