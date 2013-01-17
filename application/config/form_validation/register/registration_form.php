@@ -70,7 +70,7 @@ $config['registration_form'] = array(
 	array(
 		'field' => 'phone_number',
 		'label' => 'Phone Number',
-		'rules' => 'trim|alpha_dash|xss_clean'
+		'rules' => 'trim|xss_clean'
 	),
 	array(
 		'field' => 'focus_area',

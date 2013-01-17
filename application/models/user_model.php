@@ -106,11 +106,13 @@ class User_model extends MY_Model {
 			$this->load->model('registration_model');
 			$reg_mode = $this->registration_model->get_reg_mode();
 
-			if($reg_mode == 2 || $reg_mode == 3){
-				$profile_data['focus_area'] = $profile_data['focus_area'];
-			} 
-			if($this->uri->segment(2) == 'create_user'){
-				$profile_data['focus_area'] = serialize($profile_data['focus_area']);
+			if(isset($profile_data['focus_area'])){
+				if($reg_mode == 2 || $reg_mode == 3){
+					$profile_data['focus_area'] = $profile_data['focus_area'];
+				} 
+				if($this->uri->segment(2) == 'create_user'){
+					$profile_data['focus_area'] = serialize($profile_data['focus_area']);
+				}
 			}
 			
 			
@@ -127,8 +129,12 @@ class User_model extends MY_Model {
 				if($profile_data['twitter'] == NULL){
 					$profile_data['twitter'] = '';
 				}
+				if($profile_data['description'] == NULL){
+					$profile_data['description'] = '';
+				}
 			}
-			
+
+
 			// Create a random user id if not already set
 			$random_unique_int = $this->get_unused_id();
 

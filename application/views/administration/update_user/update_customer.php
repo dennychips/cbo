@@ -76,7 +76,7 @@ else if( isset( $validation_errors ) )
 					$input_data = array(
 						'name'		=> 'first_name',
 						'id'		=> 'first_name',
-						'class'		=> 'form_input first_name span12',
+						'class'		=> 'form_input first_name input-xlarge',
 						'value'		=> set_value('first_name', $user_data->first_name),
 						'maxlength'	=> '20',
 					);
@@ -92,7 +92,7 @@ else if( isset( $validation_errors ) )
 					$input_data = array(
 						'name'		=> 'last_name',
 						'id'		=> 'last_name',
-						'class'		=> 'form_input last_name span12',
+						'class'		=> 'form_input last_name  input-xlarge',
 						'value'		=> set_value('last_name', $user_data->last_name),
 						'maxlength'	=> '20',
 					);
@@ -109,7 +109,7 @@ else if( isset( $validation_errors ) )
 			    $input_data = array(
 					'name'		=> 'user_email',
 					'id'		=> 'user_email',
-					'class'		=> 'form_input max_chars span12',
+					'class'		=> 'form_input max_chars  input-xlarge',
 					'value'		=> set_value('user_email', $user_data->user_email),
 					'maxlength'	=> '255',
 				);
@@ -124,7 +124,7 @@ else if( isset( $validation_errors ) )
 					$input_data = array(
 						'name'		=> 'organization',
 						'id'		=> 'organization',
-						'class'		=> 'form_input span12',
+						'class'		=> 'form_input  input-xlarge',
 						'value'		=> set_value('organization', $user_data->organization),
 					);
 
@@ -139,7 +139,7 @@ else if( isset( $validation_errors ) )
 					$input_data = array(
 						'name'		=> 'organization_email',
 						'id'		=> 'organization_email',
-						'class'		=> 'form_input span12',
+						'class'		=> 'form_input input-xlarge',
 						'value'		=> set_value('organization_email', $user_data->organization_email),
 					);
 
@@ -171,7 +171,7 @@ else if( isset( $validation_errors ) )
 	    			foreach ($country as $row) {
 	    				$countries[$row->country] = $row->country;	
 	    			}
-					echo form_dropdown('country', $countries, set_value('country', $user_data->country), 'id ="country" class="span12"');
+					echo form_dropdown('country', $countries, set_value('country', $user_data->country), 'id ="country" class="input-xlarge"');
 				?>
 			</div>
 		</div>
@@ -192,7 +192,7 @@ else if( isset( $validation_errors ) )
 						// Default option if not POST request
 						$country_province[''] = '-- Select Country --';
 					}
-					echo form_dropdown('province', $country_province, set_value('province', $user_data->province), 'id="province" class="span12"');
+					echo form_dropdown('province', $country_province, set_value('province', $user_data->province), 'id="province" class=" input-xlarge"');
 				?>
 			</div>
 		</div>
@@ -205,7 +205,7 @@ else if( isset( $validation_errors ) )
 					$input_data = array(
 						'name'		=> 'city',
 						'id'		=> 'city',
-						'class'		=> 'form_input span12',
+						'class'		=> 'form_input  input-xlarge',
 						'value'		=> set_value('city', $user_data->city),
 					);
 
@@ -222,7 +222,7 @@ else if( isset( $validation_errors ) )
 					$input_data = array(
 						'name'		=> 'street_address',
 						'id'		=> 'street_address',
-						'class'		=> 'form_input max_chars span12',
+						'class'		=> 'form_input max_chars  input-xlarge',
 						'value'		=> set_value('street_address', $user_data->street_address),
 						'maxlength'	=> '60',
 					);
@@ -238,7 +238,7 @@ else if( isset( $validation_errors ) )
 					$input_data = array(
 						'name'		=> 'phone_number',
 						'id'		=> 'phone_number',
-						'class'		=> 'form_input max_chars span12',
+						'class'		=> 'form_input max_chars  input-xlarge',
 						'value'		=> set_value('phone_number', $user_data->phone_number),
 						'maxlength'	=> '60',
 					);
@@ -260,7 +260,7 @@ else if( isset( $validation_errors ) )
 	                  'Youth' => 'Youth',
 	                  'Other' => 'Other'
 	                );
-					echo form_dropdown('focus_area[]', $options, set_value('focus_area', unserialize($user_data->focus_area)), 'class="span12" multiple="multiple"');
+					echo form_dropdown('focus_area[]', $options, set_value('focus_area', unserialize($user_data->focus_area)), 'class="input-xlarge" multiple="multiple"');
 				?>
 			</div>
 		</div>
@@ -274,7 +274,7 @@ else if( isset( $validation_errors ) )
 					$input_data = array(
 						'name'		=> 'website',
 						'id'		=> 'website',
-						'class'		=> 'form_input max_chars span12',
+						'class'		=> 'form_input max_chars  input-xlarge',
 						'value'		=> set_value('website', $user_data->website),
 						
 					);
@@ -290,7 +290,7 @@ else if( isset( $validation_errors ) )
 					$input_data = array(
 						'name'		=> 'blog',
 						'id'		=> 'blog',
-						'class'		=> 'form_input max_chars span12',
+						'class'		=> 'form_input max_chars  input-xlarge',
 						'value'		=> set_value('blog', $user_data->blog),
 					);
 
@@ -305,7 +305,7 @@ else if( isset( $validation_errors ) )
 					$input_data = array(
 						'name'		=> 'facebook',
 						'id'		=> 'facebook',
-						'class'		=> 'form_input max_chars span12',
+						'class'		=> 'form_input max_chars  input-xlarge',
 						'value'		=> set_value('facebook', $user_data->facebook),
 					);
 
@@ -320,7 +320,7 @@ else if( isset( $validation_errors ) )
 					$input_data = array(
 						'name'		=> 'twitter',
 						'id'		=> 'twitter',
-						'class'		=> 'form_input max_chars span12',
+						'class'		=> 'form_input max_chars input-xlarge',
 						'value'		=> set_value('twitter', $user_data->twitter),
 					);
 

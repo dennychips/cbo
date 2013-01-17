@@ -147,7 +147,7 @@ $config['disallow_multiple_logins'] = TRUE;
 |
 */
 
-$config['allow_remember_me'] = FALSE;
+$config['allow_remember_me'] = TRUE;
 
 /*
 | -----------------------------------------------------------------

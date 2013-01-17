@@ -14,18 +14,25 @@
 $config['manage_users_pagination_settings'] = array(
 
 	'base_url' => secure_site_url( 'administration/manage_users' ),
-	'per_page' => 3,
+	'per_page' => 10,
 	'use_page_numbers' => TRUE,
+	'anchor_class' => 'class="std-link" ',
 	'cur_tag_open' => '<li class="active"><a href="#">',
 	'cur_tag_close' => '</a></li>',
+	'first_link' => FALSE,
+	'last_link' => FALSE,
 	'num_links' => 3,
 	'num_tag_open' => '<li>',
-	'num_tag_close' => '</li>'
+	'num_tag_close' => '</li>',
+	'next_tag_open' => '<li>',
+	'next_tag_close' => '</li>',
+	'prev_tag_open' => '<li>',
+	'prev_tag_close' => '</li>',
 );
 
 $config['manage_users_search_options'] = array(
-	'u.user_name' => 'username',
-	'u.user_email' => 'email address'
+	'users.user_name' => 'username',
+	'users.user_email' => 'email address'
 );
 
 /* End of file manage_users_pagination.php */

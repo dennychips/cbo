@@ -38,8 +38,8 @@
 					echo img( array( 'src' => 'img/network_activity.gif', 'id' => 'network-activity', 'width' => 200, 'height' => 13, 'style'=> 'display:none' ) );
 				?>
 			</div>
-			<div id="delete-confirmation" >
-				<p style="display:none">MARKED ROWS HAVE BEEN DELETED&nbsp;</p>
+			<div id="delete-confirmation">
+				<p style="display:none" class="alert alert-success" >MARKED ROWS HAVE BEEN DELETED&nbsp;</p>
 			</div>
 		</div>
 		<div id="search-controls-lower">
@@ -61,10 +61,11 @@
 	<table id="myTable" class="tablesorter table table-bordered">
 		<thead>
 			<tr>
+				<th>Action</th>
 				<th>username</th>
 				<th>email address</th>
 				<th>role</th>
-				<th width="12%"></th>
+				
 			</tr>
 		</thead>
 		<tbody>

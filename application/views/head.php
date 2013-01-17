@@ -2,8 +2,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <meta name="author" content="http://localhost/ict">
-
+    <meta name="author" content="Deni Permana">
+	<meta name="google-translate-customization" content="e8620c08ee7037e-9ffa3c972f60fb5f-g34008be059d1a444-12"></meta>
+        
     <title><?php echo ( isset( $title ) ) ? $title : WEBSITE_NAME; ?></title>
     <?php
 	// Add any keywords
@@ -20,7 +21,7 @@
 	<?php 
 	echo link_tag( array( 'href' => 'assets/css/bootstrap.min.css', 'media' => 'screen', 'rel' => 'stylesheet' ) ) . "\n";
 	echo link_tag( array( 'href' => 'assets/css/main.css', 'media' => 'screen', 'rel' => 'stylesheet' ) ) . "\n";
-	echo link_tag( array( 'href' => 'assets/css/media.queires.css', 'media' => 'screen', 'rel' => 'stylesheet' ) ) . "\n";
+	// echo link_tag( array( 'href' => 'assets/css/media.queires.css', 'media' => 'screen', 'rel' => 'stylesheet' ) ) . "\n";
 	echo link_tag( array( 'href' => 'assets/css/skin.css', 'media' => 'screen', 'rel' => 'stylesheet' ) ) . "\n";
 	echo link_tag( array( 'href' => 'assets/css/bootstrap-select.min.css', 'media' => 'screen', 'rel' => 'stylesheet' ) ) . "\n";
 	if( isset( $style_sheets ) )

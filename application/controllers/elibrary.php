@@ -24,7 +24,7 @@ class Elibrary extends MY_Controller {
 			);
 		$this->template = 'templates/library_template';
 		$data = array(
-				'title' 		=> 'CBO - eLibrary',
+				'title' 		=> WEBSITE_NAME .' Documents',
 				'content' 		=> $this->load->view('library/main', $view_data, TRUE),
 				'javascripts'	=> array(
 						'assets/js/jquery.dataTables.min.js',
@@ -72,7 +72,7 @@ class Elibrary extends MY_Controller {
 					'related' => $this->lib->related_document($id)
 				);
 			$data = array(
-					'title' 	=> 'CBO - eLibrary',
+					'title' 	=> WEBSITE_NAME . ' '.$doc_data->title,
 					'content' 	=> $this->load->view('library/detail', $view_data, TRUE)
 				);
 			$this->load->view($this->template, $data);
@@ -106,11 +106,19 @@ class Elibrary extends MY_Controller {
 					'javascripts' => array(
 							'assets/js/ckeditor/ckeditor.js',
 							'js/ajaxupload.js',
-							'assets/js/document-uploader-controls.js',
+							'assets/js/jquery-ui-1.9.2.custom.js',
+							'assets/js/document-uploader-controls.js'
 						),
 					'style_sheets' => array(
- 							// 'assets/js/fineuploader/fineuploader.css' => 'screen'
+ 							'assets/css/smoothness/jquery-ui-1.9.2.custom.css' => 'screen'
 						),
+					'dynamic_extras' => '
+						$(document).ready(function(){
+							$( "#date" ).datepicker({
+									"dateFormat": "DD, d MM, yy"
+								});
+						});
+					'
 					
 				);
 			$this->template = 'templates/administration_template';
@@ -121,8 +129,10 @@ class Elibrary extends MY_Controller {
 	public function edit($id) {
 		if( $this->require_min_level(1))
 		{
+		$owner = $this->lib->check_owner($id);
+		if($owner['user_id'] == $this->auth_user_id || $this->auth_role == 'admin'){
 			if($this->csrf->token_match){
-				
+
 				$this->lib->update_library($this->input->post(), $id);
 			}
 
@@ -140,11 +150,28 @@ class Elibrary extends MY_Controller {
 					'javascripts' => array(
 							'assets/js/ckeditor/ckeditor.js',
 							'js/ajaxupload.js',
-							'assets/js/document-uploader-controls.js',
+							'assets/js/jquery-ui-1.9.2.custom.js',
+							'assets/js/document-uploader-controls.js'
 						),
+					'style_sheets' => array(
+ 							'assets/css/smoothness/jquery-ui-1.9.2.custom.css' => 'screen'
+						),
+					'dynamic_extras' => '
+						$(document).ready(function(){
+							$( "#date" ).datepicker({
+									"dateFormat": "DD, d MM, yy"
+								});
+						});
+					'
 				);
+
 			$this->template = 'templates/administration_template';
 			$this->load->view($this->template, $data);
+		} else {
+			$this->session->set_flashdata('message', 'Youre Not Authorized to edit this document');
+			redirect('user');
+		}
+
 		}
 	}
 	public function delete() {
@@ -245,6 +272,7 @@ class Elibrary extends MY_Controller {
 		$category_name = str_replace('-', ' ', $slug);
 		$this->breadcrumb->append_crumb('Home', base_url());
 		$this->breadcrumb->append_crumb('elibrary', base_url().'elibrary');
+		$this->breadcrumb->append_crumb('Category', base_url().'elibrary');
 		$this->breadcrumb->append_crumb(ucwords($category_name), base_url().'category/'.$slug);
 		$view_data = array(
 				'profiles' => $this->lib->get_all_lib_data(),
@@ -257,7 +285,7 @@ class Elibrary extends MY_Controller {
 			);
 		$this->template = 'templates/library_template';
 		$data = array(
-				'title' 		=> 'CBO - eLibrary',
+				'title' 		=> WEBSITE_NAME . ' Category - '. ucwords($category_name),
 				'content' 		=> $this->load->view('library/category', $view_data, TRUE),
 				'javascripts'	=> array(
 						'assets/js/jquery.dataTables.min.js',
@@ -359,8 +387,9 @@ class Elibrary extends MY_Controller {
 	}
 	public function getdocument() {
 		if($this->input->is_ajax_request()){
+			$this->is_logged_in();
 			$country = $this->lib->get_manager_country($this->auth_user_id);
-			// print_r($country);
+			
 			$this->load->library('datatables');
 			$this->datatables->select('library_data.id, title, type, format, library_category.category_name, modified, created');
 			$this->datatables->from('library_data');
@@ -386,6 +415,24 @@ class Elibrary extends MY_Controller {
 			echo json_encode($decode);
 			
 		}
-		
+	}
+	public function manage_category() {
+		if( $this->require_group('employees') )
+		{
+			$data = array(
+				'title' 		=> WEBSITE_NAME. ' Manage Category',
+				'content' 		=> $this->load->view('library/manage_category', '', TRUE),
+				'javascripts'	=> array(
+						'assets/js/jquery.dataTables.min.js',
+						'assets/js/bootstrap-DT-init.js',
+						'assets/js/category.js'
+					),
+				'style_sheets' => array(
+						'assets/css/jquery.dataTables.css' => 'screen',
+					),
+			);
+			$this->template = 'templates/administration_template';
+			$this->load->view($this->template, $data);
+		}
 	}
 }

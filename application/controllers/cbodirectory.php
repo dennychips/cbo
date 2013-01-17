@@ -32,7 +32,7 @@ class Cbodirectory extends MY_Controller {
 		
 		$this->template = 'templates/library_template';
 		$data = array(
-				'title' => 'CBO - eLibrary',
+				'title' => WEBSITE_NAME . ' CBO Profile Directory',
 				'content' => $this->load->view('directory/main', $view_data, TRUE),
 				'javascripts'	=> array(
 						'assets/js/jquery.dataTables.min.js',
@@ -58,7 +58,7 @@ class Cbodirectory extends MY_Controller {
 				'cities' => $this->profile->get_city($names)
 			);
 		$data = array(
-				'title' => 'CBO - eLibrary',
+				'title' => WEBSITE_NAME . ' Country - '. $names,
 				'content' => $this->load->view('directory/country', $view_data, TRUE),
 				'javascripts' => array(
 						'assets/js/jquery.dataTables.min.js',
@@ -104,7 +104,7 @@ class Cbodirectory extends MY_Controller {
 		$this->breadcrumb->append_crumb($profile['organization'], base_url().'cbodirectory/view/'.$id);
 		$this->template = 'templates/single';
 		$data = array(
-				'title' 	=> 'CBO - eLibrary',
+				'title' => WEBSITE_NAME . ' '.$profile['organization'],
 				'content' 	=> $this->load->view('directory/detail', $view_data, TRUE),
 				'javascripts'	=> array(
 						'assets/js/jquery.dataTables.min.js',

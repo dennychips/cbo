@@ -37,6 +37,7 @@ class Library_model extends MY_Model {
 					'author' => $this->input->post('author'),
 					'link' => $this->input->post('link'),
 					'libfile_id' => $this->input->post('libid'),
+					// 'date' => strtotime($this->input->post('date')),
 					'created'	=> time(),
 					'modified' => time(),
 				);
@@ -52,7 +53,6 @@ class Library_model extends MY_Model {
 			} else if($this->input->post('link') !== '' && $this->input->post('format') !== ''){
 				$lib['format'] = $this->input->post('format');
 			}
-			
 			
 			if($this->db->set($lib)->insert('library_data')){
 				if($this->_move_file_tmp($this->input->post('libid')) !== FALSE){
@@ -72,12 +72,14 @@ class Library_model extends MY_Model {
 		if($this->validate())
 		{			
 			
+			
 			$insert_data = array(
 					'title' => $data['title'],
 					'description' => $data['description'],
 					'type' => $data['type'],
 					'author' => $data['author'],
 					'link' => $data['link'],
+					// 'date' => strtotime($data['date']),
 					'modified' => time(),
 					'libfile_id' => $this->input->post('libid')
 				);
@@ -93,7 +95,6 @@ class Library_model extends MY_Model {
 				$insert_data['format'] = $this->input->post('format');
 			}
 
-			
 			if($this->db->set($insert_data)->where('id', $id)->update('library_data')){
 				if($this->_move_file_tmp($this->input->post('libid')) !== FALSE){
 					$this->db->insert('library_file', $this->insert_data);
@@ -160,11 +161,12 @@ class Library_model extends MY_Model {
 		
 	}
 	public function get_document($id) {
+		$this->db->select('library_data.id, library_data.user_id, title, link, library_data.description, doctype, author, customer_profile.organization, library_data.created, library_category.category_name, library_data.view_counter, library_file.file_size, library_file.counter, library_file.lib_id');
 		$this->db->join('library_category', 'library_data.type = library_category.catID', 'right');
 		$this->db->join('library_file', 'library_data.libfile_id = library_file.lib_id', 'left');
 		$this->db->join('customer_profile', 'customer_profile.user_id = library_data.user_id', 'left');
 		$q = $this->db->get_where('library_data', array('library_data.id' => $id));
-		
+		// echo $this->db->last_query();
 		if($q->num_rows() != 0 ){
 			return $q->row();
 		}
@@ -361,5 +363,14 @@ class Library_model extends MY_Model {
 		}
 
 		return $q;
+	}
+
+	public function check_owner($id) {
+		$this->db->select('user_id');
+		$q = $this->db->get('library_data');
+
+		if($q->num_rows() == 1){
+			return $q->row_array();
+		}
 	}
 }

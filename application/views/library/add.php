@@ -11,7 +11,7 @@
 if( isset( $validation_errors ) >= 1 )
 {
 	echo '
-		<div class="feedback error_message">
+		<div class="feedback alert alert-danger error_message">
 			<p class="feedback_header">
 				The following form fields contained errors:
 			</p>
@@ -108,6 +108,15 @@ elseif(isset($validation_passed)) {
 		
 		
 		echo form_dropdown('type', $type , set_value('type'), 'id="type"');
+		// echo form_label('Date *','date',array('class'=>'form_label'));
+		// $input_data = array(
+		// 	'name'		=> 'date',
+		// 	'id'		=> 'date',
+		// 	'class'		=> 'form_input ',
+		// 	'value'		=> set_value('date'),
+		// 	'maxlength'	=> 255
+		// );
+		// echo form_input($input_data);
 		echo form_label('Author *','author',array('class'=>'form_label'));
 		$input_data = array(
 			'name'		=> 'author',

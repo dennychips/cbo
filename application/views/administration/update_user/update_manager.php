@@ -162,24 +162,6 @@ else if( isset( $validation_errors ) )
 			</div>
 		</fieldset>
 		<fieldset>
-			
-			<div class="form-row">
-
-				<?php
-					// LICENSE NUMBER LABEL AND INPUT ***********************************
-					echo form_label('Country','license_number',array('class'=>'form_label'));
-					$input_data = array(
-						'name'		=> 'license_number',
-						'id'		=> 'license_number',
-						'class'		=> 'form_input alpha_numeric',
-						'value'		=> set_value('license_number', $user_data->country),
-						'maxlength'	=> '8',
-					);
-					echo form_input($input_data);
-
-				?>
-
-			</div>
 			<div class="form-row">
 				<div class="radio-header">Banned:</div>
 

@@ -171,6 +171,7 @@ class Administration extends MY_Controller {
 				$view_data = $this->_manage_users_table_content( $page );
 
 				$data = array(
+					'title' => WEBSITE_NAME .' Manage Users',
 					'javascripts' => array(
 						'js/administration/manage-users.js'
 					),
@@ -390,7 +391,8 @@ class Administration extends MY_Controller {
 					'js/jquery.passwordToggle-1.1.js',
 					'js/jquery.char-limiter-3.0.0.js',
 					'assets/js/ckeditor/ckeditor.js',
-					'js/default-char-limiters.js'
+					'js/default-char-limiters.js',
+					'js/autopopulate_country.js'
 				),
 
 				// Use the show password script

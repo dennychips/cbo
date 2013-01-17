@@ -20,7 +20,7 @@
  	$('button').show();
 
  	// Pagination needs a little padding
- 	$('.pagination').css('padding-top','9px');
+ 	// $('.pagination').css('padding-top','9px');
 
  	// Form elements need a little space between each other
  	$('.search-form-element').eq(0).css('margin-bottom','5px');
@@ -35,7 +35,7 @@
  	});
 
 	// If pagination links or search button is clicked
-	$(document).on('click','.pagination a, #search-button, #reset-button', function(e){
+	$(document).on('click','#search-button, #reset-button', function(e){
 
 		// Prevent default action
 		e.preventDefault();
@@ -98,7 +98,7 @@
 		e.preventDefault();
 
 		// Confirm that the user should be deleted
-		var answer = confirm('Delete: ' + $(this).parent().next().next().html() + '?');
+		var answer = confirm('Delete: ' + $(this).parent().prev().prev().prev().html() + '?');
 
 		// Delete if confirmed
 		if(answer){
@@ -119,7 +119,7 @@
 					if(data.test == 'success'){
 
 						// Show delete confirmation
-						$('#' + tr_id).addClass('pink');
+						$('#' + tr_id).remove();
 						$('#delete-confirmation p')
 							.css('display', 'block')
 							.html('MARKED ROWS HAVE BEEN DELETED')
@@ -139,7 +139,7 @@
 			);
 		}else{
 			// Show confirmation that user NOT deleted
-			alert($(this).parent().next().next().html() + ' was not deleted');
+			alert($(this).parent().prev().prev().prev().html() + ' was not deleted');
 		}
 	});
 });

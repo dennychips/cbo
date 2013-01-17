@@ -18,7 +18,7 @@ if( isset( $auth_first_name ) ) {
             <ul class="nav" style="padding:0px">
 
                 <li><?php echo secure_anchor('user', 'Dashboard')?></li>
-                <?php if(isset($auth_level) && $auth_level == 1) : ?>
+                <?php if(isset($auth_level) && $auth_level > 1) : ?>
                 <li><?php echo secure_anchor('elibrary/add', 'Share Document');?></li>
                 <?php endif;?>
                 <?php if(isset($auth_level) && $auth_level > 1) : ?>
@@ -51,7 +51,7 @@ if( isset( $auth_first_name ) ) {
                 </li>
                 <?php endif;?>
             </ul>
-            <ul class="nav pull-right">
+            <ul class="nav pull-right">            
                 <li><?php echo secure_anchor('user', 'Welcome, '.$_user_first_name.' '. $_user_last_name )?></li>
                 <li><?php echo secure_anchor('user/logout','Logout') ?></li>
             </ul>
@@ -77,9 +77,14 @@ if( isset( $auth_first_name ) ) {
                     <div class="grid_6">
                         <div class="loginlink pull-right">
                             <?php if(!isset($_user_first_name)):?>
-                            <?php echo secure_anchor('register','<i class="icon-user"></i> Register', 'class="btn btn-small"')?>
-                            <?php echo secure_anchor('/user', '<i class="icon-user"></i> Login', 'class="btn btn-small"') ?>
+                            <?php echo secure_anchor('register','<i class="icon-user"></i> Register', 'style="margin-right:10px;" class="btn btn-small pull-left"')?>
+                            <?php echo secure_anchor('/user', '<i class="icon-user"></i> Login', 'style="margin-right:10px;" class="btn btn-small pull-left"') ?>
                         <?php endif;?>
+                        <div id="google_translate_element" class="pull-left"></div><script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
                         </div>
                     </div>
                 </div>
@@ -116,46 +121,4 @@ if( isset( $auth_first_name ) ) {
     </section>
 
 <?php endif;?>
-<?php /*
-<!-- mobile navigation trigger-->
-<h5 class="mobile_nav"><a href="javascript:void(0)">&nbsp;<span></span></a></h5>
-<!--end mobile navigation trigger-->
-
-<section class="container preheader"> 
-  
-  <!--this is the login for the user-->
-  <?php if(!isset($_user_first_name)) : ?>
-        <nav class="user clearfix"><?php echo secure_anchor('register','Register')?></nav>
-        <nav class="user clearfix"><?php echo secure_anchor('/user', 'Login') ?></nav>
-  <?php endif?>
-  
-  <!--
-<div class="search-wrapper">
-    <form class="search" method="post" action="someaction.php">
-      <div id="search-trigger">Search:</div>
-      <input id="search-box" type="text" placeholder="search + enter">
-    </form>
-  </div>
--->
-  <div class="phone">Translate</div>
-  <ul class="social">
-    <li><a class="socicon small facebook" href="#" data-placement="bottom" title="Follow us on Facebook"></a></li>
-    <li><a class="socicon small twitterbird" href="#" data-placement="bottom" title="Follow us on Twitter"></a></li>
-  </ul>
-</section>
-
-<!-- begin .header-->
-<header class="header clearfix"> <!-- <img src="assets/images/print-logo.png" class="print logo" alt="name of company" /> -->
-  <div class="container"> 
-    
-    <?php $this->load->view('nav')?>
-    <!-- begin #logo -->
-    <h5 id="textlogo" class="brand"><a href="">CBO E-Library</a> </h5>
-    <!-- end #logo --> 
-    
-  </div>
-  <!-- close / .container--> 
-</header>
-<!-- close /.header --> 
-
-*/ ?>
+<?php 

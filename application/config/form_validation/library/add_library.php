@@ -18,6 +18,11 @@ $config['add_library'] = array(
 		'label' => 'Author',
 		'rules' => 'trim|xss_clean'
 	),
+	// array(
+	// 	'field' => 'date',
+	// 	'label' => 'Date',
+	// 	'rules' => 'trim|required|xss_clean'
+	// ),
 	array(
 		'field' => 'link',
 		'label' => 'Link',

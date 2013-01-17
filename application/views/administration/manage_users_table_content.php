@@ -45,14 +45,12 @@ if( $users_data !== FALSE )
 				'</td>
 				<td class="delete-column">
 					' . secure_anchor( 
-							'administration/delete_user/' . $user->user_id . $current_page , 
-							'<i class="icon-trash icon-white"></i>',
-							array( 'class' => 'delete-img btn btn-danger btn-small' )
+							'administration/delete_user/' . $user->user_id . $current_page , '<i class="icon-trash icon-white"></i>', array( 'class' => 'delete-img btn btn-danger btn-small' )
 						 ) . '
 					' . secure_anchor( 
 							'administration/update_user/' . $user->user_id, 
 							'<i class="icon-pencil icon-white"></i>',
-							array( 'class' => 'edit-img btn btn-info btn-small' )
+							array( 'class' => 'edit-img btn btn-small btn-primary' )
 						 ) . '
 				</td>
 			</tr>

@@ -6,9 +6,9 @@
                     <h4 class="widget-title">About </h4>
 
                     <div class="textwidget">
-                        ISEAN Survey Tools is a web-based Survey Tool CBOs among MSM & Transgender, develped by Satu Dunia and supported by ISEAN-Hivos Program.<br>
+                        This Site provide information on local MSM & TG Community Based Organization (CBO) in the region. This site also allows you to share information about your organization and your work. It is also a place where you can upload research...<br>
                         <br>
-                        <a class='th_button simple_button_link' href='#'><span>more info</span></a>
+                        <a class='th_button simple_button_link' href='<?php echo site_url('about')?>'><span>more info</span></a>
                     </div>
                 </div>
             </aside>

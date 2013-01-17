@@ -116,6 +116,15 @@ elseif(isset($validation_passed)) {
 		
 		
 		echo form_dropdown('type', $type , set_value('type', $lib_data->catID), 'id="type"');
+		// echo form_label('Date *','date',array('class'=>'form_label'));
+		// $input_data = array(
+		// 	'name'		=> 'date',
+		// 	'id'		=> 'date',
+		// 	'class'		=> 'form_input ',
+		// 	'value'		=> set_value('date'),
+		// 	'maxlength'	=> 255
+		// );
+		// echo form_input($input_data);
 		echo form_label('Author *','author',array('class'=>'form_label'));
 		$input_data = array(
 			'name'		=> 'author',

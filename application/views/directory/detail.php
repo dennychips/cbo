@@ -4,20 +4,18 @@
 <div class="grid_8">
 	<h2 class="short_headline"><span><?php echo $profile['organization']?></span></h2>
 	<hr />
-	<p>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ut tincidunt sem. Nulla facilisis eros at nisl semper pellentesque. Vivamus sed nisl at nibh dapibus tincidunt at eget nibh. Aliquam commodo arcu vel risus suscipit venenatis. Ut at nibh leo. Nullam at felis ut eros elementum porttitor. Maecenas sit amet congue libero. Quisque sollicitudin tempus rhoncus. Vivamus quis felis justo, non rhoncus tellus.
-	</p>
+	<?php echo $profile['description']?>
 	<?php if(!empty($profile['website'])):?>
-		<a href="<?php echo $profile['website']?>" class="btn btn-success btn-small btn-info">Website</a>
+		<a href="<?php echo $profile['website']?>" target="_blank" class="btn btn-success btn-small btn-info">Website</a>
 	<?php endif?>
 	<?php if(!empty($profile['blog'])):?>
-	<a href="<?php echo $profile['blog']?>" class="btn btn-success btn-info btn-small">Blog</a>
+	<a href="<?php echo $profile['blog']?>" target="_blank" class="btn btn-success btn-info btn-small">Blog</a>
 	<?php endif?>
 	<?php if(!empty($profile['facebook'])):?>
-	<a href="<?php echo $profile['facebook']?>" class="btn btn-success btn-info btn-small">Facebook</a>
+	<a href="<?php echo $profile['facebook']?>" target="_blank" class="btn btn-success btn-info btn-small">Facebook</a>
 	<?php endif?>
 	<?php if(!empty($profile['twitter'])):?>
-	<a href="<?php echo $profile['twitter']?>" class="btn btn-success btn-info btn-small">Twitter</a>
+	<a href="<?php echo $profile['twitter']?>" target="_blank" class="btn btn-success btn-info btn-small">Twitter</a>
 	<?php endif?>
 	<br /><br />
 	<?php if(!empty($documents)):  ?>
@@ -52,7 +50,7 @@
 		      <th style="width:15%">Author</th>
 		      <th style="width:10%">Date</th>
 		      <th style="width:10%">Format</th>
-		      <th style="width:15%">Document Type</th>
+		      <th style="width:15%">Type</th>
 		      <th style="width:20%">Action</th>
 		    </tr>
 		  </thead>

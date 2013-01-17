@@ -139,10 +139,15 @@ $config['manager_update_rules'] = array(
 		'rules' => 'trim|required|xss_clean'
 	),
 	array(
-		'field' => 'license_number',
-		'label' => 'LICENSE NUMBER',
-		'rules' => 'trim|required|alpha_numeric|max_length[8]'
+		'field' => 'country',
+		'label' => 'Country',
+		'rules' => 'trim|required|xss_clean'
 	),
+	// array(
+	// 	'field' => 'license_number',
+	// 	'label' => 'LICENSE NUMBER',
+	// 	'rules' => 'trim|required|alpha_numeric|max_length[8]'
+	// ),
 	array(
 		'field' => 'phone_number',
 		'label' => 'PHONE NUMBER',

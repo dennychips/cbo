@@ -34,6 +34,7 @@ class User extends MY_Controller {
 	 */
 	public function index()
 	{
+
 		if( $this->input->get('logout') && config_item('show_login_form_on_logout') == FALSE )
 		{
 			$data = array(
@@ -501,13 +502,21 @@ class User extends MY_Controller {
 
 	public function recent_document($user_id){
 		if($this->input->is_ajax_request()){
+			$this->is_logged_in();
 			$this->load->library('datatables');
+			$this->load->model('library_model', 'lib');
+			$country = $this->lib->get_manager_country($this->auth_user_id);
 			$this->datatables->select('library_data.id, title, author, type, format, library_category.category_name, created, modified');
 			$this->datatables->from('library_data');
 			$this->datatables->join('library_category', 'library_category.catID = library_data.type');
+			$this->datatables->join('customer_profile', 'customer_profile.user_id = library_data.user_id');
 			if($this->auth_level == 1){
-				$this->datatables->where('user_id ='. $user_id);
+				$this->datatables->where('library_data.user_id ='. $user_id);
 			}
+			if($this->auth_level == 6){
+				$this->datatables->where('country = "'. $country['country'] .'"');
+			}
+
 			$this->datatables->unset_column('library_data.id');
 			$this->datatables->unset_column('type');
 			$this->datatables->edit_column('title', '<a href="elibrary/view/$1">$2</a>', 'library_data.id, title');

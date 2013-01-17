@@ -10,7 +10,8 @@
 | 
 */
 
-	define('WEBSITE_NAME', $_SERVER['HTTP_HOST']);
+	// define('WEBSITE_NAME', $_SERVER['HTTP_HOST']);
+define('WEBSITE_NAME', 'CBO E-Library |');
 
 /*
 | -----------------------------------------------------------------
@@ -68,7 +69,7 @@
 | 
 */
 
-	define('MAX_CHARS_4_USERNAME',12);
+	define('MAX_CHARS_4_USERNAME',20);
 
 /*
 | -----------------------------------------------------------------
